@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The Python environmentread-evaluate-loop 「读取-求值-输出」循环（英语：Read-Eval-PrintLoop，简称REPL）是一个简单的，交互式的编程环境。这个词常常用于指代一个Lisp的交互式开发环境，但也能指代命令行的模式和例如APL、BASIC、Clojure、F#、Haskell、J、Julia、Perl、PHP、Prolog、Python、R、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-7-19-Python Objects Types and Expressions/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="The Python environmentread-evaluate-loop 「读取-求值-输出」循环（英语：Read-Eval-PrintLoop，简称REPL）是一个简单的，交互式的编程环境。这个词常常用于指代一个Lisp的交互式开发环境，但也能指代命令行的模式和例如APL、BASIC、Clojure、F#、Haskell、J、Julia、Perl、PHP、Prolog、Python、R、">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="The Python environmentread-evaluate-loop 「读取-求值-输出」循环（英语：Read-Eval-PrintLoop，简称REPL）是一个简单的，交互式的编程环境。这个词常常用于指代一个Lisp的交互式开发环境，但也能指代命令行的模式和例如APL、BASIC、Clojure、F#、Haskell、J、Julia、Perl、PHP、Prolog、Python、R、">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-7-19-Python Objects Types and Expressions" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/14/2019-7-19-Python Objects Types and Expressions/" class="article-date">
+  <time datetime="2019-08-14T15:21:03.288Z" itemprop="datePublished">2019-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="The-Python-environment"><a href="#The-Python-environment" class="headerlink" title="The Python environment"></a>The Python environment</h2><p>read-evaluate-loop</p>
+<p>「读取-求值-输出」循环（英语：Read-Eval-Print<br>Loop，简称REPL）是一个简单的，交互式的编程环境。这个词常常用于指代一个Lisp的交互式开发环境，但也能指代命令行的模式和例如APL、BASIC、Clojure、F#、Haskell、J、Julia、Perl、PHP、Prolog、Python、R、Ruby、Scala、Smalltalk、Standard ML、Swift、Tcl、Javascript这样的程序语言所拥有的类似的编程环境。这也被称做交互式顶层构件（interactive toplevel）。</p>
+<h2 id="Variables-and-expressions"><a href="#Variables-and-expressions" class="headerlink" title="Variables and expressions"></a>Variables and expressions</h2><p>To translate a real-world problem into one that can be solved by an algorithm,there are two interrelated tasks.</p>
+<ul>
+<li>Firstly.select the variables,-</li>
+<li>and secondly,find the expressions that relate to these variables.</li>
+</ul>
+<p>Variables are labels attached to objects;they are not the object itself.</p>
+<p>They are not containers for objects either.<br>A variable does not contain the object,rather it acts as a pointer or reference to an object.</p>
+<p>Pyhton is a dynamically typed language.</p>
+<p>Variable names can be bound to different values and types during program execution.</p>
+<p>Variables, or more specifically the objects they point to, can change type depending on the values assigned to them.</p>
+<h3 id="Variable-scope"><a href="#Variable-scope" class="headerlink" title="Variable scope"></a>Variable scope</h3><p>Each time a function executes,a new local namespace is created.This represents a local environment that contains the names of the parameters and variables that are assigned by the function.</p>
+<p>To resolve a namespace when a function is called,the Python interpreter first searches the local namespace(that is ,the function itself) and if no match is found,it searches the global namespace.This global namespace is the module in which the function was defined.If the name is still not found,it searches the built-in namespace.Finally,if this fails then the interpreter raises a NameError ecception.</p>
+<h3 id="Flow-control-and-iteration"><a href="#Flow-control-and-iteration" class="headerlink" title="Flow control and iteration"></a>Flow control and iteration</h3><h3 id="Overview-of-data-types-and-objects"><a href="#Overview-of-data-types-and-objects" class="headerlink" title="Overview of data types and objects"></a>Overview of data types and objects</h3><p><strong>Python contains 12 built-in data types.</strong></p>
+<p>These include four numeric types(int,float,complex,bool),four sequence types(str,list,tuple,range),one mapping type(dict),and two set types.</p>
+<p><strong>All data types in Python are objects.</strong></p>
+<p>Each object in Python has a type,a value,and an identity.The identity of an object acts as a pointer to the object’s location in memory.</p>
+<p>The type of an object,also known as the object’s class,describes the object’s internal representation as well as the methods and operations it supports.</p>
+<p>Once an instance of an object is created,its identity and type cannot be changed.</p>
+<p>We can get the identity of an object by using the built-in function id().This returns an identifying integer and on most systems this refers to its memory location, although you should not rely on this in any of your code.</p>
+<p>Mutable object’s such as lists can have their values changed.They have methods,such as insert() or append(),that change an objects value.</p>
+<p>Immutable objects,such as  strings,cannot have their values changeed,so when we run their methods,they simply return a value rather than change the value of an underlying objet.</p>
+<h3 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h3><p>Strings are immutable sequence objects,with each character representing an element in the sequence.</p>
+<p>s.count(substring,[start,end])<br>Counts the occurrences of a substring with optional start and end parameters.</p>
+<p>s.expandtabs([tabsize])<br>Replaces tabs with spaces.</p>
+<p>s.find(substring,[start,end])<br>Returns the index of the first occurrence of a substring or returns -1 if the substring is not found.</p>
+<p>s.isalnum()<br>Returns True if all characters are alphanumeric,returns False otherwise. # alphanumeric 字母</p>
+<p>a.isalpha()<br>Returns True if all characters are alphabetic,returns False otherwise.</p>
+<p>a.isdigit()<br>Returns True if all characters are digits,returns False otherwise.</p>
+<p>s.join(t)<br>Joins the strings in sequence t.</p>
+<p>s.replace(old,new [maxreplace])<br>Replaces old substring with new substring.</p>
+<p>s.strip([characters])<br>Removes whitespace or optional characters.<br>Python strip() 方法用于移除字符串头尾指定的字符（默认为空格）或字符序列。<br>注意：该方法只能删除开头或是结尾的字符，不能删除中间部分的字符。<br>1、strip() 处理的时候，如果不带参数，默认是清除两边的空白符，例如：/n, /r, /t, ‘ ‘)。<br>2、strip() 带有参数的时候，这个参数可以理解一个要删除的字符的列表，是否会删除的前提是从字符串最开头和最结尾是不是包含要删除的字符，如果有就会继续处理，没有的话是不会删除中间的字符的。</p>
+<p>s.split([separator],[maxsplit])<br>Splites a string separated by whitespace or an optional separator.Returns  a list.</p>
+<p>‘int’ object has no attribute ‘append’</p>
+<h3 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h3><p>list(s)<br>Returns a list of the sequence s.</p>
+<p>s.append(s)<br>Appends element x to the end of s.</p>
+<p>s.extend(x)<br>Appends the list x to s.</p>
+<p>s.count(x)<br>Counts the occurrences of x in s.</p>
+<p>s.index(x,[start],[stop])<br>Returns the smallest index,i,where s[i]==x.Can include optional start and stop index for the search.</p>
+<p>s.insert(i,e)<br>Insert x at index i.</p>
+<p>s.pop(i)<br>Returns the element i and removes it from the list</p>
+<p>s.remove(x)<br>Removes x from s.</p>
+<p>s.reverse()<br>Reverses the order of s.</p>
+<p>s.sort(key,[reverse])<br>Sorts s with optional key and reverse</p>
+<p>nested 嵌套的<br>bracket operator 括号运算符。</p>
+<h3 id="Functions-as-first-class-objects"><a href="#Functions-as-first-class-objects" class="headerlink" title="Functions as first class objects"></a>Functions as first class objects</h3><p>In Python,it is not only data types that are treated as objects.Both functions and classes are what are known as first class objects,allowing them to be manipulated in the same ways as built-in data types.</p>
+<p>By definition,first class objects are:</p>
+<ul>
+<li>Created at runtime</li>
+<li>Assigned as a variable or in data structure</li>
+<li>Passed as an argument to a function</li>
+<li>Returned as the result of a function</li>
+</ul>
+<p>In Python,the term first class object is a bit of a misnomer since it implies some sort of hierarchy,whereas all Python objects are essentially first class.</p>
+<p>Since user-defined functions are objects,we can do things such as include them in other objects,sunch as lists.</p>
+<p>Functions can also be used as arguments for other functions.</p>
+<h2 id="Higher-order-functions"><a href="#Higher-order-functions" class="headerlink" title="Higher order functions"></a>Higher order functions</h2><p>Functions that take other functions as arguments, or that return functions, are called higher order functions.</p>
+<p>Python3 contains two built-in higher order functions,filter() and map().</p>
+<p>In earlier versions of Python,these functions returned lists; in Python3,they return an iterator,making them much more efficient.</p>
+<p>The map() funciton provides an easy way to transform each item into an iterable object.</p>
+<p>Note that both map and filter perform the identical function as to what can be achieved by list comprehensions.</p>
+<p>更推荐使用list comprehensions</p>
+<p>Note the difference between the list.sort() method and the sorted built-in function.</p>
+<p>list.sort(), a method of the list object,sorts the existing instance of a list <strong>without</strong> copying it.This method changes the target object and returns None. It is an important convention in Python that functions or methods that change the object return None to make it clear that no new object was created and that the object itself was changed.</p>
+<p>On the other hand,the sorted built-in function returns a new list.It actually accepts any iterable object as an argument,but it will always retrun a list.Both list sort and sorted take two optional keyword arguments as key.</p>
+<h2 id="Recursive-functions"><a href="#Recursive-functions" class="headerlink" title="Recursive functions"></a>Recursive functions</h2><p>In Python,we can implement a recursive function simply by calling it within its own function body.To stop a recursive function turning into an infinite loop, we need at least one argument that tests for a terminating case to end the recursion.This is sometimes called the base case.</p>
+<p>It should be pointed out that recursion is different from iteration.</p>
+<p>Although both involve repetition,iteration loops through a sequence of operations,whereas recursion repeatedly calls a function.Both need a selection statement to end.</p>
+<p>Technically,recursion is a special case of iteration known as tail iteration,and it is usually always possible to convert an iterative function to a recursive function and vice versa.</p>
+<p>The interesting thing about recursive functions is that they are able to describe an infinite object within a finite statement.</p>
+<p>虽然两者都涉及重复，但迭代循环执行一系列操作，而递归重复调用一个函数。 两者都需要选择语句才能结束。 从技术上讲，递归是一种称为尾部迭代的迭代的特殊情况，通常总是可以将迭代函数转换为递归函数，反之亦然。 关于递归函数的有趣之处在于它们能够在有限语句中描述无限对象。</p>
+<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration:"></a>Iteration:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def iterTest(low,high):</span><br><span class="line">    while low&lt;=high:</span><br><span class="line">        print(low)</span><br><span class="line">        low=low+1</span><br></pre></td></tr></table></figure>
+
+<h3 id="recursion"><a href="#recursion" class="headerlink" title="recursion:"></a>recursion:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def recurTest(low,high):</span><br><span class="line">    if low&lt;high:</span><br><span class="line">        print(low)</span><br><span class="line">        recuTest(low+1,high)</span><br></pre></td></tr></table></figure>
+
+<p>In general,iteration is more efficient;however,recursive functions are often easier to understand and write.Recursive functions are also useful for manipulating recursive data structures such as linked lists and trees,as we will see.</p>
+<h2 id="Generators-and-co-routines"><a href="#Generators-and-co-routines" class="headerlink" title="Generators and co-routines"></a>Generators and co-routines</h2><p>We can create functions that do not just return one result,but rather an entire sequence of results,by using the <strong>yield</strong> statement.These functions are called generators.</p>
+<p>Python contains generator functions, which are an easy way to create iterators and they are especially useful as a replacement for unworkably long lists. <strong>A generator yields items rather than build lists.</strong></p>
+<p>Building a list to do this calculation takes significantly longer.The performance improvement as a result of using generators is because the values are <strong>generated on demand</strong>,rather than saved as a list in memory.<em>A calculation can begin before all the elements have been generated and elements are generated only when they are needed.</em></p>
+<p>In the preceding example, the sum method loads each number into memory when it is needed for the calculation. This is achieved by the generator object repeatedly calling the <strong>next</strong>() special method. Generators never return a value other than None.</p>
+<p>生成器永远不会返回除None之外的值。</p>
+<p>Typically,generator objects are used in for loops.</p>
+<p>We can also create a <strong>generator expression</strong>,which,apart from replacing square brackets with parentheses,uses the same syntax and carries out the same operation as list comprehensions.Generator expressions,however,do not create a list,they create a generator object.This object does not create the data,but rater creates that data on demand.This means that generator objects do not support sequence methods sunch as append() and insert().You can,however,change a generator into a list using the list() function.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lst1 = [1,2,3,4]</span><br><span class="line">gen1 = (10**i for i in lst1)</span><br><span class="line">for x in gen1: print(x)</span><br><span class="line">100</span><br><span class="line">1000</span><br><span class="line">10000</span><br></pre></td></tr></table></figure>
+
+<h2 id="Classes-and-object-programming"><a href="#Classes-and-object-programming" class="headerlink" title="Classes and object programming"></a>Classes and object programming</h2><p>Typically,classes are sets of funcitons,variables,and properties.</p>
+<p>By organizing our programs around objects and data rather than actions and logic,we have a robust and flexible way to build complex applications.The actions and logic are still present of course,but by embodying them in objects,we have a way to encapsulate functionality,allowing objects to change in very specific ways.This makes our code less error-prone,easier to extend and maintain,and able to model real-world objects.</p>
+<p>Classes are created in Python using the class statement.This defines a set of shared attributes associated with a collection of class instances.A class usually consists of a number of methods,class variables,and computed properties.It is important to understand that defining a class does not,by itself,create any instances of that class.To create an instance,a variable must be assined to a class.</p>
+<p>The class body consists of a series of statements that execute during the class definition.</p>
+<p>The functions defined inside a class are called instance methods.They apply some operations to the class instance by passing an instance of that class as the first argument.This argument is called self by convention,but it can be any legal identifier.</p>
+<h2 id="Special-methods"><a href="#Special-methods" class="headerlink" title="Special methods"></a>Special methods</h2><p>The methods that begin and end with two underscores are called special methods.</p>
+<p>Apart from the following exception,special method,are generally called by the Python interpreter rather than the programmer;</p>
+<p>for example,when we use the + operator,we actually invoking a call to <strong>add</strong>().</p>
+<p>For example,rather than using my_object.<strong>len</strong>() we can use len(my_object) using len() on a string object is actually much faster because it returns the value representing the object’s size in memory,rather than making a call to the object’s <strong>len</strong>method.</p>
+<p>The only special method we actually call inour programs,as common practice,is the <strong><strong>init</strong></strong> method,to invoke the initializer of the superclass in our own class definitions.</p>
+<p>It is strongly <strong>advised</strong> <em>not to use the double underscore syntax</em> for your own objects because of potential current or future conflicts with Python’s own special methods.</p>
+<p>We may,however,want to implement special methods in custom objects,to give them some of the behavior of built-in types.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class my_class():</span><br><span class="line">    def __init__(self, greet):</span><br><span class="line">        self.greet = greet</span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &apos;a custom object (%r)&apos; % (self.greet)</span><br></pre></td></tr></table></figure>
+
+<p>When we create an instance of this object and inspect it, we can see we get our customized string representation. Notice the use of the %r format placeholder to return the standard representation of the object. This is useful and best practice, because, in this case, it shows us that the greet object is a string indicated by the quotation marks:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = my_class(&apos;giday&apos;)</span><br><span class="line">a</span><br><span class="line">a custom object(&apos;giday&apos;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h2><p>It is possible to create a new class that modifies the behavior of an existing class through inheritance. This is done by passing the inherited class as an argument in the class definition. It is often used to modify the behavior of existing methods, for example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class specialEmployee(Employee):</span><br><span class="line">    def hours(self,numHours):</span><br><span class="line">        self.owed += numHours * self.rate*2</span><br><span class="line">        return(&quot;%.2f hours worked&quot; % numHours)</span><br></pre></td></tr></table></figure>
+
+<p>For a subclass to define new class variables,it needs to define an <strong>init</strong>() method,as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class specialEmployee(Employee):</span><br><span class="line">    def __init__(self,name,rate,bonus):</span><br><span class="line">        Employee.__init__(self,name,rate)#calls the base classes</span><br><span class="line">        self.bonus = bonus</span><br><span class="line">    def hours(self,numHours):</span><br><span class="line">        self.owed += numHours * self.rate*2</span><br><span class="line">        return(&quot;%.2f hours worked&quot; % numHours)</span><br></pre></td></tr></table></figure>
+
+<p>Notice that the methods of the base class are not automatically invoked and it is necessary for the derived class to call them.We can test for class membership using the built-in function <code>isintance(obj1,obj2)</code>.This returns true if <code>obj1</code> belongs to the class of <code>obj2</code> or any class derived from <code>obj2</code>.</p>
+<p>Within a class definition,it is assumed that all methods operate on the instance,but this is not a requirement.There are,however,other types of methods:<code>static methods</code> and <code>class methods</code>.</p>
+<p>A static method is just an ordinary function that just happens to be defined in a class.</p>
+<p>It <em>does not</em> perform any operations on the instance and it is defined using the <code>@staticmethod</code> class decorator.Static methods cannot access the attributes of an instance,so their most common <strong>usage</strong> is as a convenience to group utility functions together.<br>Class methods operate on the class itself,not the instance,in the same way that class variables are associated with the classes rather than instances of that class.They are defined using the <code>@classmethod</code> decorator,and are distinguished from instance methods in that the class is passed as the first argument.This is named <code>cls</code> by convention.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Aexp(object):</span><br><span class="line">    base = 2</span><br><span class="line">    @classmethod</span><br><span class="line">    def exp(cls,x):</span><br><span class="line">        return(cls.base**x)</span><br><span class="line">class Bexp(Aexp):</span><br><span class="line">    base = 3</span><br></pre></td></tr></table></figure>
+
+<p>The class Bexp inherits from the Aexp class and changes the base class variable to 3. We canrun the parent class’s exp() method as follows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bexp.exp(2)</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<p>Because a subclass inherits all the same fetures of its parent there is the potential for it to break inherited methods.Using class methods is a way to define exactly what methods are run.</p>
+<h2 id="Data-encapsulation-and-properties"><a href="#Data-encapsulation-and-properties" class="headerlink" title="Data encapsulation and properties"></a>Data encapsulation and properties</h2><p>Unless otherwise specified,all attributes and methods are accessible without restriction.This may cause problems when we are building object-oriented applications where we may want to hide the internal implementation of an object.This can lead to namespace conflicts between objects defined in derived classes with the base class.</p>
+<p>To prevent this,the methods we define private attributes with <strong>have a double underscore</strong>,sunch as <code>__privateMethod()</code> .These method names are automatically changed <code>__Classname__privateMethod</code> to prevent name conflicts with methods defined in base classes.</p>
+<p>Be aware that <strong>this does not strictly hide private attributes</strong>, rather it just provides a mechanism for <strong>preventing name conflicts</strong>.</p>
+<p>It is recommended to use private attributes when using a class <strong>property</strong> to define mutable attributes.A property is a kind of attribute that rather than returning a stored value,computes its value when called.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bexp(Aexp):</span><br><span class="line">    __base = 3</span><br><span class="line">    def __exp(self):</span><br><span class="line">    return(x**cls.base)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/14/2019-7-19-Python Objects Types and Expressions/" data-id="cjzbeqqo8000kvjw8p7wocnso" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/14/2019-7-23-笔记整理（MOOC)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-19-Python Objects Types and Expressions/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（MOOC)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（DSIPy)/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

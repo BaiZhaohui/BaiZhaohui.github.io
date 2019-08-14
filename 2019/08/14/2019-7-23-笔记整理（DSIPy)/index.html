@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于时间复杂度时间复杂度的几条基本计算规则  基本操作，即只有常数项，认为其时间复杂度为O(1)。 顺序结构，时间复杂度按加法进行计算 循环结构，时间复杂度按乘法进行计算 分支结构，时间复杂度取最大值 判断一个算法的效率时，往往只需要关注操作数量的最高次项，其他次项和常数项可以忽略。 无特殊说明时，算法的时间复杂度均指最坏时间复杂度。  常见时间复杂度的关系： 1O(1)&amp;lt;O(logn)&amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（DSIPy)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于时间复杂度时间复杂度的几条基本计算规则  基本操作，即只有常数项，认为其时间复杂度为O(1)。 顺序结构，时间复杂度按加法进行计算 循环结构，时间复杂度按乘法进行计算 分支结构，时间复杂度取最大值 判断一个算法的效率时，往往只需要关注操作数量的最高次项，其他次项和常数项可以忽略。 无特殊说明时，算法的时间复杂度均指最坏时间复杂度。  常见时间复杂度的关系： 1O(1)&amp;lt;O(logn)&amp;l">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="关于时间复杂度时间复杂度的几条基本计算规则  基本操作，即只有常数项，认为其时间复杂度为O(1)。 顺序结构，时间复杂度按加法进行计算 循环结构，时间复杂度按乘法进行计算 分支结构，时间复杂度取最大值 判断一个算法的效率时，往往只需要关注操作数量的最高次项，其他次项和常数项可以忽略。 无特殊说明时，算法的时间复杂度均指最坏时间复杂度。  常见时间复杂度的关系： 1O(1)&amp;lt;O(logn)&amp;l">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-7-23-笔记整理（DSIPy)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/14/2019-7-23-笔记整理（DSIPy)/" class="article-date">
+  <time datetime="2019-08-14T15:21:03.288Z" itemprop="datePublished">2019-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关于时间复杂度"><a href="#关于时间复杂度" class="headerlink" title="关于时间复杂度"></a>关于时间复杂度</h2><p>时间复杂度的几条基本计算规则</p>
+<ol>
+<li>基本操作，即只有常数项，认为其时间复杂度为O(1)。</li>
+<li>顺序结构，时间复杂度按加法进行计算</li>
+<li>循环结构，时间复杂度按乘法进行计算</li>
+<li>分支结构，时间复杂度取最大值</li>
+<li>判断一个算法的效率时，往往只需要关注操作数量的最高次项，其他次项和常数项可以忽略。</li>
+<li>无特殊说明时，算法的时间复杂度均指最坏时间复杂度。</li>
+</ol>
+<p>常见时间复杂度的关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(1)&lt;O(logn)&lt;O(n)&lt;O(nlogn)&lt;O(n^2)&lt;O(n^3)&lt;O(2^n)&lt;O(n!)&lt;O(n^n)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Python内置类型性能分析"><a href="#Python内置类型性能分析" class="headerlink" title="Python内置类型性能分析"></a>Python内置类型性能分析</h3><p>timeit 模块可以用来测试一小段Python代码的执行速度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class timeit.Timer(stmt=&apos;pass&apos;,setup=&apos;pass&apos;,timer=&lt;timer function&gt;)</span><br></pre></td></tr></table></figure>
+
+<p>Timer是测量小段代码执行速度的类；<br>stmt参数是要测试的代码语句（statement）；<br>setup参数是运行代码时需要的设置；<br>timer参数是一个定时器函数，与平台有关。</p>
+<p>timeit.Timer.timeit(number=100000)<br>Timer类中测试语句执行速度的对象方法，number参数是测试代码时的测试次数，默认为1000000次。方法返回执行代码的平均耗时，一个float类型的秒数。</p>
+<p>数据结构静态描述了数据元素之间的关系。高效的程序需要在数据结构的基础上设计和选择算法。<br>程序 = 数据结构 + 算法<br>总结：算法是为了解决实际问题而设计的，数据结构是算法需要处理的问题载体。</p>
+<h3 id="ADT"><a href="#ADT" class="headerlink" title="ADT"></a>ADT</h3><p>抽象数据类型指一个数学模型以及定义在这个模型上的一组操作。即把数据类型和数据类型上的运算捆绑在一起，进行封装。引入ADT的目的是为了把数据类型的表示和数据类型上运算的实现与这些数据类型和运算在程序中的引用隔开，使它们相互独立。</p>
+<p>地址所占用的内存空间大小一致。</p>
+<p>选择排序算法不具有稳定性（考虑升序，每次选最大的情况）。<br>冒泡排序具有稳定性。<br>插入排序具有稳定性。<br>希尔排序不具有稳定性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（DSIPy)/" data-id="cjzbeqqnm0006vjw8irh38esq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-19-Python Objects Types and Expressions/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（MOOC)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（DSIPy)/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

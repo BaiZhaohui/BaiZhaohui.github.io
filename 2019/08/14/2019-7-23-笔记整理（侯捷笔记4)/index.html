@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Object Oriented Programming,Object Oriented DesignOOP OOD-Inheritance（继承）-Composition（复合）-Delegation（委托）Composition（复合），表示has-aAdapterComposition（复合）关系下的构造和析构 构造由内而外Container的构造函数首先调用Component的default">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Object Oriented Programming,Object Oriented DesignOOP OOD-Inheritance（继承）-Composition（复合）-Delegation（委托）Composition（复合），表示has-aAdapterComposition（复合）关系下的构造和析构 构造由内而外Container的构造函数首先调用Component的default">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/:storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Ce3c0bf05.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/:storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C0f52c2f8.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/:storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C1053a33c.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/:storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C4856d28e.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/:storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Cd9aa4c92.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/:storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C82ee2b56.png">
+<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Object Oriented Programming,Object Oriented DesignOOP OOD-Inheritance（继承）-Composition（复合）-Delegation（委托）Composition（复合），表示has-aAdapterComposition（复合）关系下的构造和析构 构造由内而外Container的构造函数首先调用Component的default">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/:storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Ce3c0bf05.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-7-23-笔记整理（侯捷笔记4)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/" class="article-date">
+  <time datetime="2019-08-14T15:21:03.288Z" itemprop="datePublished">2019-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Object-Oriented-Programming-Object-Oriented-Design"><a href="#Object-Oriented-Programming-Object-Oriented-Design" class="headerlink" title="Object Oriented Programming,Object Oriented Design"></a>Object Oriented Programming,Object Oriented Design</h1><h2 id="OOP-OOD"><a href="#OOP-OOD" class="headerlink" title="OOP OOD"></a>OOP OOD</h2><h4 id="Inheritance（继承）"><a href="#Inheritance（继承）" class="headerlink" title="-Inheritance（继承）"></a>-Inheritance（继承）</h4><h4 id="Composition（复合）"><a href="#Composition（复合）" class="headerlink" title="-Composition（复合）"></a>-Composition（复合）</h4><h4 id="Delegation（委托）"><a href="#Delegation（委托）" class="headerlink" title="-Delegation（委托）"></a>-Delegation（委托）</h4><h2 id="Composition（复合），表示has-a"><a href="#Composition（复合），表示has-a" class="headerlink" title="Composition（复合），表示has-a"></a>Composition（复合），表示has-a</h2><p><code>Adapter</code><br>Composition（复合）关系下的构造和析构<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Ce3c0bf05.png" alt="e3c0bf05.png"></p>
+<h3 id="构造由内而外"><a href="#构造由内而外" class="headerlink" title="构造由内而外"></a>构造由内而外</h3><p>Container的构造函数首先调用Component的default构造函数，然后才执行自己。<br><code>Container::Container(...):Component(){...};</code></p>
+<h3 id="构造由外而内"><a href="#构造由外而内" class="headerlink" title="构造由外而内"></a>构造由外而内</h3><p>Container的析构函数首先执行自己，然后才调用Component的析构函数。<br><code>Container::~Container(...){...~Component()};</code></p>
+<h2 id="Delegation（委托）-Composition-by-reference"><a href="#Delegation（委托）-Composition-by-reference" class="headerlink" title="Delegation（委托）.Composition by reference."></a>Delegation（委托）.Composition by reference.</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">        String();</span><br><span class="line">        String(<span class="keyword">const</span> <span class="keyword">char</span>* s);</span><br><span class="line">        String &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> String&amp; s);</span><br><span class="line">        ~String();</span><br><span class="line">        ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">        StringRep* rep;<span class="comment">//pimpl(Handle/Body)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"String.hpp"</span></span></span><br><span class="line"><span class="keyword">namespace</span>&#123;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>&#123;</span></span><br><span class="line"><span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span>;</span></span><br><span class="line">        StringRep(<span class="keyword">const</span> <span class="keyword">char</span>*s);</span><br><span class="line">        ~StringRep();</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">char</span>* rep;</span><br><span class="line">&#125;;</span><br><span class="line">&#125; </span><br><span class="line">String::String()&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C0f52c2f8.png" alt="0f52c2f8.png"></p>
+<h2 id="Inheritance（继承）-表示is-a"><a href="#Inheritance（继承）-表示is-a" class="headerlink" title="Inheritance（继承）,表示is-a"></a>Inheritance（继承）,表示is-a</h2><h3 id="Inheritance（继承）关系下的构造和析构"><a href="#Inheritance（继承）关系下的构造和析构" class="headerlink" title="Inheritance（继承）关系下的构造和析构"></a>Inheritance（继承）关系下的构造和析构</h3><p>base class 的构造函数必须是virtual，否则会出现undefined behavior<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C1053a33c.png" alt="1053a33c.png"></p>
+<h4 id="构造由内而外-1"><a href="#构造由内而外-1" class="headerlink" title="构造由内而外"></a>构造由内而外</h4><p>Derived的构造函数首先调用base的default构造函数，然后才执行自己。<br><code>Derived::Derived(...):Base(){...};</code></p>
+<h4 id="构造由外而内-1"><a href="#构造由外而内-1" class="headerlink" title="构造由外而内"></a>构造由外而内</h4><p>Derived的析构函数首先执行自己，然后才调用Base的析构函数。<br><code>Derived::~Derived(...){...~Base()};</code></p>
+<h2 id="Inheritance（继承）with-virtual-functions（虚函数）"><a href="#Inheritance（继承）with-virtual-functions（虚函数）" class="headerlink" title="Inheritance（继承）with virtual functions（虚函数）"></a>Inheritance（继承）with virtual functions（虚函数）</h2><ul>
+<li>non-virtual函数：你不希望derived class 重新定义（override，复写）它。</li>
+<li>virtual函数：你希望derived class 重新定义（override，复写）它，且它已经有默认定义。</li>
+<li>pure virtual函数：你希望derived class 一定要重新定义（override，复写）它，你对它没有默认定义。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// pure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; msg)</span></span>; <span class="comment">// impure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">objectID</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// non-virtual</span></span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ellipse</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Template Method 设计模式</p>
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C4856d28e.png" alt="4856d28e.png"></p>
+<h4 id="Delegation（委托）-Inheritance（继承）"><a href="#Delegation（委托）-Inheritance（继承）" class="headerlink" title="Delegation（委托）+Inheritance（继承）"></a>Delegation（委托）+Inheritance（继承）</h4><p>  <img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Cd9aa4c92.png" alt="d9aa4c92.png"> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Component(<span class="keyword">int</span> val) &#123; value = val; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Component*)</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Primitive</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Primitive(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Composite</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;Component*&gt; c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Composite(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Component* elem)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		c.push_back(elem);</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C82ee2b56.png" alt="82ee2b56.png"><br>创建未来的class 名称<br>下面创建的原型要让上面看得到，放上去。<br>Prototype 原型<br>每一个子类有自己的一个个体，并且有一个构造函数把自己这个个体挂到上面去。<br>每一个子类有一个clone，让父类能够通过原型调用clone创建一个个副本，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/" data-id="cjzbeqqnr000avjw87clactwz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/14/2019-7-23-笔记整理（MOOC)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-19-Python Objects Types and Expressions/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（MOOC)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（DSIPy)/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

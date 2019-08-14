@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="迭代器和迭代器适配器1.迭代器 InputIterator，可读，不可写，只支持自增运算 OutputIterator，写，不能读，只支持自增运算 ForwardIterator，可读可写，只支持自增运算 BidirectionalIterator（双向迭代器），可读可写，支持自增和自减运算。 RandomAccessIterator（随机访问迭代器），可读可写，支持完整的迭代器算术运算 adva">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-6-19-直击招聘2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="迭代器和迭代器适配器1.迭代器 InputIterator，可读，不可写，只支持自增运算 OutputIterator，写，不能读，只支持自增运算 ForwardIterator，可读可写，只支持自增运算 BidirectionalIterator（双向迭代器），可读可写，支持自增和自减运算。 RandomAccessIterator（随机访问迭代器），可读可写，支持完整的迭代器算术运算 adva">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="迭代器和迭代器适配器1.迭代器 InputIterator，可读，不可写，只支持自增运算 OutputIterator，写，不能读，只支持自增运算 ForwardIterator，可读可写，只支持自增运算 BidirectionalIterator（双向迭代器），可读可写，支持自增和自减运算。 RandomAccessIterator（随机访问迭代器），可读可写，支持完整的迭代器算术运算 adva">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-6-19-直击招聘2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/14/2019-6-19-直击招聘2/" class="article-date">
+  <time datetime="2019-08-14T15:21:03.276Z" itemprop="datePublished">2019-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="迭代器和迭代器适配器"><a href="#迭代器和迭代器适配器" class="headerlink" title="迭代器和迭代器适配器"></a>迭代器和迭代器适配器</h1><h3 id="1-迭代器"><a href="#1-迭代器" class="headerlink" title="1.迭代器"></a>1.迭代器</h3><ul>
+<li>InputIterator，可读，不可写，只支持自增运算</li>
+<li>OutputIterator，写，不能读，只支持自增运算</li>
+<li>ForwardIterator，可读可写，只支持自增运算</li>
+<li>BidirectionalIterator（双向迭代器），可读可写，支持自增和自减运算。</li>
+<li>RandomAccessIterator（随机访问迭代器），可读可写，支持完整的迭代器算术运算</li>
+<li>advance(it,n)函数，用于将迭代器it前进n步，相当于it=it+n</li>
+</ul>
+<h3 id="2-迭代器适配器"><a href="#2-迭代器适配器" class="headerlink" title="2.迭代器适配器"></a>2.迭代器适配器</h3><p>普通适配器是指容器适配器，迭代器适配器与容器适配器类似，只是底层不是一个容器，而是附属容器的那个迭代器，因此结果不再是容器适配器，而是迭代器适配器。<br>迭代器适配器分为插入迭代器、反向迭代器和流迭代器几种类型。<br>1.插入迭代器<br>        常作为参数向算法（如copy()）说明向哪个容器及其位置插入数据，而插入数据操作主要有insert(),push_back()和push_front（），对应的迭代器为insert_iterator、front_insert_iterator和back_insert_iterator。</p>
+<pre><code>insert_iterator 也称为inserters，用来将”赋值新值“操作转换为”插入新值“操作。通过这种迭代器，算法可以插入（insert）行为而非覆盖（overwrite）行为。</code></pre> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Displist</span><span class="params">(<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; &amp;firstlist)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span> (it = firstlist.begin(); it != firstlist.end(); ++it)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *it&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[]&#123; <span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; firstlist(a, a + n);</span><br><span class="line">	<span class="keyword">int</span> b[]&#123; <span class="number">10</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">16</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> m = <span class="keyword">sizeof</span>(b) / <span class="keyword">sizeof</span>(b[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; secondlist(b, b + m);</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	it = firstlist.begin();</span><br><span class="line">	advance(it, <span class="number">3</span>);</span><br><span class="line">	insert_iterator&lt;<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt; insert_it(firstlist, it);</span><br><span class="line">	copy(secondlist.begin(), secondlist.end(), insert_it);<span class="comment">//将secondlist元素复制到insert_it处</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"firstlist: "</span>; </span><br><span class="line">	Displist(firstlist);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"secondlist: "</span>;</span><br><span class="line">	Displist(secondlist);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述程序使用insert_iterator迭代器inset_it将secondlist的所有元素插入到firstlist中第4个元素开始的地方。</p>
+<p>2.反向迭代器<br>        反向迭代器重新定义递增运算和递减运算，使其行为与正向迭代器正好倒置。<br>3.流迭代器<br>        流迭代器是一种迭代器适配器，通过它可以把stream当成算法的原点和终点。<br>        一个istream迭代器可以用来从输入流中读元素，而一个ostream迭代器可以用来对输出流写入元素。<br> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">istream_iterator&lt;T&gt; 标识符(istream &amp;);</span><br><span class="line">istream_iterator&lt;<span class="keyword">int</span>&gt; ins(<span class="built_in">cin</span>); <span class="comment">//istream迭代器ins从键盘获取一个int整数序列。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// istream迭代器ins从abc.txt文件中获取一个int整数序列</span></span><br><span class="line"><span class="function">istream <span class="title">infile</span><span class="params">(<span class="string">"abc.txt"</span>)</span></span>;</span><br><span class="line">istream_iterator&lt;<span class="keyword">int</span>&gt; ins(infile);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ostream_iterator&lt;T&gt;标识符(ostream &amp;);</span><br><span class="line">ostream_iterator&lt;T&gt; 标识符(ostream &amp;,<span class="keyword">char</span> *delimiter);</span><br><span class="line">其中delimiter是一个C风格字符串，它被输出到每个元素的后面</span><br><span class="line">ostream_iterator&lt;<span class="keyword">int</span>&gt; outs(<span class="built_in">cout</span>,<span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line"><span class="function">ostream <span class="title">outfile</span><span class="params">(<span class="string">"abc.txt"</span>)</span></span>;</span><br><span class="line">ostream_iterator &lt;<span class="keyword">int</span>&gt; outs(outfile,<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/14/2019-6-19-直击招聘2/" data-id="cjzbeqqnj0003vjw8y0t5949h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/14/2019-7-19-Python Data Types and Structures/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/14/2019-6-19-直击招聘3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-19-Python Objects Types and Expressions/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（MOOC)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（DSIPy)/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="小球回弹小球回弹，“弹跳性”系数为0.6，根据用户的输入高度和回弹次数来输出小球运动的总距离。思路：若小球没有回弹，则小球运动的总距离即为初始高度。有回弹的话，小球每次回弹以后，高度变为上一次高度与“弹跳性”系数的乘积，小球每次回弹运动的距离为当前高度与回弹高度的和。待改进：首先即想到了递归，但是想不明白，日后再改！ 1234567891011121314151617181920def ball(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/2019-4-24-小球回弹/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="小球回弹小球回弹，“弹跳性”系数为0.6，根据用户的输入高度和回弹次数来输出小球运动的总距离。思路：若小球没有回弹，则小球运动的总距离即为初始高度。有回弹的话，小球每次回弹以后，高度变为上一次高度与“弹跳性”系数的乘积，小球每次回弹运动的距离为当前高度与回弹高度的和。待改进：首先即想到了递归，但是想不明白，日后再改！ 1234567891011121314151617181920def ball(">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="小球回弹小球回弹，“弹跳性”系数为0.6，根据用户的输入高度和回弹次数来输出小球运动的总距离。思路：若小球没有回弹，则小球运动的总距离即为初始高度。有回弹的话，小球每次回弹以后，高度变为上一次高度与“弹跳性”系数的乘积，小球每次回弹运动的距离为当前高度与回弹高度的和。待改进：首先即想到了递归，但是想不明白，日后再改！ 1234567891011121314151617181920def ball(">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-4-24-小球回弹" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/14/2019-4-24-小球回弹/" class="article-date">
+  <time datetime="2019-08-14T15:21:03.252Z" itemprop="datePublished">2019-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="小球回弹"><a href="#小球回弹" class="headerlink" title="小球回弹"></a>小球回弹</h3><p>小球回弹，“弹跳性”系数为0.6，根据用户的输入高度和回弹次数来输出小球运动的总距离。<br>思路：<br>若小球没有回弹，则小球运动的总距离即为初始高度。有回弹的话，小球每次回弹以后，高度变为上一次高度与“弹跳性”系数的乘积，小球每次回弹运动的距离为当前高度与回弹高度的和。<br>待改进：<br>首先即想到了递归，但是想不明白，日后再改！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def ball(height, num):</span><br><span class="line">    # backDis = height * 0.6</span><br><span class="line">    # totalDis = height + backDis</span><br><span class="line">    totalDis = 0</span><br><span class="line">    if num == 0:</span><br><span class="line">        return height</span><br><span class="line">    else:</span><br><span class="line">        for i in range(1, num+1):</span><br><span class="line">            backDis = height * 0.6</span><br><span class="line">            thisDis = height + backDis</span><br><span class="line">            height = backDis</span><br><span class="line">            totalDis += thisDis</span><br><span class="line"></span><br><span class="line">    return totalDis</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    height = int(input(&quot;请输入高度：&quot;))</span><br><span class="line">    num = int(input(&quot;请输入回弹次数：&quot;))</span><br><span class="line">    print(ball(height, num))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/14/2019-4-24-小球回弹/" data-id="cjzbeqqng0001vjw88eki5xho" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/14/2019-4-24-Python数据结构第一章/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/14/2019-4-15-Keras functional API/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-19-Python Objects Types and Expressions/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（MOOC)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/14/2019-7-23-笔记整理（DSIPy)/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
