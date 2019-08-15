@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="What does “sample”, “batch”, “epoch” mean? Sample: 样本，数据集中的一个元素，一条数据 例1：在卷积神经网络中，一张图片是一个样本 例2：在语音识别模型中，一段音频是一个样本   Batch： 批，含有N个样本的结合。批中每个样本都是独立并行处理的。训练期间，一个batch的结果只会用来更新一次模型。 一个batch的样本通常比单个输入更接近于总体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keras FAQ">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/Keras FAQ/index.html">
+<meta property="og:site_name" content="Mist">
+<meta property="og:description" content="What does “sample”, “batch”, “epoch” mean? Sample: 样本，数据集中的一个元素，一条数据 例1：在卷积神经网络中，一张图片是一个样本 例2：在语音识别模型中，一段音频是一个样本   Batch： 批，含有N个样本的结合。批中每个样本都是独立并行处理的。训练期间，一个batch的结果只会用来更新一次模型。 一个batch的样本通常比单个输入更接近于总体">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keras FAQ">
+<meta name="twitter:description" content="What does “sample”, “batch”, “epoch” mean? Sample: 样本，数据集中的一个元素，一条数据 例1：在卷积神经网络中，一张图片是一个样本 例2：在语音识别模型中，一段音频是一个样本   Batch： 批，含有N个样本的结合。批中每个样本都是独立并行处理的。训练期间，一个batch的结果只会用来更新一次模型。 一个batch的样本通常比单个输入更接近于总体">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/14/Keras FAQ/">
+
+
+
+
+
+  <title>Keras FAQ | Mist</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mist</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/Keras FAQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Keras FAQ</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="What-does-“sample”-“batch”-“epoch”-mean"><a href="#What-does-“sample”-“batch”-“epoch”-mean" class="headerlink" title="What does “sample”, “batch”, “epoch” mean?"></a>What does “sample”, “batch”, “epoch” mean?</h3><ul>
+<li><h4 id="Sample"><a href="#Sample" class="headerlink" title="Sample:"></a>Sample:</h4><ul>
+<li>样本，数据集中的一个元素，一条数据</li>
+<li>例1：在卷积神经网络中，一张图片是一个样本</li>
+<li>例2：在语音识别模型中，一段音频是一个样本</li>
+</ul>
+</li>
+<li><h4 id="Batch："><a href="#Batch：" class="headerlink" title="Batch："></a>Batch：</h4><ul>
+<li>批，含有N个样本的结合。批中每个样本都是独立并行处理的。训练期间，一个batch的结果只会用来更新一次模型。</li>
+<li>一个<strong>batch</strong>的样本通常比单个输入更接近于总体输入数据的分布，batch越大就越近似。但是，使用batch将花费更长的时间来处理，并且仍然只更新模型一次。在推理时（evaluate/predict），建议在条件允许的情况下选择一个尽可能大的batch，（因为较大的batch通常评估/预测的速度会更快）。</li>
+</ul>
+</li>
+<li><h4 id="Epoch："><a href="#Epoch：" class="headerlink" title="Epoch："></a>Epoch：</h4><ul>
+<li>轮次，通常定义为“在整个数据集上的一轮迭代”，用于训练的不同阶段，有利于记录和定期评估。</li>
+<li>当在Keras模型的<code>fit</code>方法中使用 <code>validation_data</code>或<code>validation_split</code>时，评估将在每个epoch结束时运行。</li>
+<li>在Keras中，可以添加专门的用于在epoch结束时运行的<font color="#FF0000"> callbacks 回调</font>。例如学习率变化和模型检查点（保存）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="How-can-I-save-a-Keras-model-（如何保存Keras模型？）"><a href="#How-can-I-save-a-Keras-model-（如何保存Keras模型？）" class="headerlink" title="How can I save a Keras model?（如何保存Keras模型？）"></a>How can I save a Keras model?（如何保存Keras模型？）</h3><h4 id="保存-加载整个模型（结构-权重-优化器状态）"><a href="#保存-加载整个模型（结构-权重-优化器状态）" class="headerlink" title="保存/加载整个模型（结构+权重+优化器状态）"></a>保存/加载整个模型（结构+权重+优化器状态）</h4><p><em>不推荐使用pickle或者cPickle来保存Keras模型。</em></p>
+<p>可以使用<code>model.save(filepath)</code>将Keras模型保存到单个HDF5文件中，该文件将包含：</p>
+<ul>
+<li>模型的结构，允许重新创建模型</li>
+<li>模型的权重</li>
+<li>训练配置项（损失函数，优化器）</li>
+<li>优化器状态，允许准确地从你上次结束的地方继续训练。</li>
+</ul>
+<p>可以使用<code>keras.model.load_model(filepath)</code>重新实例化模型。<code>load_model</code>还将负责使用保存的训练配置项来编译模型（除非模型从未编译过）。</p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import load_model</span><br><span class="line">model.save(&quot;my_model.h5&apos;) # creates a HDF5 file &apos;my_model.h5&apos;</span><br><span class="line">del model # deletes the existing model</span><br><span class="line"></span><br><span class="line"># returns a compiled model</span><br><span class="line"># identical to the previous one</span><br><span class="line">model = load_model(&apos;my_model.h5&apos;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="只保存-加载模型的结构"><a href="#只保存-加载模型的结构" class="headerlink" title="只保存/加载模型的结构"></a>只保存/加载模型的结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># save as JSON</span><br><span class="line">json_string = model.to_json()</span><br><span class="line"></span><br><span class="line"># save as YAML</span><br><span class="line">yaml_string = model.to_yaml()</span><br></pre></td></tr></table></figure>
+
+<p>生成的JSON/YAML文件是人类可读的，且可根据需要手动进行修改。</p>
+<p>可从这些数据建立一个新模型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># model reconstruction from JSON:</span><br><span class="line">from keras.models import model_from_json</span><br><span class="line">model = model_from_json(json_string)</span><br><span class="line"></span><br><span class="line"># model reconstruction from YAML:</span><br><span class="line">from keras.models import model_from_yaml</span><br><span class="line">model = mode_from_yaml(yaml_string)</span><br></pre></td></tr></table></figure>
+
+<h4 id="只保存-加载模型的权重"><a href="#只保存-加载模型的权重" class="headerlink" title="只保存/加载模型的权重"></a>只保存/加载模型的权重</h4><p><code>model.save_weights(&#39;my_model_weights.h5)</code><br>假设你有用于实例化模型的代码，则可以将保存的权重加载到具有相同结构的模型中。<br><code>model.load_weights(&#39;my_model_weights.h5&#39;)</code><br>如果你需要将权重加载到不同的结构（有一些共同层）的模型中，例如微调或迁移学习，则可以按层的名字来加载权重：<br><code>model.load_weights(&#39;my_model_weights.h5,by_name=True)</code></p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">Assuming the original model looks like this:</span><br><span class="line">    model = Sequential()</span><br><span class="line">    model.add(Dense(2,input_dim=3,name=&apos;dense_1&apos;))</span><br><span class="line">    model.add(Dense(3,name=&apos;dense_2&apos;))</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># new model</span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(2,input_dim=3,name=&apos;dense_1&apos;)) # will be loaded</span><br><span class="line">model.add(Dense(10,name=&apos;new_dense&apos;)) # will not be loaded</span><br><span class="line"></span><br><span class="line"># load weights from first model; will only affect the first layer,dense_1.</span><br><span class="line">model.load_weights(fname,by_name=True)</span><br></pre></td></tr></table></figure>
+
+<h4 id="操作已保存的模型中的自定义层（或其他自定义对象）"><a href="#操作已保存的模型中的自定义层（或其他自定义对象）" class="headerlink" title="操作已保存的模型中的自定义层（或其他自定义对象）"></a>操作已保存的模型中的自定义层（或其他自定义对象）</h4><p>如果要加载的模型中包含自定义层或其他自定义类或函数，则可以通过<code>custom_object</code>参数将它们传递给加载机制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import load_model</span><br><span class="line"># Assuming your model includes instance of an &quot;AttentionLayer&quot; class</span><br><span class="line">model = load_model(&apos;my_model.h5&apos;,custom_objects=&#123;&apos;AttenstionLayer`:AttentionLayer&#125;));</span><br></pre></td></tr></table></figure>
+
+<p>或者可以使用<font color="red">自定义对象作用域：</font></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from kreas.utils import CustomObjectScope</span><br><span class="line">with CustomObjectScope(&#123;&apos;AttentionLayer&apos;:AttentionLayer&#125;):</span><br><span class="line">    model = load_model(&apos;my_model.h5&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>自定义对象的处理与<code>load_model</code>,<code>model_from_json</code>,<code>model_from_yaml</code>的工作方式相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import model_from_json</span><br><span class="line">model = model_from_json(json_string,custom_objects=&#123;&apos;AttentionLayer&apos;:AttentionLayer&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Why-is-the-training-loss-much-higher-than-the-testing-loss-为什么训练误差比测试误差高很多？"><a href="#Why-is-the-training-loss-much-higher-than-the-testing-loss-为什么训练误差比测试误差高很多？" class="headerlink" title="Why is the training loss much higher than the testing loss?(为什么训练误差比测试误差高很多？)"></a>Why is the training loss much higher than the testing loss?(为什么训练误差比测试误差高很多？)</h3><p>Keras模型有训练和测试两种模式。正则化机制，如 Dropout 和 L1/L2 权重正则化，在测试时是关闭的。<br>此外，训练损失是每批训练数据的平均损失。因为模型是随着时间变化的，所以一个epoch中的第一批数据的损失通常比最后一批的损失要高。测试误差是模型在一个epoch训练完成后计算的，因而误差较小。</p>
+<h3 id="How-can-I-obtain-the-output-of-an-intermediate-layer-如何获取中间层的输出？"><a href="#How-can-I-obtain-the-output-of-an-intermediate-layer-如何获取中间层的输出？" class="headerlink" title="How can I obtain the output of an intermediate layer?(如何获取中间层的输出？)"></a>How can I obtain the output of an intermediate layer?(如何获取中间层的输出？)</h3><p>一种简单的方法是创建一个新的<code>Model</code>（模型）来输出感兴趣的层。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from keras.models import Model</span><br><span class="line">model = ... # create the original model</span><br><span class="line">layer_name = &apos;my_layer&apos;</span><br><span class="line">intermediate_layer_model = Model(inputs=model.input,</span><br><span class="line">                                 output=model.get_layer(layer_name).output)</span><br><span class="line">intermediate_output=intermediate_layer_model.predict(data)</span><br></pre></td></tr></table></figure>
+
+<p>或者创建一个Keras函数，该函数在给定输入的情况下返回某个层的输出，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from keras import backend as K</span><br><span class="line"></span><br><span class="line"># with a Sequential model</span><br><span class="line">get_3rd_layer_output = K.function([model.layers[0].input],</span><br><span class="line">                                  [model.layers[3].output])</span><br><span class="line">layer_output = get_3rd_layer_output([x])[0]</span><br></pre></td></tr></table></figure>
+
+<p>或者，可以直接建立一个Theano或TensorFlow函数。<br>注意，如果你的模型在训练和测试阶段有不同的行为（例如，使用 <code>Dropout</code>, <code>BatchNormalization</code> 等），则需要将学习阶段标志传递给你的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">get_3rd_layer_output = K.function([model.layers[0].input, K.learning_phase()],</span><br><span class="line">                                  [model.layers[3].output])</span><br><span class="line"># output in test mode = 0  测试模式 = 0 时的输出</span><br><span class="line">layer_output = get_3rd_layer_output([x,0])[0]</span><br><span class="line"></span><br><span class="line"># output in train mode = 1</span><br><span class="line">layer_output = get_3rd_layer_output([x,1])[0]</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-can-I-use-Keras-with-datasets-that-don’t-fit-in-memory-（如何用-Keras-处理超过内存的数据集？）"><a href="#How-can-I-use-Keras-with-datasets-that-don’t-fit-in-memory-（如何用-Keras-处理超过内存的数据集？）" class="headerlink" title="How can I use Keras with datasets that don’t fit in memory? （如何用 Keras 处理超过内存的数据集？）"></a>How can I use Keras with datasets that don’t fit in memory? （如何用 Keras 处理超过内存的数据集？）</h3><p>可以使用 <code>model.train_on_batch(x，y)</code> 和 <code>model.test_on_batch(x，y)</code> 进行批量训练与测试。</p>
+<p>或者，你可以编写一个生成批处理训练数据的生成器，然后使用 <code>model.fit_generator(data_generator，steps_per_epoch，epochs)</code> 方法。</p>
+<h3 id="How-can-I-interrupt-training-when-the-validation-loss-isn’t-decreasing-anymore-在验证集的误差不再下降时，如何中断训练？"><a href="#How-can-I-interrupt-training-when-the-validation-loss-isn’t-decreasing-anymore-在验证集的误差不再下降时，如何中断训练？" class="headerlink" title="How can I interrupt training when the validation loss isn’t decreasing anymore? 在验证集的误差不再下降时，如何中断训练？"></a>How can I interrupt training when the validation loss isn’t decreasing anymore? 在验证集的误差不再下降时，如何中断训练？</h3><p>可以使用<code>EarlyStopping</code>回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from keras.callbacks import EarlyStopping</span><br><span class="line">early_stopping = EarlyStopping(monitor=&apos;val_loss&apos;,patience=2)</span><br><span class="line">model.fit(x,y,validation_split=0.2,callbacks=[early_stopping])</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-is-the-validation-split-computed-验证集划分是如何计算的？"><a href="#How-is-the-validation-split-computed-验证集划分是如何计算的？" class="headerlink" title="How is the validation split computed?(验证集划分是如何计算的？)"></a>How is the validation split computed?(验证集划分是如何计算的？)</h3><p>如果您将 <code>model.fit</code> 中的 <code>validation_split</code> 参数设置为 0.1，那么使用的验证数据将是最后 10％ 的数据。如果设置为 0.25，就是最后 25% 的数据。注意，在提取分割验证集之前，数据不会被混洗，因此验证集仅仅是传递的输入中最后一个 x％ 的样本。</p>
+<p>所有 epoch 都使用相同的验证集（在同一个 <code>fit</code> 中调用）。</p>
+<h3 id="Is-the-data-shuffled-during-training-在训练过程中数据是否会混洗？"><a href="#Is-the-data-shuffled-during-training-在训练过程中数据是否会混洗？" class="headerlink" title="Is the data shuffled during training? (在训练过程中数据是否会混洗？)"></a>Is the data shuffled during training? (在训练过程中数据是否会混洗？)</h3><p>是的，如果 <code>model.fit</code>中的 <code>shuffle</code>参数设置为 <code>True</code>（默认值），则训练数据将在每个 epoch 混洗。<br>验证集永远不会混洗。</p>
+<h3 id="How-can-I-record-the-training-validation-loss-accuracy-at-each-epoch-如何在每个-epoch-后记录训练集和验证集的误差和准确率？"><a href="#How-can-I-record-the-training-validation-loss-accuracy-at-each-epoch-如何在每个-epoch-后记录训练集和验证集的误差和准确率？" class="headerlink" title="How can I record the training / validation loss / accuracy at each epoch?(如何在每个 epoch 后记录训练集和验证集的误差和准确率？)"></a>How can I record the training / validation loss / accuracy at each epoch?(如何在每个 epoch 后记录训练集和验证集的误差和准确率？)</h3><p><code>model.fit</code> 方法返回一个 <code>History</code> 回调，它具有包含连续误差的列表和其他度量的 <code>history</code> 属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hist = model.fit(x,y,validation_split=0.2)</span><br><span class="line">print(hist.history)</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-can-I-“freeze”-Keras-layers-如何「冻结」网络层？"><a href="#How-can-I-“freeze”-Keras-layers-如何「冻结」网络层？" class="headerlink" title="How can I “freeze” Keras layers? (如何「冻结」网络层？)"></a>How can I “freeze” Keras layers? (如何「冻结」网络层？)</h3><p>「冻结」一个层意味着将其排除在训练之外，即其权重将永远不会更新。这在微调模型或使用固定的词向量进行文本输入中很有用。<br>您可以将 <code>trainable</code> 参数（布尔值）传递给一个层的构造器，以将该层设置为不可训练的：</p>
+<p><code>frozen_layer = Dense(32,trainable=False)</code></p>
+<p>另外，可以在实例化之后将网络层的 <code>trainable</code> 属性设置为 <code>True</code> 或 <code>False</code>。为了使之生效，在修改 <code>trainable</code> 属性之后，需要在模型上调用 <code>compile()</code>。这是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x = Input(shape=(32,))</span><br><span class="line">layer = Dense(32)</span><br><span class="line">layer.trainable = Flase</span><br><span class="line">y = layer(x)</span><br><span class="line"></span><br><span class="line">frozen_model = Model(x,y)</span><br><span class="line"># 在下面的模型中，训练期间不会更新层的权重</span><br><span class="line">frozen_model.compile(optimizer=&apos;rmsprop&apos;,loss=&apos;mse&apos;)</span><br><span class="line"></span><br><span class="line">layer.trainable = True</span><br><span class="line">trainable_model = Model(x,y)</span><br><span class="line"># 使用这个模型，训练期间 `layer` 的权重将被更新</span><br><span class="line"># (这也会影响上面的模型，因为它使用了同一个网络层实例)</span><br><span class="line">trainable_model.compile(optimizer=&apos;rmsprop&apos;,loss=&apos;mse&apos;)</span><br><span class="line"></span><br><span class="line">frozen_model.fit(data,labels)  # 这不会更新 `layer` 的权重</span><br><span class="line">trainable_model.fit(data,labels) # 这会更新 &apos;layer&apos; 的权重</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-can-I-use-stateful-RNNs-如何使用有状态-RNN-stateful-RNNs"><a href="#How-can-I-use-stateful-RNNs-如何使用有状态-RNN-stateful-RNNs" class="headerlink" title="How can I use stateful RNNs? (如何使用有状态 RNN (stateful RNNs)?)"></a>How can I use stateful RNNs? (如何使用有状态 RNN (stateful RNNs)?)</h3><p>使 RNN 具有状态意味着每批样本的状态将被重新用作下一批样本的初始状态。<br>当使用有状态 RNN 时，假定：</p>
+<ul>
+<li>所有的批次都有相同数量的样本</li>
+<li>如果 <code>x1</code> 和 <code>x2</code> 是连续批次的样本，则 <code>x2[i]</code> 是 <code>x1[i]</code> 的后续序列，对于每个 <code>i</code>。</li>
+</ul>
+<p>要在 RNN 中使用状态，你需要:</p>
+<ul>
+<li>通过将 <code>batch_size</code> 参数传递给模型的第一层来显式指定你正在使用的批大小。例如，对于 10 个时间步长的 32 样本的 batch，每个时间步长具有 16 个特征，<code>batch_size = 32</code>。</li>
+<li>在 RNN 层中设置 <code>stateful = True</code>。</li>
+<li>在调用 <code>fit()</code> 时指定 <code>shuffle = False</code>。</li>
+</ul>
+<p>重置累积状态：</p>
+<ul>
+<li>使用 <code>model.reset_states()</code> 来重置模型中所有层的状态</li>
+<li>使用 <code>layer.reset_states()</code> 来重置指定有状态 RNN 层的状态</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">x # 输入数据，(32,21,16)</span><br><span class="line"># 将步长为10的序列输入到模型中</span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(LSTM(32,input_shape=(10,16),batch_size=32,stateful=True))</span><br><span class="line">model.add(Dense(16,activation=&apos;softmax&apos;))</span><br><span class="line"></span><br><span class="line">model.compile(optimizer=&apos;rmsprop&apos;,loss=&apos;categorical_crossentropy&apos;)</span><br><span class="line"></span><br><span class="line"># 训练网络，根据给定的前 10 个时间步，来预测第 11 个时间步：</span><br><span class="line">model.train_on_batch(x[:,:10,:],np.reshape(x[:,10,:],(32,16)))</span><br><span class="line"></span><br><span class="line"># 网络的状态已经改变。我们可以提供后续序列：</span><br><span class="line">model.train_on_batch(x[:, 10:20, :], np.reshape(x[:, 20, :], (32, 16)))</span><br><span class="line"></span><br><span class="line"># 重置 LSTM 层的状态：</span><br><span class="line">model.reset_states()</span><br><span class="line"></span><br><span class="line"># 另一种重置方法：</span><br><span class="line">model.layers[0].reset_states()</span><br></pre></td></tr></table></figure>
+
+<p>请注意，<code>predict</code>, <code>fit</code>, <code>train_on_batch</code>, <code>predict_classes</code> 等方法全部都会更新模型中有状态层的状态。这使你不仅可以进行有状态的训练，还可以进行有状态的预测。</p>
+<h3 id="How-can-I-remove-a-layer-from-a-Sequential-model-如何从-Sequential-模型中移除一个层？"><a href="#How-can-I-remove-a-layer-from-a-Sequential-model-如何从-Sequential-模型中移除一个层？" class="headerlink" title="How can I remove a layer from a Sequential model? (如何从 Sequential 模型中移除一个层？)"></a>How can I remove a layer from a Sequential model? (如何从 Sequential 模型中移除一个层？)</h3><p>可以通过调用<code>.pop()</code>来删除 <code>Sequential</code>模型中最后添加的层：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(32,activation=&apos;relu&apos;,input_dim=784))</span><br><span class="line">model.add(Dense(32,activation=&apos;relu&apos;))</span><br><span class="line">print(len(model.layers)) # &quot;2&quot;</span><br><span class="line"></span><br><span class="line">model.pop()</span><br><span class="line">print(len(model.layers)) #&quot;1&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-can-I-use-pre-trained-models-in-Keras-如何在-Keras-中使用预训练的模型？"><a href="#How-can-I-use-pre-trained-models-in-Keras-如何在-Keras-中使用预训练的模型？" class="headerlink" title="How can I use pre-trained models in Keras? (如何在 Keras 中使用预训练的模型？)"></a>How can I use pre-trained models in Keras? (如何在 Keras 中使用预训练的模型？)</h3><p>Keras提供了以下图像分类模型的代码和预训练的权重：</p>
+<ul>
+<li>Xception</li>
+<li>VGG16</li>
+<li>VGG19</li>
+<li>ResNet50</li>
+<li>Inception v3</li>
+<li>Inception-ResNet v2</li>
+<li>MobileNet v1</li>
+<li>DenseNet</li>
+<li>NASNet</li>
+<li>MobileNet v2<br>可以使用<code>keras.applications</code>将它们导入：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">from keras.applications.xception import Xception</span><br><span class="line">from keras.applications.vgg16 import VGG16</span><br><span class="line">from keras.applications.vgg19 import VGG19</span><br><span class="line">from keras.applications.resnet import ResNet50</span><br><span class="line">from keras.applications.resnet import ResNet101</span><br><span class="line">from keras.applications.resnet import ResNet152</span><br><span class="line">from keras.applications.resnet_v2 import ResNet50V2</span><br><span class="line">from keras.applications.resnet_v2 import ResNet101V2</span><br><span class="line">from keras.applications.resnet_v2 import ResNet152V2</span><br><span class="line">from keras.applications.resnext import ResNeXt50</span><br><span class="line">from keras.applications.resnext import ResNeXt101</span><br><span class="line">from keras.applications.inception_v3 import InceptionV3</span><br><span class="line">from keras.applications.inception_resnet_v2 import InceptionResNetV2</span><br><span class="line">from keras.applications.mobilenet import MobileNet</span><br><span class="line">from keras.applications.mobilenet_v2 import MobileNetV2</span><br><span class="line">from keras.applications.densenet import DenseNet121</span><br><span class="line">from keras.applications.densenet import DenseNet169</span><br><span class="line">from keras.applications.densenet import DenseNet201</span><br><span class="line">from keras.applications.nasnet import NASNetLarge</span><br><span class="line">from keras.applications.nasnet import NASNetMobile</span><br><span class="line"></span><br><span class="line">model = VGG16(weights=&apos;imagenet&apos;, include_top=True)</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-can-I-use-HDF5-inputs-with-Keras-如何在-Keras-中使用-HDF5-输入？"><a href="#How-can-I-use-HDF5-inputs-with-Keras-如何在-Keras-中使用-HDF5-输入？" class="headerlink" title="How can I use HDF5 inputs with Keras? (如何在 Keras 中使用 HDF5 输入？)"></a>How can I use HDF5 inputs with Keras? (如何在 Keras 中使用 HDF5 输入？)</h3><p>可以使用 <code>keras.utils.io_utils</code> 中的<code>HDF5Matrix</code> 类。有关详细信息，请参阅 HDF5Matrix文档。<br>也可以直接使用 HDF5 数据集：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import h5py</span><br><span class="line">with h5py.File(&apos;input/file.hdf5&apos;,&apos;r&apos;) as f:</span><br><span class="line">      x_data = f[&apos;x_data&apos;]</span><br><span class="line">      model.predict(x_data)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Where-is-the-Keras-configuration-file-stored-Keras-配置文件保存在哪里？"><a href="#Where-is-the-Keras-configuration-file-stored-Keras-配置文件保存在哪里？" class="headerlink" title="Where is the Keras configuration file stored? (Keras 配置文件保存在哪里？)"></a>Where is the Keras configuration file stored? (Keras 配置文件保存在哪里？)</h3><p>所有 Keras 数据存储的默认目录是：<br><code>$HOME/.keras/</code><br>注意，Windows 用户应该将 <code>$HOME</code> 替换为<code>%USERPROFILE%</code>。如果 Keras 无法创建上述目录（例如，由于权限问题），则使用<code>/tmp/.keras/</code>作为备份。<br>Keras配置文件是存储在 <code>$HOME/.keras/keras.json</code> 中的 JSON 文件。默认的配置文件如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;image_data_format&quot;: &quot;channels_last&quot;,</span><br><span class="line">    &quot;epsilon&quot;: 1e-07,</span><br><span class="line">    &quot;floatx&quot;: &quot;float32&quot;,</span><br><span class="line">    &quot;backend&quot;: &quot;tensorflow&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它包含以下字段：</p>
+<p>图像处理层和实用程序所使用的默认值图像数据格式（<code>channels_last</code> 或 <code>channels_first</code>）。<br>用于防止在某些操作中被零除的 <code>epsilon</code> 模糊因子。<br>默认浮点数据类型。<br>默认后端。详见 backend 文档。<br>同样，缓存的数据集文件（如使用 <code>get_file()</code>下载的文件）默认存储在<code>$HOME/.keras/datasets/</code> 中。</p>
+<h3 id="How-can-I-obtain-reproducible-results-using-Keras-during-development-如何在-Keras-开发过程中获取可复现的结果？"><a href="#How-can-I-obtain-reproducible-results-using-Keras-during-development-如何在-Keras-开发过程中获取可复现的结果？" class="headerlink" title="How can I obtain reproducible results using Keras during development? (如何在 Keras 开发过程中获取可复现的结果？)"></a>How can I obtain reproducible results using Keras during development? (如何在 Keras 开发过程中获取可复现的结果？)</h3><p>在模型的开发过程中，能够在一次次的运行中获得可复现的结果，以确定性能的变化是来自模型还是数据集的变化，或者仅仅是一些新的随机样本点带来的结果，有时候是很有用处的。</p>
+<p>首先，你需要在程序启动之前将 <code>PYTHONHASHSEED</code> 环境变量设置为 0（不在程序本身内）。对于 Python 3.2.3 以上版本，它对于某些基于散列的操作具有可重现的行为是必要的（例如，集合和字典的 item 顺序，请参阅 Python 文档和 issue #2280 获取更多详细信息）。设置环境变量的一种方法是，在这样启动 python 时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat test_hash.py</span><br><span class="line">print(hash(&quot;keras&quot;))</span><br><span class="line">$ python3 test_hash.py                  # 无法复现的 hash (Python 3.2.3+)</span><br><span class="line">-8127205062320133199</span><br><span class="line">$ python3 test_hash.py                  # 无法复现的 hash (Python 3.2.3+)</span><br><span class="line">3204480642156461591</span><br><span class="line">$ PYTHONHASHSEED=0 python3 test_hash.py # 可复现的 hash</span><br><span class="line">4883664951434749476</span><br><span class="line">$ PYTHONHASHSEED=0 python3 test_hash.py # 可复现的 hash</span><br><span class="line">4883664951434749476</span><br></pre></td></tr></table></figure>
+
+<p>此外，当使用 TensorFlow 后端并在 GPU 上运行时，某些操作具有非确定性输出，特别是<code>tf.reduce_sum()</code>。这是因为 GPU 并行运行许多操作，因此并不总能保证执行顺序。由于浮点数的精度有限，即使添加几个数字，也可能会产生略有不同的结果，具体取决于添加它们的顺序。你可以尝试避免某些非确定性操作，但有些操作可能是由 TensorFlow 在计算梯度时自动创建的，因此在 CPU 上运行代码要简单得多。为此，你可以将<code>CUDA_VISIBLE_DEVICES</code>环境变量设置为空字符串，例如：<br><code>$ CUDA_VISIBLE_DEVICES=&quot;&quot; PYTHONHASHSEED=0 python your_program.py</code></p>
+<p>下面的代码片段提供了一个如何获得可复现结果的例子 - 针对 Python 3 环境的 TensorFlow 后端。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line">import random as rn</span><br><span class="line"># 以下是 Numpy 在一个明确的初始状态生成固定随机数字所必需的。</span><br><span class="line">np.random.seed(42)</span><br><span class="line"># 强制 TensorFlow 使用单线程。</span><br><span class="line"># 多线程是结果不可复现的一个潜在因素。</span><br><span class="line"># 更多详情，见: https://stackoverflow.com/questions/42022950/</span><br><span class="line">session_conf = tf.ConfigProto(intra_op_parallelism_threads=1,</span><br><span class="line">                                              inter_op_parallelism_threads=1)</span><br><span class="line">from keras import backend as K</span><br><span class="line"># `tf.set_random_seed()` 将会以 TensorFlow 为后端，</span><br><span class="line"># 在一个明确的初始状态下生成固定随机数字。</span><br><span class="line"># 更多详情，见: https://www.tensorflow.org/api_docs/python/tf/set_random_seed</span><br><span class="line">tf.set_random_seed(1234)</span><br><span class="line">sess = tf.Session(graph=tf.get_default_graph(),config=session_conf)</span><br><span class="line">K.set_session(sess)</span><br><span class="line"># Rest of code follows ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-can-I-install-HDF5-or-h5py-to-save-my-models-in-Keras-如何在-Keras-中安装-HDF5-或-h5py-来保存我的模型？"><a href="#How-can-I-install-HDF5-or-h5py-to-save-my-models-in-Keras-如何在-Keras-中安装-HDF5-或-h5py-来保存我的模型？" class="headerlink" title="How can I install HDF5 or h5py to save my models in Keras? (如何在 Keras 中安装 HDF5 或 h5py 来保存我的模型？)"></a>How can I install HDF5 or h5py to save my models in Keras? (如何在 Keras 中安装 HDF5 或 h5py 来保存我的模型？)</h3><p>为了将你的 Keras 模型保存为 HDF5 文件，例如通过<code>keras.callbacks.ModelCheckpoint</code>，Keras 使用了 h5py Python 包。h5py 是 Keras 的依赖项，应默认被安装。在基于 Debian 的发行版本上，你需要再额外安装 <code>libhdf5</code>：</p>
+<p><code>sudo apt-get install libhdf5-serial-dev</code><br>如果你不确定是否安装了 h5py，则可以打开 Python shell 并通过下面的命令加载模块<br><code>import h5py</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/14/小球回弹/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/14/林轩田-基石-Lecture1/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhaohui Bai</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BaiZhaohui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:isolatedislet@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-does-“sample”-“batch”-“epoch”-mean"><span class="nav-number">1.</span> <span class="nav-text">What does “sample”, “batch”, “epoch” mean?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sample"><span class="nav-number">1.1.</span> <span class="nav-text">Sample:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Batch："><span class="nav-number">1.2.</span> <span class="nav-text">Batch：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Epoch："><span class="nav-number">1.3.</span> <span class="nav-text">Epoch：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-save-a-Keras-model-（如何保存Keras模型？）"><span class="nav-number">2.</span> <span class="nav-text">How can I save a Keras model?（如何保存Keras模型？）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保存-加载整个模型（结构-权重-优化器状态）"><span class="nav-number">2.1.</span> <span class="nav-text">保存/加载整个模型（结构+权重+优化器状态）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只保存-加载模型的结构"><span class="nav-number">2.2.</span> <span class="nav-text">只保存/加载模型的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只保存-加载模型的权重"><span class="nav-number">2.3.</span> <span class="nav-text">只保存/加载模型的权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作已保存的模型中的自定义层（或其他自定义对象）"><span class="nav-number">2.4.</span> <span class="nav-text">操作已保存的模型中的自定义层（或其他自定义对象）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-is-the-training-loss-much-higher-than-the-testing-loss-为什么训练误差比测试误差高很多？"><span class="nav-number">3.</span> <span class="nav-text">Why is the training loss much higher than the testing loss?(为什么训练误差比测试误差高很多？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-obtain-the-output-of-an-intermediate-layer-如何获取中间层的输出？"><span class="nav-number">4.</span> <span class="nav-text">How can I obtain the output of an intermediate layer?(如何获取中间层的输出？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-use-Keras-with-datasets-that-don’t-fit-in-memory-（如何用-Keras-处理超过内存的数据集？）"><span class="nav-number">5.</span> <span class="nav-text">How can I use Keras with datasets that don’t fit in memory? （如何用 Keras 处理超过内存的数据集？）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-interrupt-training-when-the-validation-loss-isn’t-decreasing-anymore-在验证集的误差不再下降时，如何中断训练？"><span class="nav-number">6.</span> <span class="nav-text">How can I interrupt training when the validation loss isn’t decreasing anymore? 在验证集的误差不再下降时，如何中断训练？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-is-the-validation-split-computed-验证集划分是如何计算的？"><span class="nav-number">7.</span> <span class="nav-text">How is the validation split computed?(验证集划分是如何计算的？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Is-the-data-shuffled-during-training-在训练过程中数据是否会混洗？"><span class="nav-number">8.</span> <span class="nav-text">Is the data shuffled during training? (在训练过程中数据是否会混洗？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-record-the-training-validation-loss-accuracy-at-each-epoch-如何在每个-epoch-后记录训练集和验证集的误差和准确率？"><span class="nav-number">9.</span> <span class="nav-text">How can I record the training / validation loss / accuracy at each epoch?(如何在每个 epoch 后记录训练集和验证集的误差和准确率？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-“freeze”-Keras-layers-如何「冻结」网络层？"><span class="nav-number">10.</span> <span class="nav-text">How can I “freeze” Keras layers? (如何「冻结」网络层？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-use-stateful-RNNs-如何使用有状态-RNN-stateful-RNNs"><span class="nav-number">11.</span> <span class="nav-text">How can I use stateful RNNs? (如何使用有状态 RNN (stateful RNNs)?)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-remove-a-layer-from-a-Sequential-model-如何从-Sequential-模型中移除一个层？"><span class="nav-number">12.</span> <span class="nav-text">How can I remove a layer from a Sequential model? (如何从 Sequential 模型中移除一个层？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-use-pre-trained-models-in-Keras-如何在-Keras-中使用预训练的模型？"><span class="nav-number">13.</span> <span class="nav-text">How can I use pre-trained models in Keras? (如何在 Keras 中使用预训练的模型？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-use-HDF5-inputs-with-Keras-如何在-Keras-中使用-HDF5-输入？"><span class="nav-number">14.</span> <span class="nav-text">How can I use HDF5 inputs with Keras? (如何在 Keras 中使用 HDF5 输入？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Where-is-the-Keras-configuration-file-stored-Keras-配置文件保存在哪里？"><span class="nav-number">15.</span> <span class="nav-text">Where is the Keras configuration file stored? (Keras 配置文件保存在哪里？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-obtain-reproducible-results-using-Keras-during-development-如何在-Keras-开发过程中获取可复现的结果？"><span class="nav-number">16.</span> <span class="nav-text">How can I obtain reproducible results using Keras during development? (如何在 Keras 开发过程中获取可复现的结果？)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-can-I-install-HDF5-or-h5py-to-save-my-models-in-Keras-如何在-Keras-中安装-HDF5-或-h5py-来保存我的模型？"><span class="nav-number">17.</span> <span class="nav-text">How can I install HDF5 or h5py to save my models in Keras? (如何在 Keras 中安装 HDF5 或 h5py 来保存我的模型？)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhaohui Bai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

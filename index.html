@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记3)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记4)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记3)/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记4)/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -310,639 +310,28 @@
       
         
           
-            <h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>静态数据只有一份。静态数据需要在类外做定义，给不给初值均可。<br>静态函数没有this指针，只能处理静态数据。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> m_rate;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_rate</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span>&amp; x)</span></span>&#123;m_data = x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">double</span> Account::m_rate = <span class="number">9.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      Account::set_rate(<span class="number">5.0</span>);</span><br><span class="line">      </span><br><span class="line">      Account a;</span><br><span class="line">      a.set_rate(<span class="number">7.0</span>);<span class="comment">// a 的地址不会传入函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用静态函数有两种方式：1.通过类名调用。2.通过对象调用。</span></span><br></pre></td></tr></table></figure>
+            <h1 id="Object-Oriented-Programming-Object-Oriented-Design"><a href="#Object-Oriented-Programming-Object-Oriented-Design" class="headerlink" title="Object Oriented Programming,Object Oriented Design"></a>Object Oriented Programming,Object Oriented Design</h1><h2 id="OOP-OOD"><a href="#OOP-OOD" class="headerlink" title="OOP OOD"></a>OOP OOD</h2><h4 id="Inheritance（继承）"><a href="#Inheritance（继承）" class="headerlink" title="-Inheritance（继承）"></a>-Inheritance（继承）</h4><h4 id="Composition（复合）"><a href="#Composition（复合）" class="headerlink" title="-Composition（复合）"></a>-Composition（复合）</h4><h4 id="Delegation（委托）"><a href="#Delegation（委托）" class="headerlink" title="-Delegation（委托）"></a>-Delegation（委托）</h4><h2 id="Composition（复合），表示has-a"><a href="#Composition（复合），表示has-a" class="headerlink" title="Composition（复合），表示has-a"></a>Composition（复合），表示has-a</h2><p><code>Adapter</code><br>Composition（复合）关系下的构造和析构<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Ce3c0bf05.png" alt="e3c0bf05.png"></p>
+<h3 id="构造由内而外"><a href="#构造由内而外" class="headerlink" title="构造由内而外"></a>构造由内而外</h3><p>Container的构造函数首先调用Component的default构造函数，然后才执行自己。<br><code>Container::Container(...):Component(){...};</code></p>
+<h3 id="构造由外而内"><a href="#构造由外而内" class="headerlink" title="构造由外而内"></a>构造由外而内</h3><p>Container的析构函数首先执行自己，然后才调用Component的析构函数。<br><code>Container::~Container(...){...~Component()};</code></p>
+<h2 id="Delegation（委托）-Composition-by-reference"><a href="#Delegation（委托）-Composition-by-reference" class="headerlink" title="Delegation（委托）.Composition by reference."></a>Delegation（委托）.Composition by reference.</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">        String();</span><br><span class="line">        String(<span class="keyword">const</span> <span class="keyword">char</span>* s);</span><br><span class="line">        String &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> String&amp; s);</span><br><span class="line">        ~String();</span><br><span class="line">        ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">        StringRep* rep;<span class="comment">//pimpl(Handle/Body)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"String.hpp"</span></span></span><br><span class="line"><span class="keyword">namespace</span>&#123;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>&#123;</span></span><br><span class="line"><span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span>;</span></span><br><span class="line">        StringRep(<span class="keyword">const</span> <span class="keyword">char</span>*s);</span><br><span class="line">        ~StringRep();</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">char</span>* rep;</span><br><span class="line">&#125;;</span><br><span class="line">&#125; </span><br><span class="line">String::String()&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C0f52c2f8.png" alt="0f52c2f8.png"></p>
+<h2 id="Inheritance（继承）-表示is-a"><a href="#Inheritance（继承）-表示is-a" class="headerlink" title="Inheritance（继承）,表示is-a"></a>Inheritance（继承）,表示is-a</h2><h3 id="Inheritance（继承）关系下的构造和析构"><a href="#Inheritance（继承）关系下的构造和析构" class="headerlink" title="Inheritance（继承）关系下的构造和析构"></a>Inheritance（继承）关系下的构造和析构</h3><p>base class 的构造函数必须是virtual，否则会出现undefined behavior<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C1053a33c.png" alt="1053a33c.png"></p>
+<h4 id="构造由内而外-1"><a href="#构造由内而外-1" class="headerlink" title="构造由内而外"></a>构造由内而外</h4><p>Derived的构造函数首先调用base的default构造函数，然后才执行自己。<br><code>Derived::Derived(...):Base(){...};</code></p>
+<h4 id="构造由外而内-1"><a href="#构造由外而内-1" class="headerlink" title="构造由外而内"></a>构造由外而内</h4><p>Derived的析构函数首先执行自己，然后才调用Base的析构函数。<br><code>Derived::~Derived(...){...~Base()};</code></p>
+<h2 id="Inheritance（继承）with-virtual-functions（虚函数）"><a href="#Inheritance（继承）with-virtual-functions（虚函数）" class="headerlink" title="Inheritance（继承）with virtual functions（虚函数）"></a>Inheritance（继承）with virtual functions（虚函数）</h2><ul>
+<li>non-virtual函数：你不希望derived class 重新定义（override，复写）它。</li>
+<li>virtual函数：你希望derived class 重新定义（override，复写）它，且它已经有默认定义。</li>
+<li>pure virtual函数：你希望derived class 一定要重新定义（override，复写）它，你对它没有默认定义。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// pure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; msg)</span></span>; <span class="comment">// impure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">objectID</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// non-virtual</span></span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ellipse</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="单例模式-把构造函数放在private区域"><a href="#单例模式-把构造函数放在private区域" class="headerlink" title="单例模式 把构造函数放在private区域"></a>单例模式 把构造函数放在private区域</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">(<span class="keyword">return</span> a;)</span></span>;</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改进：</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      static A&amp; getInstance());</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line">A&amp; A::getInstance()</span><br><span class="line">&#123;</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br></pre></td></tr></table></figure>
-
-<h2 id="class-template，类模板"><a href="#class-template，类模板" class="headerlink" title="class template，类模板"></a>class template，类模板</h2><p><code>template&lt;typename T&gt;</code></p>
-<h2 id="function-template，函数模板"><a href="#function-template，函数模板" class="headerlink" title="function template，函数模板"></a>function template，函数模板</h2><p><code>template&lt;class T&gt;</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（MOOC)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohui Bai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mist">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/2019-7-23-笔记整理（MOOC)/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当我们调用一个函数的时候，会在内存中建立起一块特殊区域，称为“程序栈（program stack）”。程序栈提供了每个函数参数的储存空间。它也提供函数所定义的每个对象的内存空间——我们将这些对象称为 local object（局部对象）。一旦函数完成，这块内存就会被释放掉，或者说从程序堆栈中被pop出来。<br>当我们将vec[ix]这样的对象传入函数时，默认情形下其值会被复制一份，成为参数的局部性定义（local definition）。这种方式称为pass by value（传值）。我们在bubble_sort()内传给swap()的对象，和我们在swap()内操作的对象，其实是没有任何关联的两组对象。为了让程序正确运行，必须通过某种方法，令swap()的参数和传入的实际对象产生关联。即所谓的pass by reference （传址）。最简单的做法便是将参数声明为一个reference：在型别名称和reference名称之间插入&amp;符号，便声明了一个reference。<br>C++不允许改变references所代表的对象，他们必须从一而终。面对reference的所有操作都像面对“reference”所代表之对象所进行的操作一般无二。以reference作为函数参数时，亦复如此。<br>以by reference 方法传递对象当作函数参数，对象本身并不会复制出另一份——复制的是对象的地址。函数中对该对象进行的任何操作，都相当于是对传入的对象进行间接操作。将参数声明为reference的另一个理由是降低复制大型对象的负担。</p>
-<p>也可以将vector以pointer形式传递。这和以reference传递的效果作用相同：传递的是对象地址，而不是整个对象的复制品。唯一的差别在于reference和pointer的用法不同。</p>
-<p>pointer 参数和reference 参数更重要的差异是：pointer可能（也可能不）指向某个实际对象。当我们提领pointer时，一定要先确定其值非0。而reference则必定会代表某个对象，所以无需做此检查。reference不可以置为0。</p>
-<p>一般来说，除非希望在函数内更改参数值，否则在传递内建型别时，不要使用传址方式，传址机制主要是作为传递 class object 之用。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; fibon_seq(<span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span>(size&lt;=<span class="number">0</span> || size&gt;<span class="number">1024</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">cerr</span>&lt;&lt;<span class="string">"Warning: fibon_seq():"</span></span><br><span class="line">    &lt;&lt; size &lt;&lt; <span class="string">"not supported -- resetting to 8\n"</span>;</span><br><span class="line">    size = <span class="number">8</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; elems(size);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> ix=<span class="number">0</span>;ix&lt;size;++ix)</span><br><span class="line">      <span class="keyword">if</span> (ix ==<span class="number">0</span> || ix==<span class="number">1</span>)</span><br><span class="line">        elems[ix]=<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        elems[ix] = elems[ix<span class="number">-1</span>] + elems[ix<span class="number">-2</span>];</span><br><span class="line"><span class="keyword">return</span> elems</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>不论以pointer或reference形式将elems返回，都不正确，因为elems在fibon_seq()执行完毕时已不复存在。如果将elems以传值方式返回，便不会产生任何问题；因为返回的乃是对象的复制品，它在函数之外依然存在。</p>
-<p>为对象配置的内存，其存活期称为储存期（storage duration） 或范围（extent）。每次fibon_seq()执行起来，都会为elems配置内存，每当fibon_seq()终了便会加以释放。我们称此对象具有局部性范围（local extent）。函数参数便有局部性范围。</p>
-<p>对象在程序中存活区域称为该对象的 scope（生存空间）。size 和 elems 在fibon_seq()函数内拥有local scope。若某个对象仅具有local scope（局部性生存空间），其名称在local scope之外便不可视。<br>对象如果在函数之外声明，则具有 file scope。对象如果拥有file scope，则从其声明点至文件尾端都是可视的。file scope内的对象亦具备所谓的 static scope，意谓该对象的内存在main()开始执行之前便已经配置好了，可以一直存在至程序结束为止。</p>
-<p>内建型别的对象，如果定义在file scope之内，必定被初始化为0。但如果它们被定义于local scope之内，那么除非程序员指定其初值，否则不会被初始化。<br>file scope 对象会打乱不同函数间的独立性，使它们难以理解。</p>
-<h4 id="动态内存管理"><a href="#动态内存管理" class="headerlink" title="动态内存管理"></a>动态内存管理</h4><p>不论local scope 或者是file extent，都由系统自动管理。第三种存储期形式称为 dynamic extent（动态范围）。其内存由程序的自由空间（free store）配置而来，有时也称为heap memory（堆内存）。此种内存必须由程序员自行管理，其配置是通过new 表达式来达成的，释放通过delete表达式完成。</p>
-<p>new Type:<br>Type 可以为任意内建型别，也可以是程序知道的class型别。new 表达式亦可写为：<br>new Type(initial_value);<br>如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pi;</span><br><span class="line">pi = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br></pre></td></tr></table></figure>
-
-<p>先由heap 配置出一个型别为int 的对象，再将其地址赋值给pi。默认情形下，由heap配置而来的对象，皆为经过初始化。new表达式的另一种形式允许我们指定初值，例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
-
-<p>同样是先由heap配置出一个类型为int的对象，再将其地址赋值给pi，但这个对象的值会被初始化为1024.<br>从heap中配置数组：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pia = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">24</span>];</span><br></pre></td></tr></table></figure>
-
-<p>从heap中配置一数目组，拥有24个整数。pia会被初始化为数组第一个元素的地址。数组中的每个元素都未经过初始化。C++ 没有提供任何语法让我们得以从heap配置数组的同时为其元素设定初值。<br>从heap配置而来的对象，被称为具有dynamic extent，因为它们是在执行期通过 new 表达式配置来的，因此可以持续存活，直到以 delete 表达式加以释放为止。下面的 delete 表达式会释放Pi所指的对象：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete pi;</span><br></pre></td></tr></table></figure>
-
-<p>如果要删除数组中的所有对象，必须在数组指针和delete表达式之间，加上一个空的下标运算符：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete [] pia;</span><br></pre></td></tr></table></figure>
-
-<p>注意，无需检验pi是否非零：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (pi!=0) // 多此一举——编译器会提我们检查</span><br><span class="line">  delete pi;</span><br></pre></td></tr></table></figure>
-
-<p>以“参数传递”作为函数间的沟通方式，比“直接将对象定义于file scope”更适当。理由之一是，函数如果过度依赖定义于file scope内的对象，就比较难以在其他环境中被重复使用，也比较难以修改——我们不仅需要了解该函数的运行逻辑，也必须了解定义于file scope中的那些个对象的运行逻辑。</p>
-<p>通常将参数默认值置于函数声明处。</p>
-<h4 id="局部静态对象（Local-Static-Objects）"><a href="#局部静态对象（Local-Static-Objects）" class="headerlink" title="局部静态对象（Local Static Objects）"></a>局部静态对象（Local Static Objects）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *</span><br><span class="line">fibon_seq(<span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; elems;</span><br><span class="line">	<span class="comment">// 函数的运行逻辑置于此处</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &amp;elems;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此刻的elems被定义为fibon_seq()中的局部静态对象。局部静态对象所处的内存空间，即使在不同的函数调用过程中，依然持续存在。elems 的内容不再像以前一样地于fibon_seq()每次被调用时就被破坏又被重新建立。这也是为什么现在我们可以安全地将elems的地址返回的原因。<br>局部静态对象使我们可以定义一个含有Fibonacci数列的vector，每当调用fibon_seq()时，只需计算那些尚未被置入elems的元素即可。</p>
-<p>将函数声明为 inline ，表示要求编译器在每个函数调用点上，将函数的内容展开。面对一个inline函数，编译器可将该函数的调用操作改以一份函数码副本取而代之。这使我们获得效率上的改善，其结果等于是把三个函数写入 fibon_elem()内，但依然维持3个独立的运算单元。</p>
-<p>在函数前面加上关键词 inline ,便可将该函数声明为 inline 。将函数指定为inline，只是对编译器提出的一种要求，编译器是否执行这项请求，需视编译器而定。</p>
-<h4 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h4><p>function overloading<br>参数表（parameter list）不相同（可能是参数型别不同，也可能是参数数目不同）的两个或多个函数，可以拥有相同的函数名称。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">char</span> ch)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>编译器将调用者提供的实际参数拿来和每个重载函数的参数比较，找出其中最适当的。这也就是为什么每个重载函数的参数必须和其它重载函数的参数表不同的原因。</p>
-<p>编译器无法根据函数返回值类型来区分两个具有相同名称的函数，以下便是不正确的写法，会产生编译错误：<br>//错误：参数表（而非返回值的型别）必须不同。<br>ostream&amp; display_message(char ch);<br>bool display_message(char ch);<br>因为返回值型别无法保证提供我们一个足以区分不同重载函数的情境。</p>
-<p>将一组实现代码不同但工作内容相似的函数加以重载，可以让函数用户更容易使用这些函数。如果没有重载机制，我们就得为每个函数提供不同的名称。</p>
-<h4 id="定义并使用-Template-Functions（模板函数）"><a href="#定义并使用-Template-Functions（模板函数）" class="headerlink" title="定义并使用 Template Functions（模板函数）"></a>定义并使用 Template Functions（模板函数）</h4><p>将单一函数的内容与希望显示的各种vector型别捆绑（bind）起来。<br>function template 将参数表中指定的所有（或部分）参数的型别信息抽离出来。在display_message()例子中，我们希望将vector 所持元素的型别抽离出来，于是就可以定义出一份不需再有任何更改的模板（template）。不过，这样还不完整，因为我们遗漏了抽离出来的型别信息。这份型别信息由用户提供——当他决定采用 function template 的某个实体时提供。<br>function template 以关键词 template 开场，其后紧接着以成对尖括号（&lt;&gt;）包围起来的一个或多个识别名称，这些名称用以表示我们希望延缓决定的数据型别。每当用户利用模板（template）产生函数时，他就必须提供确实的型别信息。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> elemType&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;msg,<span class="keyword">const</span> <span class="built_in">vector</span>&lt;elemType&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;msg;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> ix =<span class="number">0</span>;ix&lt;vec.size();ix++)</span><br><span class="line">    &#123;</span><br><span class="line">      elemType t = vec[ix];</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; t &lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>关键词 typename 表示，elemType 在display_message() 函数中乃是一个临时放置型别的代称。elemType 只是个任意名称，也可以用foobar 或 T 之类的名称。</p>
-<p>在我们编译程序时，实际过程模板会被编译两次。 </p>
-<ul>
-<li>首先，对模板代码检查语法（如缺少分号）等语法错误。 </li>
-<li>然后，实例化时，即调用模板函数时检查模板函数中的操作是否支持该类型。</li>
-</ul>
-<p>模板参数的个数可是任意个，但是不能为模板参数指定默认值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> T1 <span class="title">max</span> <span class="params">(T1 <span class="keyword">const</span>&amp; a, T2 <span class="keyword">const</span>&amp; b)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">return</span> a &lt; b ? b : a; </span><br><span class="line">&#125; </span><br><span class="line">… </span><br><span class="line">max(<span class="number">4</span>,<span class="number">4.2</span>)   <span class="comment">// OK, but type of first argument defines return type</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的例子看起来很好，但是有问题。首先，返回类型必须被声明。如果返回类型是其中的一个模板参数类型，另一个参数类型就可能被转换成返回的类型。另外一个问题，把第二个类型转换为第一个类型会产生局部临时对象，那么就不能使用引用的方式（by reference）传回结果。因此上面的例子中，返回的类型是T1 而不是 T const&amp;</p>
-<p>由于调用参数（call parameters ）是由模板参数（template parameters）构造的，所以两者是相关的。我们把这种概念称为：函数模板参数推导。有了推导，就可以像调用普通函数那样调用函数模板。 </p>
-<p>如之前的例子，调用时为函数模板显示指定类型</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="keyword">const</span>&amp; <span class="title">max</span> <span class="params">(T <span class="keyword">const</span>&amp; a, T <span class="keyword">const</span>&amp; b)</span></span>; </span><br><span class="line">… </span><br><span class="line">max&lt;<span class="keyword">double</span>&gt;(<span class="number">4</span>,<span class="number">4.2</span>)    <span class="comment">// instantiate T as double</span></span><br></pre></td></tr></table></figure>
-
-<p>当模板参数和调用参数没有直接关系，且编译器也无法推导出模板参数时，就需要明确的指定模板参数了。如，可以为max()指定第三个模板参数类型作为返回参数类型。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2,<span class="keyword">typename</span> RT&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> RT <span class="title">max</span><span class="params">(T1 <span class="keyword">const</span>&amp; a,T2 <span class="keyword">const</span>&amp; b)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>然而，推导机制并不会对返回类型进行匹配，而且模板参数RT也不在调用参数中。因此，编译器无法推导出RT，调用时就必须显示指定类型，如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> RT&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> RT <span class="title">max</span> <span class="params">(T1 <span class="keyword">const</span>&amp; a, T2 <span class="keyword">const</span>&amp; b)</span></span>; </span><br><span class="line">… </span><br><span class="line">max&lt;<span class="keyword">int</span>,<span class="keyword">double</span>,<span class="keyword">double</span>&gt;(<span class="number">4</span>,<span class="number">4.2</span>)    <span class="comment">// OK, but tedious</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的例子，调用时要么不需要指定参数完全由编译器推导，要么就要把所有的参数多显示指定了。<br>当然，还有一种方法只明确的指定第一个模板参数，其它的参数由编译器自动推导。<br>如下：RT要放在第一个参数的位置。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RT, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> RT <span class="title">max</span> <span class="params">(T1 <span class="keyword">const</span>&amp; a, T2 <span class="keyword">const</span>&amp; b)</span></span>; </span><br><span class="line">… </span><br><span class="line">max&lt;<span class="keyword">double</span>&gt;(<span class="number">4</span>,<span class="number">4.2</span>)    <span class="comment">// OK: return type is double</span></span><br></pre></td></tr></table></figure>
-
-<p>函数模板重载（Overloading Function Templates）<br>和普通的函数一样，函数模板也是可以重载的。<br>函数重载：不同的函数的定义可以有相同的函数名，当函数被调用的时候由编译器判断使用哪个函数。<br>如下，函数模板重载的例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//maximum of two int values</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="keyword">const</span>&amp; <span class="title">max</span><span class="params">(<span class="keyword">int</span> <span class="keyword">const</span>&amp; a, <span class="keyword">int</span> <span class="keyword">const</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//maximum of two values of any type</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="keyword">const</span>&amp; <span class="title">max</span><span class="params">(T <span class="keyword">const</span>&amp; a, T <span class="keyword">const</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//maximum of three values of any type</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="keyword">const</span>&amp; <span class="title">max</span><span class="params">(T <span class="keyword">const</span>&amp; a, T <span class="keyword">const</span>&amp; b, T <span class="keyword">const</span>&amp; c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> max(max(a, b), c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	::max(<span class="number">7</span>, <span class="number">42</span>, <span class="number">68</span>);     <span class="comment">// calls the template for three arguments </span></span><br><span class="line">	::max(<span class="number">7.0</span>, <span class="number">42.0</span>);     <span class="comment">// calls max&lt;double&gt; (by argument deduction) </span></span><br><span class="line">	::max(<span class="string">'a'</span>, <span class="string">'b'</span>);      <span class="comment">// calls max&lt;char&gt; (by argument deduction) </span></span><br><span class="line">	::max(<span class="number">7</span>, <span class="number">42</span>);         <span class="comment">// calls the nontemplate for two ints </span></span><br><span class="line">	::max&lt;&gt;(<span class="number">7</span>, <span class="number">42</span>);       <span class="comment">// calls max&lt;int&gt; (by argument deduction) </span></span><br><span class="line">	::max&lt;<span class="keyword">double</span>&gt;(<span class="number">7</span>, <span class="number">42</span>); <span class="comment">// calls max&lt;double&gt; (no argument deduction) </span></span><br><span class="line">	::max(<span class="string">'a'</span>, <span class="number">42.7</span>);     <span class="comment">// calls the nontemplate for two ints </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的例子中，非模板函数可以和同名的函数模板同时存在，也可以和相同类型的函数模板实例同时存在。当所有的条件都相同时，编译器会优先选择非模板函数。<br>因此上面的第四个调用的是非模板函数。</p>
-<p>调用时可以使用空的模板参数列表”&lt;&gt;”,这种形式告诉编译器必须使用从函数模板的实例，且模板参数由调用参数自动推导。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max&lt;&gt;(<span class="number">7</span>, <span class="number">42</span>)    <span class="comment">// calls max&lt;int&gt; (by argument deduction)</span></span><br></pre></td></tr></table></figure>
-
-<p>由于模板是不能进行自动类型转换的，而普通函数是可以自动类型转换，所有最后一个调用的是非模板函数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(<span class="string">'a'</span>, <span class="number">42.7</span>)      <span class="comment">// only the nontemplate function allows different argument types</span></span><br></pre></td></tr></table></figure>
-
-<p>如果表头文件和含入此文件的程序代码文件位于同一个驱动器目录下，我们便使用双引号。如果在不同的驱动器目录下，我们便使用尖括号。<br>如果此文件被认定为标准的、或项目专属的头文件，我们便以尖括号将文件名括住；编译器搜寻此文档时，会先在某些默认的驱动器目录中找寻，如果文件名由成对的双括号括住，此文件便被认为是一个用户自行提供的头文件；搜寻此文件时，会由含入此文件之文件所在的驱动器目录开始找起。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（C++ADT)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohui Bai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mist">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/2019-7-23-笔记整理（C++ADT)/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h3><p>编写程序前，需要清楚地了解如何通过程序来实现索要完成的任务。 编写代码前，应列出程序的提纲（项目越大，越复杂，提纲应越详细），包括其需求。</p>
-<p>实现的细节，应该在一个项目的后期完成，实现阶段要用到的详细数据结构更不应该在一开始就指定。</p>
-<p>在刚开始的时候，最重要的是每项任务的输入输出。开始阶段应该关心程序需要什么，而不是如何去做。程序的行为比实现程序的机制更重要。如某个项需要完成一些任务，那么应该指定在这个项上进行的操作，而不是指定这个项的内部结构。这些操作是基于这个项的。当明确这些操作之后，就可以开始实现这个程序了。实现决定应该使用哪种数据结构，从而达到更好的时间以及空间执行效率。指定了操作的项被称为抽象数据类型（ADT）。</p>
-<p>抽象数据类型不是程序的一部分，因为程序需要定义数据结构，而不只是数据结构上执行的操作。</p>
-<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>OOP以对象为中心，而对象是用类来定义的。类是一个模板，对象根据类来创建。类是软件的一部分，包括数据的说明以及对数据执行的操作，还可能包含对其他类数据的操作。<br>类中定义的函数称为方法，或者成员函数或者函数成员，类中使用的变量称为数据成员。<br>数据及其相关操作的结合称为数据封装。<br>对象是类的实例，是用类定义创建的实体。  </p>
-<p>与非面向对象语言中的函数比，对象使数据和成员函数之间的结合更加紧密，更有意义。在非面向对象编程语言中，数据的声明和函数定义分散在整个程序中，只有程序文档才能说明它们之间存在联系。而OOL中，联系在一开始就建立起来了；事实上，这种联系是程序的基础。对象是由相互关联的数据和操作定义的，同一个程序中可能会有很多对象，对象通过传递消息来相互通信，为了更为充分的通信，需要泄露对象一些内部细节。基于对象的结构化编程可以完成多个目标。</p>
-<p>首先，数据与操作之间的强耦合关系在实际的建模过程中非常有用，软件工程尤其强调这一点。<br>其次，对象便于查找错误，因为操作都只限于它们的对象。即使有副作用也容易跟踪。<br>第三，对象可以对其他对象隐藏某些操作细节。从而使得这些操作不会受到其他对象的影响，这就是所谓的信息隐藏原则。</p>
-<p>对象就像是一个黑盒子，其行为有明确的定义，我们使用对象是因为知道其功能，而不是因为了解其内部运行机制。对象的这种不透明性对于保持其独立性是非常有用的。如果恰当的定义了对象之间的通信管道，那么只有当对象中的改变影响到通信管道时，才会影响其他对象。在了解了对象发出和收到的信息之后，可以方便地用某个在特殊情况下更为合适的对象取代当前对象。</p>
-<p>信息隐藏往往容易模糊数据和操作的界限。</p>
-<p>C++能够在类声明中使用类型参数来声明通用类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class genType&gt;</span><br><span class="line">class genClass&#123;</span><br><span class="line">  genType storage[50];</span><br><span class="line">  ..............</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>  此后才会决定如何初始化genType:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">genClass&lt;int&gt; intObject;</span><br><span class="line">genClass&lt;float&gt; floatObject;</span><br></pre></td></tr></table></figure></p>
-<p>这个通用类是生成两个新类（int类型的genClass和float类型的genClass）的基础，然后使用这两个类创建了两个对象intObject和floatObject。通过这种方式，通用类可以根据特定的声明以各种不同的形式出现，一个通用声明就足以使类具有不同的形式。</p>
-<p>让storage数组大小可选：</p>
-<pre><code>template&lt;class genType,int size = 50&gt;
-class genClass{
-  genType storage[size];
-};
-
-genClass&lt;int&gt; intObject1; // use the default size;
-genClass&lt;int,100&gt; intObject2;
-genClass&lt;float,123&gt; floatObject;</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（DSIPy)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohui Bai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mist">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/2019-7-23-笔记整理（DSIPy)/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="关于时间复杂度"><a href="#关于时间复杂度" class="headerlink" title="关于时间复杂度"></a>关于时间复杂度</h2><p>时间复杂度的几条基本计算规则</p>
-<ol>
-<li>基本操作，即只有常数项，认为其时间复杂度为O(1)。</li>
-<li>顺序结构，时间复杂度按加法进行计算</li>
-<li>循环结构，时间复杂度按乘法进行计算</li>
-<li>分支结构，时间复杂度取最大值</li>
-<li>判断一个算法的效率时，往往只需要关注操作数量的最高次项，其他次项和常数项可以忽略。</li>
-<li>无特殊说明时，算法的时间复杂度均指最坏时间复杂度。</li>
-</ol>
-<p>常见时间复杂度的关系：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(1)&lt;O(logn)&lt;O(n)&lt;O(nlogn)&lt;O(n^2)&lt;O(n^3)&lt;O(2^n)&lt;O(n!)&lt;O(n^n)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Python内置类型性能分析"><a href="#Python内置类型性能分析" class="headerlink" title="Python内置类型性能分析"></a>Python内置类型性能分析</h3><p>timeit 模块可以用来测试一小段Python代码的执行速度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class timeit.Timer(stmt=&apos;pass&apos;,setup=&apos;pass&apos;,timer=&lt;timer function&gt;)</span><br></pre></td></tr></table></figure>
-
-<p>Timer是测量小段代码执行速度的类；<br>stmt参数是要测试的代码语句（statement）；<br>setup参数是运行代码时需要的设置；<br>timer参数是一个定时器函数，与平台有关。</p>
-<p>timeit.Timer.timeit(number=100000)<br>Timer类中测试语句执行速度的对象方法，number参数是测试代码时的测试次数，默认为1000000次。方法返回执行代码的平均耗时，一个float类型的秒数。</p>
-<p>数据结构静态描述了数据元素之间的关系。高效的程序需要在数据结构的基础上设计和选择算法。<br>程序 = 数据结构 + 算法<br>总结：算法是为了解决实际问题而设计的，数据结构是算法需要处理的问题载体。</p>
-<h3 id="ADT"><a href="#ADT" class="headerlink" title="ADT"></a>ADT</h3><p>抽象数据类型指一个数学模型以及定义在这个模型上的一组操作。即把数据类型和数据类型上的运算捆绑在一起，进行封装。引入ADT的目的是为了把数据类型的表示和数据类型上运算的实现与这些数据类型和运算在程序中的引用隔开，使它们相互独立。</p>
-<p>地址所占用的内存空间大小一致。</p>
-<p>选择排序算法不具有稳定性（考虑升序，每次选最大的情况）。<br>冒泡排序具有稳定性。<br>插入排序具有稳定性。<br>希尔排序不具有稳定性。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohui Bai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mist">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记)/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="侯捷1"><a href="#侯捷1" class="headerlink" title="侯捷1"></a>侯捷1</h1><ul>
-<li>class without pointer members<ul>
-<li>Complex</li>
-</ul>
-</li>
-<li>class with pointer members<ul>
-<li>String  </li>
-</ul>
 </li>
 </ul>
-<p>complex.h<br>防卫式声明</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__   </span></span><br><span class="line">.......</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>Template Method 设计模式</p>
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C4856d28e.png" alt="4856d28e.png"></p>
+<h4 id="Delegation（委托）-Inheritance（继承）"><a href="#Delegation（委托）-Inheritance（继承）" class="headerlink" title="Delegation（委托）+Inheritance（继承）"></a>Delegation（委托）+Inheritance（继承）</h4><p>  <img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Cd9aa4c92.png" alt="d9aa4c92.png"> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Component(<span class="keyword">int</span> val) &#123; value = val; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Component*)</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Primitive</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Primitive(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Composite</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;Component*&gt; c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Composite(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Component* elem)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		c.push_back(elem);</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>头文件布局</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__   </span></span><br><span class="line">________________________________________________</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ostream</span>                                                                <span class="title">forward</span> <span class="title">declarations</span></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">complex</span>                                                               前置声明</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">complex</span>&amp;</span></span><br><span class="line"><span class="class">    __<span class="title">doap1</span>(<span class="title">complex</span>* <span class="title">ths</span>,<span class="title">const</span> <span class="title">complex</span>&amp; <span class="title">r</span>);</span></span><br><span class="line">________________________________________________</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">________________________________________________</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">                                                                                    <span class="class"><span class="keyword">class</span> <span class="title">declarations</span></span></span><br><span class="line"><span class="class">........................................                                                    类-声明</span></span><br><span class="line"><span class="class">&#125;                                                               </span></span><br><span class="line"><span class="class">________________________________________________</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">________________________________________________</span></span><br><span class="line"><span class="class"><span class="title">complex</span> :</span>: function...                                                     <span class="class"><span class="keyword">class</span> <span class="title">definition</span> 类定义</span></span><br><span class="line"><span class="class">________________________________________________</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">#<span class="title">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<p>不带指针的类，大多数情况不需要写析构函数。 </p>
-<p>构造函数放在private区域</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// Singleton</span><br><span class="line">class A&#123;</span><br><span class="line">public:</span><br><span class="line">  static A&amp; getInstance();</span><br><span class="line">  setup()&#123;...&#125;</span><br><span class="line">private:</span><br><span class="line">   A():</span><br><span class="line">   A(const A&amp; rhs);</span><br><span class="line">   ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A&amp; A::getInstance()</span><br><span class="line">&#123;</span><br><span class="line">  static A a;</span><br><span class="line">  return a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>相同class的各个objects互为friends（友元）<br><img src=":storage%5Ce085efcd-aaff-4f6d-94a3-107cbd04e949%5C5194a5f0.png" alt="5194a5f0.png"></p>
-<p>类定义：<br> 1.数据一定在private里。2.传参最好以传引用的方式。（注意加不加const）3.返回值也尽量以引用来传递。5.构造函数最好使用initialization list。</p>
-<p>如果在一个函数内部创建了一个新的变量，并且将其引用返回，实际上达不到理想的效果，因为函数结束后，临时创建的新的变量就消失了，所以它的引用也没有了本来的意义。</p>
-<h2 id="operator-overloading（操作符重载-1，成员函数）-this"><a href="#operator-overloading（操作符重载-1，成员函数）-this" class="headerlink" title="operator overloading（操作符重载-1，成员函数） this"></a>operator overloading（操作符重载-1，成员函数） this</h2><p>任何的成员函数都有一个隐藏的this指针。this指针指向调用者。</p>
-<p>return by reference 语法分析<br>传递者无需知道接收者是以reference形式接收</p>
-<h2 id="operator-overloading（操作符重载-2，非成员函数）-无this"><a href="#operator-overloading（操作符重载-2，非成员函数）-无this" class="headerlink" title="operator overloading（操作符重载-2，非成员函数） 无this"></a>operator overloading（操作符重载-2，非成员函数） 无this</h2><p>temp object（临时对象） typename();</p>
-<p>String class<br>如果类里面带指针，拷贝构造函数一定要自己写。<br>big three: 拷贝构造，拷贝赋值，析构函数<br>class with pointer members 必须有 copy ctor 和 copy op=，否则可能造成内存泄漏 </p>
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C82ee2b56.png" alt="82ee2b56.png"><br>创建未来的class 名称<br>下面创建的原型要让上面看得到，放上去。<br>Prototype 原型<br>每一个子类有自己的一个个体，并且有一个构造函数把自己这个个体挂到上面去。<br>每一个子类有一个clone，让父类能够通过原型调用clone创建一个个副本，</p>
 
           
         
@@ -991,7 +380,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记2)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/Python Objects Types and Expressions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -1010,142 +399,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记2)/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="所谓stack，所谓heap"><a href="#所谓stack，所谓heap" class="headerlink" title="所谓stack，所谓heap"></a>所谓stack，所谓heap</h1><p>Stack，是存在于某作用域（scope）的一块内存空间（memory space）。例如当你调用函数，函数本身即会形成一个stack用来放置它所接收的参数，以及返回地址。<br>在函数本体（function body）内声明的任何变量，其所使用的内存块都取自上述stack。</p>
-<p>Heap，或称system heap，是指由操作系统提供的一块global内存空间，程序可动态分配（dynamic allocated）从其中获得若干区块（blocks）。<br>class Complex<br>…<br>{<br>  Complex c1(1,2);        // c1 所占用的空间来自stack<br>  Complex* p = new Complex(3);Complex（3）是个临时对象，其所占用的空间乃是以new的方式动态分配取得，并由p指向<br>  }</p>
-<p>  stack object 的生命期<br>  c1 便是所谓stack object，其生命在作用域（scope）结束之际结束。这种作用域内的object，又称为auto object，因为它会被“自动”清理。</p>
-<p>  static local objects 的生命期<br>  static Complex c2(1,2);  c2便是所谓static object，其生命在作用域（scope）结束之后仍然存在，直到整个程序结束。</p>
-<p>  global objects 的生命期<br>  class Complex{}<br>  Complex c3(1,2);<br>  int main()<br>  {}</p>
-<p>  c3 便是global object，其生命在整个程序结束之后才结束，可以将其视为一种static object，其作用域是“整个程序”。</p>
-<p>  new: 先分配memory，再调用ctor</p>
-<p>  Complex* pc = new Complex(1,2);<br>  编译器转化为：<br>  Complex *pc;</p>
-<ol>
-<li>void* mem = operator new(sizeof(Complex)); -&gt;其内部调用malloc(n)； // 分配内存</li>
-<li>pc = static_cast&lt;Complex*&gt;（mem); // 转型</li>
-<li>pc-&gt;Complex::Complex(1,2);// 构造函数 -&gt;Complex::Complex(pc,1,2);</li>
-</ol>
-<p>delete: 先调用dtor，再释放memory</p>
-<p>String* ps = new String(“hello”);<br>…<br>delete ps;</p>
-<p>编译器转化为：String::~String(ps);//析构函数<br>operator delete(ps); //释放内存 -&gt;其内部调用free(ps)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-19-Python Objects Types and Expressions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohui Bai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mist">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/2019-7-19-Python Objects Types and Expressions/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/Python Objects Types and Expressions/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1368,7 +622,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（MOOC)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -1387,7 +641,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/2019-7-23-笔记整理（侯捷笔记4)/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/笔记整理（MOOC)/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1439,28 +693,85 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
       
         
           
-            <h1 id="Object-Oriented-Programming-Object-Oriented-Design"><a href="#Object-Oriented-Programming-Object-Oriented-Design" class="headerlink" title="Object Oriented Programming,Object Oriented Design"></a>Object Oriented Programming,Object Oriented Design</h1><h2 id="OOP-OOD"><a href="#OOP-OOD" class="headerlink" title="OOP OOD"></a>OOP OOD</h2><h4 id="Inheritance（继承）"><a href="#Inheritance（继承）" class="headerlink" title="-Inheritance（继承）"></a>-Inheritance（继承）</h4><h4 id="Composition（复合）"><a href="#Composition（复合）" class="headerlink" title="-Composition（复合）"></a>-Composition（复合）</h4><h4 id="Delegation（委托）"><a href="#Delegation（委托）" class="headerlink" title="-Delegation（委托）"></a>-Delegation（委托）</h4><h2 id="Composition（复合），表示has-a"><a href="#Composition（复合），表示has-a" class="headerlink" title="Composition（复合），表示has-a"></a>Composition（复合），表示has-a</h2><p><code>Adapter</code><br>Composition（复合）关系下的构造和析构<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Ce3c0bf05.png" alt="e3c0bf05.png"></p>
-<h3 id="构造由内而外"><a href="#构造由内而外" class="headerlink" title="构造由内而外"></a>构造由内而外</h3><p>Container的构造函数首先调用Component的default构造函数，然后才执行自己。<br><code>Container::Container(...):Component(){...};</code></p>
-<h3 id="构造由外而内"><a href="#构造由外而内" class="headerlink" title="构造由外而内"></a>构造由外而内</h3><p>Container的析构函数首先执行自己，然后才调用Component的析构函数。<br><code>Container::~Container(...){...~Component()};</code></p>
-<h2 id="Delegation（委托）-Composition-by-reference"><a href="#Delegation（委托）-Composition-by-reference" class="headerlink" title="Delegation（委托）.Composition by reference."></a>Delegation（委托）.Composition by reference.</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">        String();</span><br><span class="line">        String(<span class="keyword">const</span> <span class="keyword">char</span>* s);</span><br><span class="line">        String &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> String&amp; s);</span><br><span class="line">        ~String();</span><br><span class="line">        ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">        StringRep* rep;<span class="comment">//pimpl(Handle/Body)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"String.hpp"</span></span></span><br><span class="line"><span class="keyword">namespace</span>&#123;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>&#123;</span></span><br><span class="line"><span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span>;</span></span><br><span class="line">        StringRep(<span class="keyword">const</span> <span class="keyword">char</span>*s);</span><br><span class="line">        ~StringRep();</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">char</span>* rep;</span><br><span class="line">&#125;;</span><br><span class="line">&#125; </span><br><span class="line">String::String()&#123;...&#125;</span><br></pre></td></tr></table></figure>
+            <p>当我们调用一个函数的时候，会在内存中建立起一块特殊区域，称为“程序栈（program stack）”。程序栈提供了每个函数参数的储存空间。它也提供函数所定义的每个对象的内存空间——我们将这些对象称为 local object（局部对象）。一旦函数完成，这块内存就会被释放掉，或者说从程序堆栈中被pop出来。<br>当我们将vec[ix]这样的对象传入函数时，默认情形下其值会被复制一份，成为参数的局部性定义（local definition）。这种方式称为pass by value（传值）。我们在bubble_sort()内传给swap()的对象，和我们在swap()内操作的对象，其实是没有任何关联的两组对象。为了让程序正确运行，必须通过某种方法，令swap()的参数和传入的实际对象产生关联。即所谓的pass by reference （传址）。最简单的做法便是将参数声明为一个reference：在型别名称和reference名称之间插入&amp;符号，便声明了一个reference。<br>C++不允许改变references所代表的对象，他们必须从一而终。面对reference的所有操作都像面对“reference”所代表之对象所进行的操作一般无二。以reference作为函数参数时，亦复如此。<br>以by reference 方法传递对象当作函数参数，对象本身并不会复制出另一份——复制的是对象的地址。函数中对该对象进行的任何操作，都相当于是对传入的对象进行间接操作。将参数声明为reference的另一个理由是降低复制大型对象的负担。</p>
+<p>也可以将vector以pointer形式传递。这和以reference传递的效果作用相同：传递的是对象地址，而不是整个对象的复制品。唯一的差别在于reference和pointer的用法不同。</p>
+<p>pointer 参数和reference 参数更重要的差异是：pointer可能（也可能不）指向某个实际对象。当我们提领pointer时，一定要先确定其值非0。而reference则必定会代表某个对象，所以无需做此检查。reference不可以置为0。</p>
+<p>一般来说，除非希望在函数内更改参数值，否则在传递内建型别时，不要使用传址方式，传址机制主要是作为传递 class object 之用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; fibon_seq(<span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span>(size&lt;=<span class="number">0</span> || size&gt;<span class="number">1024</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">cerr</span>&lt;&lt;<span class="string">"Warning: fibon_seq():"</span></span><br><span class="line">    &lt;&lt; size &lt;&lt; <span class="string">"not supported -- resetting to 8\n"</span>;</span><br><span class="line">    size = <span class="number">8</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; elems(size);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> ix=<span class="number">0</span>;ix&lt;size;++ix)</span><br><span class="line">      <span class="keyword">if</span> (ix ==<span class="number">0</span> || ix==<span class="number">1</span>)</span><br><span class="line">        elems[ix]=<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        elems[ix] = elems[ix<span class="number">-1</span>] + elems[ix<span class="number">-2</span>];</span><br><span class="line"><span class="keyword">return</span> elems</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C0f52c2f8.png" alt="0f52c2f8.png"></p>
-<h2 id="Inheritance（继承）-表示is-a"><a href="#Inheritance（继承）-表示is-a" class="headerlink" title="Inheritance（继承）,表示is-a"></a>Inheritance（继承）,表示is-a</h2><h3 id="Inheritance（继承）关系下的构造和析构"><a href="#Inheritance（继承）关系下的构造和析构" class="headerlink" title="Inheritance（继承）关系下的构造和析构"></a>Inheritance（继承）关系下的构造和析构</h3><p>base class 的构造函数必须是virtual，否则会出现undefined behavior<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C1053a33c.png" alt="1053a33c.png"></p>
-<h4 id="构造由内而外-1"><a href="#构造由内而外-1" class="headerlink" title="构造由内而外"></a>构造由内而外</h4><p>Derived的构造函数首先调用base的default构造函数，然后才执行自己。<br><code>Derived::Derived(...):Base(){...};</code></p>
-<h4 id="构造由外而内-1"><a href="#构造由外而内-1" class="headerlink" title="构造由外而内"></a>构造由外而内</h4><p>Derived的析构函数首先执行自己，然后才调用Base的析构函数。<br><code>Derived::~Derived(...){...~Base()};</code></p>
-<h2 id="Inheritance（继承）with-virtual-functions（虚函数）"><a href="#Inheritance（继承）with-virtual-functions（虚函数）" class="headerlink" title="Inheritance（继承）with virtual functions（虚函数）"></a>Inheritance（继承）with virtual functions（虚函数）</h2><ul>
-<li>non-virtual函数：你不希望derived class 重新定义（override，复写）它。</li>
-<li>virtual函数：你希望derived class 重新定义（override，复写）它，且它已经有默认定义。</li>
-<li>pure virtual函数：你希望derived class 一定要重新定义（override，复写）它，你对它没有默认定义。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// pure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; msg)</span></span>; <span class="comment">// impure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">objectID</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// non-virtual</span></span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ellipse</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br></pre></td></tr></table></figure>
+<p>不论以pointer或reference形式将elems返回，都不正确，因为elems在fibon_seq()执行完毕时已不复存在。如果将elems以传值方式返回，便不会产生任何问题；因为返回的乃是对象的复制品，它在函数之外依然存在。</p>
+<p>为对象配置的内存，其存活期称为储存期（storage duration） 或范围（extent）。每次fibon_seq()执行起来，都会为elems配置内存，每当fibon_seq()终了便会加以释放。我们称此对象具有局部性范围（local extent）。函数参数便有局部性范围。</p>
+<p>对象在程序中存活区域称为该对象的 scope（生存空间）。size 和 elems 在fibon_seq()函数内拥有local scope。若某个对象仅具有local scope（局部性生存空间），其名称在local scope之外便不可视。<br>对象如果在函数之外声明，则具有 file scope。对象如果拥有file scope，则从其声明点至文件尾端都是可视的。file scope内的对象亦具备所谓的 static scope，意谓该对象的内存在main()开始执行之前便已经配置好了，可以一直存在至程序结束为止。</p>
+<p>内建型别的对象，如果定义在file scope之内，必定被初始化为0。但如果它们被定义于local scope之内，那么除非程序员指定其初值，否则不会被初始化。<br>file scope 对象会打乱不同函数间的独立性，使它们难以理解。</p>
+<h4 id="动态内存管理"><a href="#动态内存管理" class="headerlink" title="动态内存管理"></a>动态内存管理</h4><p>不论local scope 或者是file extent，都由系统自动管理。第三种存储期形式称为 dynamic extent（动态范围）。其内存由程序的自由空间（free store）配置而来，有时也称为heap memory（堆内存）。此种内存必须由程序员自行管理，其配置是通过new 表达式来达成的，释放通过delete表达式完成。</p>
+<p>new Type:<br>Type 可以为任意内建型别，也可以是程序知道的class型别。new 表达式亦可写为：<br>new Type(initial_value);<br>如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pi;</span><br><span class="line">pi = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br></pre></td></tr></table></figure>
 
-</li>
+<p>先由heap 配置出一个型别为int 的对象，再将其地址赋值给pi。默认情形下，由heap配置而来的对象，皆为经过初始化。new表达式的另一种形式允许我们指定初值，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
+
+<p>同样是先由heap配置出一个类型为int的对象，再将其地址赋值给pi，但这个对象的值会被初始化为1024.<br>从heap中配置数组：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pia = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">24</span>];</span><br></pre></td></tr></table></figure>
+
+<p>从heap中配置一数目组，拥有24个整数。pia会被初始化为数组第一个元素的地址。数组中的每个元素都未经过初始化。C++ 没有提供任何语法让我们得以从heap配置数组的同时为其元素设定初值。<br>从heap配置而来的对象，被称为具有dynamic extent，因为它们是在执行期通过 new 表达式配置来的，因此可以持续存活，直到以 delete 表达式加以释放为止。下面的 delete 表达式会释放Pi所指的对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete pi;</span><br></pre></td></tr></table></figure>
+
+<p>如果要删除数组中的所有对象，必须在数组指针和delete表达式之间，加上一个空的下标运算符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete [] pia;</span><br></pre></td></tr></table></figure>
+
+<p>注意，无需检验pi是否非零：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (pi!=0) // 多此一举——编译器会提我们检查</span><br><span class="line">  delete pi;</span><br></pre></td></tr></table></figure>
+
+<p>以“参数传递”作为函数间的沟通方式，比“直接将对象定义于file scope”更适当。理由之一是，函数如果过度依赖定义于file scope内的对象，就比较难以在其他环境中被重复使用，也比较难以修改——我们不仅需要了解该函数的运行逻辑，也必须了解定义于file scope中的那些个对象的运行逻辑。</p>
+<p>通常将参数默认值置于函数声明处。</p>
+<h4 id="局部静态对象（Local-Static-Objects）"><a href="#局部静态对象（Local-Static-Objects）" class="headerlink" title="局部静态对象（Local Static Objects）"></a>局部静态对象（Local Static Objects）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *</span><br><span class="line">fibon_seq(<span class="keyword">int</span> size)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; elems;</span><br><span class="line">	<span class="comment">// 函数的运行逻辑置于此处</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &amp;elems;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此刻的elems被定义为fibon_seq()中的局部静态对象。局部静态对象所处的内存空间，即使在不同的函数调用过程中，依然持续存在。elems 的内容不再像以前一样地于fibon_seq()每次被调用时就被破坏又被重新建立。这也是为什么现在我们可以安全地将elems的地址返回的原因。<br>局部静态对象使我们可以定义一个含有Fibonacci数列的vector，每当调用fibon_seq()时，只需计算那些尚未被置入elems的元素即可。</p>
+<p>将函数声明为 inline ，表示要求编译器在每个函数调用点上，将函数的内容展开。面对一个inline函数，编译器可将该函数的调用操作改以一份函数码副本取而代之。这使我们获得效率上的改善，其结果等于是把三个函数写入 fibon_elem()内，但依然维持3个独立的运算单元。</p>
+<p>在函数前面加上关键词 inline ,便可将该函数声明为 inline 。将函数指定为inline，只是对编译器提出的一种要求，编译器是否执行这项请求，需视编译器而定。</p>
+<h4 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h4><p>function overloading<br>参数表（parameter list）不相同（可能是参数型别不同，也可能是参数数目不同）的两个或多个函数，可以拥有相同的函数名称。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">char</span> ch)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>编译器将调用者提供的实际参数拿来和每个重载函数的参数比较，找出其中最适当的。这也就是为什么每个重载函数的参数必须和其它重载函数的参数表不同的原因。</p>
+<p>编译器无法根据函数返回值类型来区分两个具有相同名称的函数，以下便是不正确的写法，会产生编译错误：<br>//错误：参数表（而非返回值的型别）必须不同。<br>ostream&amp; display_message(char ch);<br>bool display_message(char ch);<br>因为返回值型别无法保证提供我们一个足以区分不同重载函数的情境。</p>
+<p>将一组实现代码不同但工作内容相似的函数加以重载，可以让函数用户更容易使用这些函数。如果没有重载机制，我们就得为每个函数提供不同的名称。</p>
+<h4 id="定义并使用-Template-Functions（模板函数）"><a href="#定义并使用-Template-Functions（模板函数）" class="headerlink" title="定义并使用 Template Functions（模板函数）"></a>定义并使用 Template Functions（模板函数）</h4><p>将单一函数的内容与希望显示的各种vector型别捆绑（bind）起来。<br>function template 将参数表中指定的所有（或部分）参数的型别信息抽离出来。在display_message()例子中，我们希望将vector 所持元素的型别抽离出来，于是就可以定义出一份不需再有任何更改的模板（template）。不过，这样还不完整，因为我们遗漏了抽离出来的型别信息。这份型别信息由用户提供——当他决定采用 function template 的某个实体时提供。<br>function template 以关键词 template 开场，其后紧接着以成对尖括号（&lt;&gt;）包围起来的一个或多个识别名称，这些名称用以表示我们希望延缓决定的数据型别。每当用户利用模板（template）产生函数时，他就必须提供确实的型别信息。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> elemType&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display_message</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;msg,<span class="keyword">const</span> <span class="built_in">vector</span>&lt;elemType&gt; &amp;vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;msg;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> ix =<span class="number">0</span>;ix&lt;vec.size();ix++)</span><br><span class="line">    &#123;</span><br><span class="line">      elemType t = vec[ix];</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; t &lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关键词 typename 表示，elemType 在display_message() 函数中乃是一个临时放置型别的代称。elemType 只是个任意名称，也可以用foobar 或 T 之类的名称。</p>
+<p>在我们编译程序时，实际过程模板会被编译两次。 </p>
+<ul>
+<li>首先，对模板代码检查语法（如缺少分号）等语法错误。 </li>
+<li>然后，实例化时，即调用模板函数时检查模板函数中的操作是否支持该类型。</li>
 </ul>
-<p>Template Method 设计模式</p>
-<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C4856d28e.png" alt="4856d28e.png"></p>
-<h4 id="Delegation（委托）-Inheritance（继承）"><a href="#Delegation（委托）-Inheritance（继承）" class="headerlink" title="Delegation（委托）+Inheritance（继承）"></a>Delegation（委托）+Inheritance（继承）</h4><p>  <img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Cd9aa4c92.png" alt="d9aa4c92.png"> </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Component(<span class="keyword">int</span> val) &#123; value = val; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Component*)</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Primitive</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Primitive(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Composite</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;Component*&gt; c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Composite(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Component* elem)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		c.push_back(elem);</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>模板参数的个数可是任意个，但是不能为模板参数指定默认值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> T1 <span class="title">max</span> <span class="params">(T1 <span class="keyword">const</span>&amp; a, T2 <span class="keyword">const</span>&amp; b)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">return</span> a &lt; b ? b : a; </span><br><span class="line">&#125; </span><br><span class="line">… </span><br><span class="line">max(<span class="number">4</span>,<span class="number">4.2</span>)   <span class="comment">// OK, but type of first argument defines return type</span></span><br></pre></td></tr></table></figure>
 
-<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C82ee2b56.png" alt="82ee2b56.png"><br>创建未来的class 名称<br>下面创建的原型要让上面看得到，放上去。<br>Prototype 原型<br>每一个子类有自己的一个个体，并且有一个构造函数把自己这个个体挂到上面去。<br>每一个子类有一个clone，让父类能够通过原型调用clone创建一个个副本，</p>
+<p>上面的例子看起来很好，但是有问题。首先，返回类型必须被声明。如果返回类型是其中的一个模板参数类型，另一个参数类型就可能被转换成返回的类型。另外一个问题，把第二个类型转换为第一个类型会产生局部临时对象，那么就不能使用引用的方式（by reference）传回结果。因此上面的例子中，返回的类型是T1 而不是 T const&amp;</p>
+<p>由于调用参数（call parameters ）是由模板参数（template parameters）构造的，所以两者是相关的。我们把这种概念称为：函数模板参数推导。有了推导，就可以像调用普通函数那样调用函数模板。 </p>
+<p>如之前的例子，调用时为函数模板显示指定类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="keyword">const</span>&amp; <span class="title">max</span> <span class="params">(T <span class="keyword">const</span>&amp; a, T <span class="keyword">const</span>&amp; b)</span></span>; </span><br><span class="line">… </span><br><span class="line">max&lt;<span class="keyword">double</span>&gt;(<span class="number">4</span>,<span class="number">4.2</span>)    <span class="comment">// instantiate T as double</span></span><br></pre></td></tr></table></figure>
+
+<p>当模板参数和调用参数没有直接关系，且编译器也无法推导出模板参数时，就需要明确的指定模板参数了。如，可以为max()指定第三个模板参数类型作为返回参数类型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2,<span class="keyword">typename</span> RT&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> RT <span class="title">max</span><span class="params">(T1 <span class="keyword">const</span>&amp; a,T2 <span class="keyword">const</span>&amp; b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>然而，推导机制并不会对返回类型进行匹配，而且模板参数RT也不在调用参数中。因此，编译器无法推导出RT，调用时就必须显示指定类型，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> RT&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> RT <span class="title">max</span> <span class="params">(T1 <span class="keyword">const</span>&amp; a, T2 <span class="keyword">const</span>&amp; b)</span></span>; </span><br><span class="line">… </span><br><span class="line">max&lt;<span class="keyword">int</span>,<span class="keyword">double</span>,<span class="keyword">double</span>&gt;(<span class="number">4</span>,<span class="number">4.2</span>)    <span class="comment">// OK, but tedious</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的例子，调用时要么不需要指定参数完全由编译器推导，要么就要把所有的参数多显示指定了。<br>当然，还有一种方法只明确的指定第一个模板参数，其它的参数由编译器自动推导。<br>如下：RT要放在第一个参数的位置。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> RT, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> RT <span class="title">max</span> <span class="params">(T1 <span class="keyword">const</span>&amp; a, T2 <span class="keyword">const</span>&amp; b)</span></span>; </span><br><span class="line">… </span><br><span class="line">max&lt;<span class="keyword">double</span>&gt;(<span class="number">4</span>,<span class="number">4.2</span>)    <span class="comment">// OK: return type is double</span></span><br></pre></td></tr></table></figure>
+
+<p>函数模板重载（Overloading Function Templates）<br>和普通的函数一样，函数模板也是可以重载的。<br>函数重载：不同的函数的定义可以有相同的函数名，当函数被调用的时候由编译器判断使用哪个函数。<br>如下，函数模板重载的例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//maximum of two int values</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="keyword">const</span>&amp; <span class="title">max</span><span class="params">(<span class="keyword">int</span> <span class="keyword">const</span>&amp; a, <span class="keyword">int</span> <span class="keyword">const</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//maximum of two values of any type</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="keyword">const</span>&amp; <span class="title">max</span><span class="params">(T <span class="keyword">const</span>&amp; a, T <span class="keyword">const</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//maximum of three values of any type</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="keyword">const</span>&amp; <span class="title">max</span><span class="params">(T <span class="keyword">const</span>&amp; a, T <span class="keyword">const</span>&amp; b, T <span class="keyword">const</span>&amp; c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> max(max(a, b), c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	::max(<span class="number">7</span>, <span class="number">42</span>, <span class="number">68</span>);     <span class="comment">// calls the template for three arguments </span></span><br><span class="line">	::max(<span class="number">7.0</span>, <span class="number">42.0</span>);     <span class="comment">// calls max&lt;double&gt; (by argument deduction) </span></span><br><span class="line">	::max(<span class="string">'a'</span>, <span class="string">'b'</span>);      <span class="comment">// calls max&lt;char&gt; (by argument deduction) </span></span><br><span class="line">	::max(<span class="number">7</span>, <span class="number">42</span>);         <span class="comment">// calls the nontemplate for two ints </span></span><br><span class="line">	::max&lt;&gt;(<span class="number">7</span>, <span class="number">42</span>);       <span class="comment">// calls max&lt;int&gt; (by argument deduction) </span></span><br><span class="line">	::max&lt;<span class="keyword">double</span>&gt;(<span class="number">7</span>, <span class="number">42</span>); <span class="comment">// calls max&lt;double&gt; (no argument deduction) </span></span><br><span class="line">	::max(<span class="string">'a'</span>, <span class="number">42.7</span>);     <span class="comment">// calls the nontemplate for two ints </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子中，非模板函数可以和同名的函数模板同时存在，也可以和相同类型的函数模板实例同时存在。当所有的条件都相同时，编译器会优先选择非模板函数。<br>因此上面的第四个调用的是非模板函数。</p>
+<p>调用时可以使用空的模板参数列表”&lt;&gt;”,这种形式告诉编译器必须使用从函数模板的实例，且模板参数由调用参数自动推导。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max&lt;&gt;(<span class="number">7</span>, <span class="number">42</span>)    <span class="comment">// calls max&lt;int&gt; (by argument deduction)</span></span><br></pre></td></tr></table></figure>
+
+<p>由于模板是不能进行自动类型转换的，而普通函数是可以自动类型转换，所有最后一个调用的是非模板函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(<span class="string">'a'</span>, <span class="number">42.7</span>)      <span class="comment">// only the nontemplate function allows different argument types</span></span><br></pre></td></tr></table></figure>
+
+<p>如果表头文件和含入此文件的程序代码文件位于同一个驱动器目录下，我们便使用双引号。如果在不同的驱动器目录下，我们便使用尖括号。<br>如果此文件被认定为标准的、或项目专属的头文件，我们便以尖括号将文件名括住；编译器搜寻此文档时，会先在某些默认的驱动器目录中找寻，如果文件名由成对的双括号括住，此文件便被认为是一个用户自行提供的头文件；搜寻此文件时，会由含入此文件之文件所在的驱动器目录开始找起。</p>
 
           
         
@@ -1509,7 +820,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-7-19-Python Data Types and Structures/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记2)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -1528,7 +839,696 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/2019-7-19-Python Data Types and Structures/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记2)/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="所谓stack，所谓heap"><a href="#所谓stack，所谓heap" class="headerlink" title="所谓stack，所谓heap"></a>所谓stack，所谓heap</h1><p>Stack，是存在于某作用域（scope）的一块内存空间（memory space）。例如当你调用函数，函数本身即会形成一个stack用来放置它所接收的参数，以及返回地址。<br>在函数本体（function body）内声明的任何变量，其所使用的内存块都取自上述stack。</p>
+<p>Heap，或称system heap，是指由操作系统提供的一块global内存空间，程序可动态分配（dynamic allocated）从其中获得若干区块（blocks）。<br>class Complex<br>…<br>{<br>  Complex c1(1,2);        // c1 所占用的空间来自stack<br>  Complex* p = new Complex(3);Complex（3）是个临时对象，其所占用的空间乃是以new的方式动态分配取得，并由p指向<br>  }</p>
+<p>  stack object 的生命期<br>  c1 便是所谓stack object，其生命在作用域（scope）结束之际结束。这种作用域内的object，又称为auto object，因为它会被“自动”清理。</p>
+<p>  static local objects 的生命期<br>  static Complex c2(1,2);  c2便是所谓static object，其生命在作用域（scope）结束之后仍然存在，直到整个程序结束。</p>
+<p>  global objects 的生命期<br>  class Complex{}<br>  Complex c3(1,2);<br>  int main()<br>  {}</p>
+<p>  c3 便是global object，其生命在整个程序结束之后才结束，可以将其视为一种static object，其作用域是“整个程序”。</p>
+<p>  new: 先分配memory，再调用ctor</p>
+<p>  Complex* pc = new Complex(1,2);<br>  编译器转化为：<br>  Complex *pc;</p>
+<ol>
+<li>void* mem = operator new(sizeof(Complex)); -&gt;其内部调用malloc(n)； // 分配内存</li>
+<li>pc = static_cast&lt;Complex*&gt;（mem); // 转型</li>
+<li>pc-&gt;Complex::Complex(1,2);// 构造函数 -&gt;Complex::Complex(pc,1,2);</li>
+</ol>
+<p>delete: 先调用dtor，再释放memory</p>
+<p>String* ps = new String(“hello”);<br>…<br>delete ps;</p>
+<p>编译器转化为：String::~String(ps);//析构函数<br>operator delete(ps); //释放内存 -&gt;其内部调用free(ps)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（C++ADT)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/笔记整理（C++ADT)/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h3><p>编写程序前，需要清楚地了解如何通过程序来实现索要完成的任务。 编写代码前，应列出程序的提纲（项目越大，越复杂，提纲应越详细），包括其需求。</p>
+<p>实现的细节，应该在一个项目的后期完成，实现阶段要用到的详细数据结构更不应该在一开始就指定。</p>
+<p>在刚开始的时候，最重要的是每项任务的输入输出。开始阶段应该关心程序需要什么，而不是如何去做。程序的行为比实现程序的机制更重要。如某个项需要完成一些任务，那么应该指定在这个项上进行的操作，而不是指定这个项的内部结构。这些操作是基于这个项的。当明确这些操作之后，就可以开始实现这个程序了。实现决定应该使用哪种数据结构，从而达到更好的时间以及空间执行效率。指定了操作的项被称为抽象数据类型（ADT）。</p>
+<p>抽象数据类型不是程序的一部分，因为程序需要定义数据结构，而不只是数据结构上执行的操作。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>OOP以对象为中心，而对象是用类来定义的。类是一个模板，对象根据类来创建。类是软件的一部分，包括数据的说明以及对数据执行的操作，还可能包含对其他类数据的操作。<br>类中定义的函数称为方法，或者成员函数或者函数成员，类中使用的变量称为数据成员。<br>数据及其相关操作的结合称为数据封装。<br>对象是类的实例，是用类定义创建的实体。  </p>
+<p>与非面向对象语言中的函数比，对象使数据和成员函数之间的结合更加紧密，更有意义。在非面向对象编程语言中，数据的声明和函数定义分散在整个程序中，只有程序文档才能说明它们之间存在联系。而OOL中，联系在一开始就建立起来了；事实上，这种联系是程序的基础。对象是由相互关联的数据和操作定义的，同一个程序中可能会有很多对象，对象通过传递消息来相互通信，为了更为充分的通信，需要泄露对象一些内部细节。基于对象的结构化编程可以完成多个目标。</p>
+<p>首先，数据与操作之间的强耦合关系在实际的建模过程中非常有用，软件工程尤其强调这一点。<br>其次，对象便于查找错误，因为操作都只限于它们的对象。即使有副作用也容易跟踪。<br>第三，对象可以对其他对象隐藏某些操作细节。从而使得这些操作不会受到其他对象的影响，这就是所谓的信息隐藏原则。</p>
+<p>对象就像是一个黑盒子，其行为有明确的定义，我们使用对象是因为知道其功能，而不是因为了解其内部运行机制。对象的这种不透明性对于保持其独立性是非常有用的。如果恰当的定义了对象之间的通信管道，那么只有当对象中的改变影响到通信管道时，才会影响其他对象。在了解了对象发出和收到的信息之后，可以方便地用某个在特殊情况下更为合适的对象取代当前对象。</p>
+<p>信息隐藏往往容易模糊数据和操作的界限。</p>
+<p>C++能够在类声明中使用类型参数来声明通用类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class genType&gt;</span><br><span class="line">class genClass&#123;</span><br><span class="line">  genType storage[50];</span><br><span class="line">  ..............</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>  此后才会决定如何初始化genType:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">genClass&lt;int&gt; intObject;</span><br><span class="line">genClass&lt;float&gt; floatObject;</span><br></pre></td></tr></table></figure></p>
+<p>这个通用类是生成两个新类（int类型的genClass和float类型的genClass）的基础，然后使用这两个类创建了两个对象intObject和floatObject。通过这种方式，通用类可以根据特定的声明以各种不同的形式出现，一个通用声明就足以使类具有不同的形式。</p>
+<p>让storage数组大小可选：</p>
+<pre><code>template&lt;class genType,int size = 50&gt;
+class genClass{
+  genType storage[size];
+};
+
+genClass&lt;int&gt; intObject1; // use the default size;
+genClass&lt;int,100&gt; intObject2;
+genClass&lt;float,123&gt; floatObject;</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记3)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记3)/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>静态数据只有一份。静态数据需要在类外做定义，给不给初值均可。<br>静态函数没有this指针，只能处理静态数据。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> m_rate;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_rate</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span>&amp; x)</span></span>&#123;m_data = x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">double</span> Account::m_rate = <span class="number">9.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      Account::set_rate(<span class="number">5.0</span>);</span><br><span class="line">      </span><br><span class="line">      Account a;</span><br><span class="line">      a.set_rate(<span class="number">7.0</span>);<span class="comment">// a 的地址不会传入函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用静态函数有两种方式：1.通过类名调用。2.通过对象调用。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="单例模式-把构造函数放在private区域"><a href="#单例模式-把构造函数放在private区域" class="headerlink" title="单例模式 把构造函数放在private区域"></a>单例模式 把构造函数放在private区域</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">(<span class="keyword">return</span> a;)</span></span>;</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改进：</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      static A&amp; getInstance());</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line">A&amp; A::getInstance()</span><br><span class="line">&#123;</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br></pre></td></tr></table></figure>
+
+<h2 id="class-template，类模板"><a href="#class-template，类模板" class="headerlink" title="class template，类模板"></a>class template，类模板</h2><p><code>template&lt;typename T&gt;</code></p>
+<h2 id="function-template，函数模板"><a href="#function-template，函数模板" class="headerlink" title="function template，函数模板"></a>function template，函数模板</h2><p><code>template&lt;class T&gt;</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（DSIPy)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/笔记整理（DSIPy)/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="关于时间复杂度"><a href="#关于时间复杂度" class="headerlink" title="关于时间复杂度"></a>关于时间复杂度</h2><p>时间复杂度的几条基本计算规则</p>
+<ol>
+<li>基本操作，即只有常数项，认为其时间复杂度为O(1)。</li>
+<li>顺序结构，时间复杂度按加法进行计算</li>
+<li>循环结构，时间复杂度按乘法进行计算</li>
+<li>分支结构，时间复杂度取最大值</li>
+<li>判断一个算法的效率时，往往只需要关注操作数量的最高次项，其他次项和常数项可以忽略。</li>
+<li>无特殊说明时，算法的时间复杂度均指最坏时间复杂度。</li>
+</ol>
+<p>常见时间复杂度的关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(1)&lt;O(logn)&lt;O(n)&lt;O(nlogn)&lt;O(n^2)&lt;O(n^3)&lt;O(2^n)&lt;O(n!)&lt;O(n^n)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Python内置类型性能分析"><a href="#Python内置类型性能分析" class="headerlink" title="Python内置类型性能分析"></a>Python内置类型性能分析</h3><p>timeit 模块可以用来测试一小段Python代码的执行速度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class timeit.Timer(stmt=&apos;pass&apos;,setup=&apos;pass&apos;,timer=&lt;timer function&gt;)</span><br></pre></td></tr></table></figure>
+
+<p>Timer是测量小段代码执行速度的类；<br>stmt参数是要测试的代码语句（statement）；<br>setup参数是运行代码时需要的设置；<br>timer参数是一个定时器函数，与平台有关。</p>
+<p>timeit.Timer.timeit(number=100000)<br>Timer类中测试语句执行速度的对象方法，number参数是测试代码时的测试次数，默认为1000000次。方法返回执行代码的平均耗时，一个float类型的秒数。</p>
+<p>数据结构静态描述了数据元素之间的关系。高效的程序需要在数据结构的基础上设计和选择算法。<br>程序 = 数据结构 + 算法<br>总结：算法是为了解决实际问题而设计的，数据结构是算法需要处理的问题载体。</p>
+<h3 id="ADT"><a href="#ADT" class="headerlink" title="ADT"></a>ADT</h3><p>抽象数据类型指一个数学模型以及定义在这个模型上的一组操作。即把数据类型和数据类型上的运算捆绑在一起，进行封装。引入ADT的目的是为了把数据类型的表示和数据类型上运算的实现与这些数据类型和运算在程序中的引用隔开，使它们相互独立。</p>
+<p>地址所占用的内存空间大小一致。</p>
+<p>选择排序算法不具有稳定性（考虑升序，每次选最大的情况）。<br>冒泡排序具有稳定性。<br>插入排序具有稳定性。<br>希尔排序不具有稳定性。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记)/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="侯捷1"><a href="#侯捷1" class="headerlink" title="侯捷1"></a>侯捷1</h1><ul>
+<li>class without pointer members<ul>
+<li>Complex</li>
+</ul>
+</li>
+<li>class with pointer members<ul>
+<li>String  </li>
+</ul>
+</li>
+</ul>
+<p>complex.h<br>防卫式声明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__   </span></span><br><span class="line">.......</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>头文件布局</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __COMPLEX__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __COMPLEX__   </span></span><br><span class="line">________________________________________________</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ostream</span>                                                                <span class="title">forward</span> <span class="title">declarations</span></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">complex</span>                                                               前置声明</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">complex</span>&amp;</span></span><br><span class="line"><span class="class">    __<span class="title">doap1</span>(<span class="title">complex</span>* <span class="title">ths</span>,<span class="title">const</span> <span class="title">complex</span>&amp; <span class="title">r</span>);</span></span><br><span class="line">________________________________________________</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">________________________________________________</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">                                                                                    <span class="class"><span class="keyword">class</span> <span class="title">declarations</span></span></span><br><span class="line"><span class="class">........................................                                                    类-声明</span></span><br><span class="line"><span class="class">&#125;                                                               </span></span><br><span class="line"><span class="class">________________________________________________</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">________________________________________________</span></span><br><span class="line"><span class="class"><span class="title">complex</span> :</span>: function...                                                     <span class="class"><span class="keyword">class</span> <span class="title">definition</span> 类定义</span></span><br><span class="line"><span class="class">________________________________________________</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">#<span class="title">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>不带指针的类，大多数情况不需要写析构函数。 </p>
+<p>构造函数放在private区域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// Singleton</span><br><span class="line">class A&#123;</span><br><span class="line">public:</span><br><span class="line">  static A&amp; getInstance();</span><br><span class="line">  setup()&#123;...&#125;</span><br><span class="line">private:</span><br><span class="line">   A():</span><br><span class="line">   A(const A&amp; rhs);</span><br><span class="line">   ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A&amp; A::getInstance()</span><br><span class="line">&#123;</span><br><span class="line">  static A a;</span><br><span class="line">  return a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相同class的各个objects互为friends（友元）<br><img src=":storage%5Ce085efcd-aaff-4f6d-94a3-107cbd04e949%5C5194a5f0.png" alt="5194a5f0.png"></p>
+<p>类定义：<br> 1.数据一定在private里。2.传参最好以传引用的方式。（注意加不加const）3.返回值也尽量以引用来传递。5.构造函数最好使用initialization list。</p>
+<p>如果在一个函数内部创建了一个新的变量，并且将其引用返回，实际上达不到理想的效果，因为函数结束后，临时创建的新的变量就消失了，所以它的引用也没有了本来的意义。</p>
+<h2 id="operator-overloading（操作符重载-1，成员函数）-this"><a href="#operator-overloading（操作符重载-1，成员函数）-this" class="headerlink" title="operator overloading（操作符重载-1，成员函数） this"></a>operator overloading（操作符重载-1，成员函数） this</h2><p>任何的成员函数都有一个隐藏的this指针。this指针指向调用者。</p>
+<p>return by reference 语法分析<br>传递者无需知道接收者是以reference形式接收</p>
+<h2 id="operator-overloading（操作符重载-2，非成员函数）-无this"><a href="#operator-overloading（操作符重载-2，非成员函数）-无this" class="headerlink" title="operator overloading（操作符重载-2，非成员函数） 无this"></a>operator overloading（操作符重载-2，非成员函数） 无this</h2><p>temp object（临时对象） typename();</p>
+<p>String class<br>如果类里面带指针，拷贝构造函数一定要自己写。<br>big three: 拷贝构造，拷贝赋值，析构函数<br>class with pointer members 必须有 copy ctor 和 copy op=，否则可能造成内存泄漏 </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/Python Data Types and Structures/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/Python Data Types and Structures/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1986,7 +1986,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/2019-6-19-直击招聘3/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/直击招聘3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -2005,7 +2005,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/2019-6-19-直击招聘3/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/直击招聘3/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
