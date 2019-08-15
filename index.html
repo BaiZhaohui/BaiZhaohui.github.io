@@ -242,7 +242,7 @@
     
  </div>
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记4)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/Keras functional API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -261,7 +261,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记4)/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/15/Keras functional API/" itemprop="url">Keras functional API</a></h1>
         
 
         <div class="post-meta">
@@ -273,8 +273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T09:59:20+08:00">
+                2019-08-15
               </time>
             
 
@@ -313,28 +313,62 @@
       
         
           
-            <h1 id="Object-Oriented-Programming-Object-Oriented-Design"><a href="#Object-Oriented-Programming-Object-Oriented-Design" class="headerlink" title="Object Oriented Programming,Object Oriented Design"></a>Object Oriented Programming,Object Oriented Design</h1><h2 id="OOP-OOD"><a href="#OOP-OOD" class="headerlink" title="OOP OOD"></a>OOP OOD</h2><h4 id="Inheritance（继承）"><a href="#Inheritance（继承）" class="headerlink" title="-Inheritance（继承）"></a>-Inheritance（继承）</h4><h4 id="Composition（复合）"><a href="#Composition（复合）" class="headerlink" title="-Composition（复合）"></a>-Composition（复合）</h4><h4 id="Delegation（委托）"><a href="#Delegation（委托）" class="headerlink" title="-Delegation（委托）"></a>-Delegation（委托）</h4><h2 id="Composition（复合），表示has-a"><a href="#Composition（复合），表示has-a" class="headerlink" title="Composition（复合），表示has-a"></a>Composition（复合），表示has-a</h2><p><code>Adapter</code><br>Composition（复合）关系下的构造和析构<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Ce3c0bf05.png" alt="e3c0bf05.png"></p>
-<h3 id="构造由内而外"><a href="#构造由内而外" class="headerlink" title="构造由内而外"></a>构造由内而外</h3><p>Container的构造函数首先调用Component的default构造函数，然后才执行自己。<br><code>Container::Container(...):Component(){...};</code></p>
-<h3 id="构造由外而内"><a href="#构造由外而内" class="headerlink" title="构造由外而内"></a>构造由外而内</h3><p>Container的析构函数首先执行自己，然后才调用Component的析构函数。<br><code>Container::~Container(...){...~Component()};</code></p>
-<h2 id="Delegation（委托）-Composition-by-reference"><a href="#Delegation（委托）-Composition-by-reference" class="headerlink" title="Delegation（委托）.Composition by reference."></a>Delegation（委托）.Composition by reference.</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">        String();</span><br><span class="line">        String(<span class="keyword">const</span> <span class="keyword">char</span>* s);</span><br><span class="line">        String &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> String&amp; s);</span><br><span class="line">        ~String();</span><br><span class="line">        ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">        StringRep* rep;<span class="comment">//pimpl(Handle/Body)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"String.hpp"</span></span></span><br><span class="line"><span class="keyword">namespace</span>&#123;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>&#123;</span></span><br><span class="line"><span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span>;</span></span><br><span class="line">        StringRep(<span class="keyword">const</span> <span class="keyword">char</span>*s);</span><br><span class="line">        ~StringRep();</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">char</span>* rep;</span><br><span class="line">&#125;;</span><br><span class="line">&#125; </span><br><span class="line">String::String()&#123;...&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C0f52c2f8.png" alt="0f52c2f8.png"></p>
-<h2 id="Inheritance（继承）-表示is-a"><a href="#Inheritance（继承）-表示is-a" class="headerlink" title="Inheritance（继承）,表示is-a"></a>Inheritance（继承）,表示is-a</h2><h3 id="Inheritance（继承）关系下的构造和析构"><a href="#Inheritance（继承）关系下的构造和析构" class="headerlink" title="Inheritance（继承）关系下的构造和析构"></a>Inheritance（继承）关系下的构造和析构</h3><p>base class 的构造函数必须是virtual，否则会出现undefined behavior<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C1053a33c.png" alt="1053a33c.png"></p>
-<h4 id="构造由内而外-1"><a href="#构造由内而外-1" class="headerlink" title="构造由内而外"></a>构造由内而外</h4><p>Derived的构造函数首先调用base的default构造函数，然后才执行自己。<br><code>Derived::Derived(...):Base(){...};</code></p>
-<h4 id="构造由外而内-1"><a href="#构造由外而内-1" class="headerlink" title="构造由外而内"></a>构造由外而内</h4><p>Derived的析构函数首先执行自己，然后才调用Base的析构函数。<br><code>Derived::~Derived(...){...~Base()};</code></p>
-<h2 id="Inheritance（继承）with-virtual-functions（虚函数）"><a href="#Inheritance（继承）with-virtual-functions（虚函数）" class="headerlink" title="Inheritance（继承）with virtual functions（虚函数）"></a>Inheritance（继承）with virtual functions（虚函数）</h2><ul>
-<li>non-virtual函数：你不希望derived class 重新定义（override，复写）它。</li>
-<li>virtual函数：你希望derived class 重新定义（override，复写）它，且它已经有默认定义。</li>
-<li>pure virtual函数：你希望derived class 一定要重新定义（override，复写）它，你对它没有默认定义。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// pure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; msg)</span></span>; <span class="comment">// impure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">objectID</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// non-virtual</span></span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ellipse</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
+            <h5 id="Keras-functional-API-是一种用来定义复杂模型（如多输出模型、有向无环图或具有共享层的模型）的方法。"><a href="#Keras-functional-API-是一种用来定义复杂模型（如多输出模型、有向无环图或具有共享层的模型）的方法。" class="headerlink" title="Keras functional API 是一种用来定义复杂模型（如多输出模型、有向无环图或具有共享层的模型）的方法。"></a>Keras functional API 是一种用来定义复杂模型（如多输出模型、有向无环图或具有共享层的模型）的方法。</h5><h4 id="例1：全连接网络"><a href="#例1：全连接网络" class="headerlink" title="例1：全连接网络"></a>例1：全连接网络</h4><p>其实对于实现全连接网络，<code>Sequential</code>模型是更好的选择。</p>
+<ul>
+<li>层的实例可以被调用（on a tensor)，并且返回一个tensor</li>
+<li>使用输入输出张量来定义<code>Model</code></li>
+<li>这种模型可以像<code>Sequential</code>模型一样训练。</li>
 </ul>
-<p>Template Method 设计模式</p>
-<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C4856d28e.png" alt="4856d28e.png"></p>
-<h4 id="Delegation（委托）-Inheritance（继承）"><a href="#Delegation（委托）-Inheritance（继承）" class="headerlink" title="Delegation（委托）+Inheritance（继承）"></a>Delegation（委托）+Inheritance（继承）</h4><p>  <img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Cd9aa4c92.png" alt="d9aa4c92.png"> </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Component(<span class="keyword">int</span> val) &#123; value = val; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Component*)</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Primitive</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Primitive(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Composite</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;Component*&gt; c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Composite(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Component* elem)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		c.push_back(elem);</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">from keras.layers import Input,Dense</span><br><span class="line">from keras.models import Model</span><br><span class="line"># This returns a tensor</span><br><span class="line">inputs = Input(shape=(784,))</span><br><span class="line"></span><br><span class="line"># a layer instance is callable on a tensor, and returns a tensor</span><br><span class="line">x = Dense(64,activation=&apos;relu&apos;)(inputs)</span><br><span class="line">x = Dense(64,activation=&apos;relu&apos;)(x)</span><br><span class="line">predictions = Dense(10,activation=&apos;softmax&apos;)(x)</span><br><span class="line"></span><br><span class="line"># This creates a model that includes</span><br><span class="line"># the Input layer and three Dense layers</span><br><span class="line">model = Model(inputs=inputs,outputs=predictions)</span><br><span class="line">model.compile(optimizer=&apos;rmsprop&apos;,</span><br><span class="line">              loss=&apos;categorical_crossentropy&apos;,</span><br><span class="line">              metrics=[&apos;accuracy&apos;])</span><br><span class="line">model.fit(data,labels) # starts training</span><br></pre></td></tr></table></figure>
 
-<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C82ee2b56.png" alt="82ee2b56.png"><br>创建未来的class 名称<br>下面创建的原型要让上面看得到，放上去。<br>Prototype 原型<br>每一个子类有自己的一个个体，并且有一个构造函数把自己这个个体挂到上面去。<br>每一个子类有一个clone，让父类能够通过原型调用clone创建一个个副本，</p>
+<h4 id="所有模型都可以像层一样调用"><a href="#所有模型都可以像层一样调用" class="headerlink" title="所有模型都可以像层一样调用"></a>所有模型都可以像层一样调用</h4><h5 id="使用功能API，可以轻松地重用经过训练的模型：您可以通过在张量上调用任何模型来将其视为一个层。请注意，通过调用模型，您不仅可以重用模型的体系结构，还可以重用其权重。"><a href="#使用功能API，可以轻松地重用经过训练的模型：您可以通过在张量上调用任何模型来将其视为一个层。请注意，通过调用模型，您不仅可以重用模型的体系结构，还可以重用其权重。" class="headerlink" title="使用功能API，可以轻松地重用经过训练的模型：您可以通过在张量上调用任何模型来将其视为一个层。请注意，通过调用模型，您不仅可以重用模型的体系结构，还可以重用其权重。"></a>使用功能API，可以轻松地重用经过训练的模型：您可以通过在张量上调用任何模型来将其视为一个层。请注意，通过调用模型，您不仅可以重用模型的体系结构，还可以重用其权重。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = Input(shape=(784,))</span><br><span class="line"># This works, and returns the 10-way softmax we defined above.</span><br><span class="line">y = model(x)</span><br></pre></td></tr></table></figure>
+
+<h5 id="这可以允许快速创建可以处理输入序列的模型。您可以将图像分类模型转换为视频分类模型，只需一行。"><a href="#这可以允许快速创建可以处理输入序列的模型。您可以将图像分类模型转换为视频分类模型，只需一行。" class="headerlink" title="这可以允许快速创建可以处理输入序列的模型。您可以将图像分类模型转换为视频分类模型，只需一行。"></a>这可以允许快速创建可以处理输入序列的模型。您可以将图像分类模型转换为视频分类模型，只需一行。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from keras.layers import TimeDistributed</span><br><span class="line"># Input tensor for sequences of 20 timesteps</span><br><span class="line"># each containing a 784-dimensional vector</span><br><span class="line">input_sequences =Input(shape=(20,784))</span><br><span class="line"></span><br><span class="line"># This applies our previous model to every timestep in the input sequences.</span><br><span class="line"># the output of the previous model was a 10-way softmax</span><br><span class="line"># so the output of the layer below will be a sequence of 20 vectors of size 10.</span><br><span class="line">processed_sequences = TimeDistributed(model)(input_sequences)</span><br></pre></td></tr></table></figure>
+
+<h4 id="多输入和多输出模型"><a href="#多输入和多输出模型" class="headerlink" title="多输入和多输出模型"></a>多输入和多输出模型</h4><h5 id="functional-API-使操作大量交织在一起的数据流变得容易。"><a href="#functional-API-使操作大量交织在一起的数据流变得容易。" class="headerlink" title="functional API 使操作大量交织在一起的数据流变得容易。"></a>functional API 使操作大量交织在一起的数据流变得容易。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">from keras.layres import Input,Embedding,LSTM,Dense</span><br><span class="line">from keras.models import Model</span><br><span class="line"></span><br><span class="line"># Headline input: meant to receive sequences of 100 integersm,between 1 and 10000.</span><br><span class="line"># Note that we can name any layer by passing it a &quot;name&quot; argument.</span><br><span class="line">main_input = Input(shape=(100,),dtype=&apos;int32&apos;,name=&apos;main_input&apos;)</span><br><span class="line"></span><br><span class="line"># This embedding layer will encode the input sequence</span><br><span class="line"># into a sequence of dense 512-dimensional vectors.</span><br><span class="line">x = Embedding(output_dim=512,input_dim=10000,input_length=100)(main_input)</span><br><span class="line"></span><br><span class="line"># A LSTM will transform the vector sequence into a single vector,</span><br><span class="line"># containing information about the entire sequence</span><br><span class="line">lstm_out = LSTM(32)(x)</span><br><span class="line">auxiliary_output = Dense(1,activation=&apos;sigmoid&apos;,name=&apos;aux_output&apos;)(lstm_out)</span><br><span class="line"></span><br><span class="line">auxiliary_input = Input(shape=(5,),name=&apos;aux_input&apos;)</span><br><span class="line">x = keras.layers.concatenate([lstm_out,auxiliary_input])</span><br><span class="line"></span><br><span class="line"># We stack a deep densely-connected network on top</span><br><span class="line">x = Dense(64,activation=&apos;relu&apos;)(x)</span><br><span class="line">x = Dense(64,activation=&apos;relu&apos;)(x)</span><br><span class="line">x = Dense(64,activation=&apos;relu&apos;)(x)</span><br><span class="line"></span><br><span class="line"># And finally we add the main logistic regression layer</span><br><span class="line">main_output = Dense(1,activation=&apos;sigmoid&apos;,name=&apos;main_output&apos;)(x)</span><br></pre></td></tr></table></figure>
+
+<h5 id="这定义了一个具有两个输入和两个输出的模型："><a href="#这定义了一个具有两个输入和两个输出的模型：" class="headerlink" title="这定义了一个具有两个输入和两个输出的模型："></a>这定义了一个具有两个输入和两个输出的模型：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = Model(inputs=[main_input,auxiliary_input],outputs=[main_output,auxiliary_output])</span><br></pre></td></tr></table></figure>
+
+<h5 id="我们编译模型并为辅助损失分配0-2的权重。要为不同的输出指定不同的loss-weights或loss，可以使用列表或字典。这里我们传递一个损失作为loss参数，因此所有输出都将使用相同的损失。"><a href="#我们编译模型并为辅助损失分配0-2的权重。要为不同的输出指定不同的loss-weights或loss，可以使用列表或字典。这里我们传递一个损失作为loss参数，因此所有输出都将使用相同的损失。" class="headerlink" title="我们编译模型并为辅助损失分配0.2的权重。要为不同的输出指定不同的loss_weights或loss，可以使用列表或字典。这里我们传递一个损失作为loss参数，因此所有输出都将使用相同的损失。"></a>我们编译模型并为辅助损失分配0.2的权重。要为不同的输出指定不同的loss_weights或loss，可以使用列表或字典。这里我们传递一个损失作为<code>loss参数</code>，因此所有输出都将使用相同的损失。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer=&apos;rmsprop&apos;,loss=&apos;binary_crossentropy&apos;,</span><br><span class="line">              loss_weights=[1.,0.2])</span><br></pre></td></tr></table></figure>
+
+<h5 id="我们可以通过传递输入数组和目标数组的列表来训练模型："><a href="#我们可以通过传递输入数组和目标数组的列表来训练模型：" class="headerlink" title="我们可以通过传递输入数组和目标数组的列表来训练模型："></a>我们可以通过传递输入数组和目标数组的列表来训练模型：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.fit([heading_data,additional_data],[labels,labels],</span><br><span class="line">          epochs=50,batch_size=32)</span><br></pre></td></tr></table></figure>
+
+<h5 id="由于我们的输入和输出被命名（我们传递了一个“name”参数），我们也可以通过以下方式编译模型："><a href="#由于我们的输入和输出被命名（我们传递了一个“name”参数），我们也可以通过以下方式编译模型：" class="headerlink" title="由于我们的输入和输出被命名（我们传递了一个“name”参数），我们也可以通过以下方式编译模型："></a>由于我们的输入和输出被命名（我们传递了一个“<code>name</code>”参数），我们也可以通过以下方式编译模型：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer=&apos;rmsprop&apos;,</span><br><span class="line">              loss=&#123;&apos;main_output&apos;:&apos;binary_crossentropy&apos;,&apos;aux_output&apos;:&apos;binary_crossentropy&apos;&#125;,</span><br><span class="line">              loss_weight=&#123;&apos;main_output&apos;:1.,&apos;aux_output&apos;:0.2&#125;)</span><br><span class="line">              </span><br><span class="line"># And trained it via:</span><br><span class="line">model.fit(&#123;&apos;main_input&apos;:headline_data,&apos;aux_output&apos;:additional_data&#125;,</span><br><span class="line">          &#123;&apos;main_output&apos;:labels,&apos;aux_ouput&apos;:labels&#125;,</span><br><span class="line">          epochs=50,batch_size=32)</span><br></pre></td></tr></table></figure>
+
+<h5 id="共享层"><a href="#共享层" class="headerlink" title="共享层"></a>共享层</h5><p>使用函数API的另一个好处是模型可以使用共享层。<br>例子：<br>建立一个模型来判断两条推特是不是同一个用户所发。（可以通过比较推文的相似性来确定）<br>将两条推文编码成两个向量并连接，添加逻辑回归层，这将输出两条推文来自同一用户的概率。使用来自同一用户的两条推文（正），不是同一用户所发的两条推文（负）来训练模型。<br>由于问题是对称的，编码第一条推文的机制（包括权重等）将被重用来编码第二条推文。这里使用LSTM层来编码推文。<br>使用函数式 API 来构建模型。首先我们将一条推特转换为一个尺寸为 (280, 256) 的矩阵，即每条推特 280 字符，每个字符为 256 维的 one-hot 编码向量 （取 256 个常用字符）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras.layers import Input,LSTM,Dense</span><br><span class="line">from keras.models import Model</span><br><span class="line"></span><br><span class="line">tweet_a = Input(shape=(280,256)</span><br><span class="line">tweet_b = Input(shape=(280,256)</span><br></pre></td></tr></table></figure>
+
+<p>要在不同的输入上共享同一个层，只需实例化该层一次，然后根据需要传入你想要的输入即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># This layer can take as input a matrix</span><br><span class="line"># and will return a vector of size 64</span><br><span class="line">shared_lstm = LSTM(64)</span><br><span class="line"></span><br><span class="line"># When we reuse the same layer instance</span><br><span class="line"># multiple times,the weights of layer</span><br><span class="line"># are also being reused</span><br><span class="line"># (it is effectively *the same* layer)</span><br><span class="line">encoded_a = shared_lstm(tweet_a)</span><br><span class="line">encoded_b = shared_lstm(tweet_b)</span><br><span class="line"></span><br><span class="line"># We can then concatenate the two vectors:</span><br><span class="line">merged_vector = keras.layers.concatenate([encoded_a,encoded_b]),axis=-1)</span><br><span class="line"></span><br><span class="line"># And add a logistic regression on top</span><br><span class="line">predictions = Dense(1,activation=&apos;sigmoid&apos;)(merged_vector)</span><br><span class="line"></span><br><span class="line"># We defined a trainable model linking the</span><br><span class="line"># tweet inputs to the predictions</span><br><span class="line"># 定义一个连接推特输入和预测的可训练的模型</span><br><span class="line">model = Model(inputs=[tweet_a,tweet_b],outputs=predictions)</span><br><span class="line">model.compile(optimizer=&apos;rmsprop&apos;,</span><br><span class="line">              loss=&apos;binary_crossentropy&apos;,</span><br><span class="line">              metrics=[&apos;accuracy&apos;])</span><br><span class="line">model.fit([data_a,data_b],labels,epochs=10)</span><br></pre></td></tr></table></figure>
+
+<h5 id="如何读取共享层的输出或输出尺寸"><a href="#如何读取共享层的输出或输出尺寸" class="headerlink" title="如何读取共享层的输出或输出尺寸?"></a>如何读取共享层的输出或输出尺寸?</h5><h4 id="层节点（The-concept-of-layer-“node”）"><a href="#层节点（The-concept-of-layer-“node”）" class="headerlink" title="层节点（The concept of layer “node”）"></a>层节点（The concept of layer “node”）</h4><p>每当你在某个输入上调用一个层时，都将创建一个新的张量（层的输出），并且为该层添加一个「节点」，将输入张量连接到输出张量。当多次调用同一个图层时，该图层将拥有多个节点索引 (0, 1, 2…)。<br>在之前版本的 Keras 中，可以通过 <code>layer.get_output()</code> 来获得层实例的输出张量，或者通过 <code>layer.output_shape</code> 来获取其输出形状。现在你依然可以这么做（除了 <code>get_output()</code> 已经被 <code>output</code> 属性替代）。但是如果一个层与多个输入连接呢？</p>
+<p>只要一个层仅仅连接到一个输入，就不会有困惑，<code>.output</code> 会返回层的唯一输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = Input(shape=(280,256))</span><br><span class="line">lstm = LSTM(32)</span><br><span class="line">encoded_a = lstm(a)</span><br><span class="line">assert lstm.output == encoded_a</span><br></pre></td></tr></table></figure>
+
+<p>但是如果该层有多个输入，那就会出现问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = Input(shape=(280,256))</span><br><span class="line">b = Input(shape=(280,256))</span><br><span class="line"></span><br><span class="line">lstm = LSTM(32)</span><br><span class="line">encoded_a = lstm(a)</span><br><span class="line">encoded_b = lstm(b)</span><br><span class="line"></span><br><span class="line">lstm.output</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; AttributeError: Layer lstm_1 has multiple inbound nodes,</span><br><span class="line">hence the notion of &quot;layer output&quot; is ill-defined.</span><br><span class="line">Use `get_output_at(node_index)` instead.</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assert lstm.get_output_at(0) == encoded_a</span><br><span class="line">assert lstm.get_output_at(1) == encoded_b</span><br></pre></td></tr></table></figure>
+
+<p><code>input_shape</code> 和 <code>output_shape</code> 这两个属性也是如此：只要该层只有一个节点，或者只要所有节点具有相同的输入/输出尺寸，那么「层输出/输入尺寸」的概念就被很好地定义，并且将由 <code>layer.output_shape / layer.input_shape</code> 返回。但是比如说，如果将一个 <code>Conv2D</code> 层先应用于尺寸为 <code>(32，32，3)</code> 的输入，再应用于尺寸为 <code>(64, 64, 3)</code> 的输入，那么这个层就会有多个输入/输出尺寸，你将不得不通过指定它们所属节点的索引来获取它们：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = Input(shape=(32,32,3))</span><br><span class="line">b = Input(shape=(64,64,3))</span><br><span class="line"></span><br><span class="line">conv = Conv2D(16,(3,3),padding=&apos;same&apos;)</span><br><span class="line">conved_a = conv(a)</span><br><span class="line"></span><br><span class="line">#Only one input so far,the following will work:</span><br><span class="line">assert conv.input_shape == (None,32,32,3)</span><br><span class="line"></span><br><span class="line">conved_b = conv(b)</span><br><span class="line"># now the &apos;.input_shape&apos; property wouldn&apos;t work,but this does:</span><br><span class="line">assert conv.get_input_shape_at(0) == (None,32,32,3)</span><br><span class="line">assert conv.get_input_shape_at(1) == (None,64,64,3)</span><br></pre></td></tr></table></figure>
+
+<h4 id="更多的例子"><a href="#更多的例子" class="headerlink" title="更多的例子"></a>更多的例子</h4><h5 id="Inception模型"><a href="#Inception模型" class="headerlink" title="Inception模型"></a>Inception模型</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from keras.layers import Conv2D,MaxPooling2D,Input</span><br><span class="line"></span><br><span class="line">input_img = Input(shape=(256,256,3))</span><br><span class="line"></span><br><span class="line">tower_1 = Conv2D(64,(1,1),padding=&apos;same&apos;,activation=&apos;relu&apos;)(input_img)</span><br><span class="line">tower_1 = Conv2D(64,(3,3),padding=&apos;same&apos;,activation=&apos;relu&apos;)(tower_1)</span><br><span class="line"></span><br><span class="line">tower_2 = Conv2D(64,(1,1),padding=&apos;same&apos;,activation=&apos;relu&apos;)(input_img)</span><br><span class="line">tower_2 = Conv2D(64,(5,5),padding=&apos;same&apos;,activation=&apos;relu&apos;)(tower_2)</span><br><span class="line"></span><br><span class="line">tower_3 = MaxPooling2D((3,3),strides=(1,1),padding=&apos;same&apos;)(input_img)</span><br><span class="line">tower_3 = Conv2D(64,(1,1),padding=&apos;same&apos;,activation=&apos;relu&apos;)(tower_3)</span><br><span class="line"></span><br><span class="line">output = keras.layers.concatenate([tower_1,tower_2,tower_3],axis=1)</span><br></pre></td></tr></table></figure>
+
+<h5 id="卷积层上的残差连接"><a href="#卷积层上的残差连接" class="headerlink" title="卷积层上的残差连接"></a>卷积层上的残差连接</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from keras.layers import Conv2D,Input</span><br><span class="line"># input tensor for a 3-channel 256x256 image</span><br><span class="line">x = Input(shape=(256,256,3))</span><br><span class="line"># 3x3 conv with 3 output channels (same as input channels)</span><br><span class="line">y = Conv2D(3,(3,3),padding=&apos;same&apos;)(x)</span><br><span class="line"># this returns x+y</span><br><span class="line">z = keras.layers.add([x,y])</span><br></pre></td></tr></table></figure>
+
+<h5 id="共享视觉模型"><a href="#共享视觉模型" class="headerlink" title="共享视觉模型"></a>共享视觉模型</h5><p>该模型在两个输入上重复使用同一个图像处理模块，以判断两个 MNIST 数字是否为相同的数字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">from keras.layers import Conv2D,MaxPooling2D,Input,Dense,Flatten</span><br><span class="line">from keras.models import Model</span><br><span class="line"></span><br><span class="line"># First,define the vision modules</span><br><span class="line">digit_input = Input(shape=(27,27,1))</span><br><span class="line">x = Conv2D(64,(3,3))(digit_input)</span><br><span class="line">x = Conv2D(64,(3,3))(x)</span><br><span class="line">x = MaxPooling2D((2,2))(x)</span><br><span class="line">out = Flatten()(x)</span><br><span class="line"></span><br><span class="line">vision_model = Model(digit_input,out)</span><br><span class="line"></span><br><span class="line"># Then define the tell-digits-apart model</span><br><span class="line">digit_a = Input(shape=(27,27,1))</span><br><span class="line">digit_b = Input(shape=(27,27,1))</span><br><span class="line"></span><br><span class="line"># The vision model will be shared,weights and all</span><br><span class="line">out_a = vision_model(digit_a)</span><br><span class="line">out_b = vision_model(digit_b)</span><br><span class="line"></span><br><span class="line">concatenated = keras.layers.concatenate([out_a,out_b])</span><br><span class="line">out = Dense(1,activation=&apos;sigmoid&apos;)(concatenated)</span><br><span class="line"></span><br><span class="line">classification_model = Model([digit_a,digit_b],out)</span><br></pre></td></tr></table></figure>
+
+<h5 id="视觉问答模型"><a href="#视觉问答模型" class="headerlink" title="视觉问答模型"></a>视觉问答模型</h5><p>当被问及关于图片的自然语言问题时，该模型可以选择正确的单词作答。<br>它通过将问题和图像编码成向量，然后连接两者，在上面训练一个逻辑回归，来从词汇表中挑选一个可能的单词作答。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">from keras.layers import Conv2D,MaxPooling2D,Flatten</span><br><span class="line">from keras.layers import Input,LSTM,Embedding,Dense</span><br><span class="line">from keras.models import Model,Sequential</span><br><span class="line"># First,let&apos;s define a vision model using a Sequential model</span><br><span class="line"># This model will encode an image into a vector</span><br><span class="line">vision_model = Sequential()</span><br><span class="line">vision_model.add(Conv2D(64,(3,3),activation=&apos;relu&apos;,padding=&apos;same&apos;,input_shape=(224,224,3)))</span><br><span class="line">vision_model.add(Conv2D(64,(3,3),activation=&apos;relu&apos;))</span><br><span class="line">vision_model.add(MaxPooling2D((2,2)))</span><br><span class="line">vision_model.add(Conv2D(128,(3,3),activation=&apos;relu&apos;,padding=&apos;same&apos;))</span><br><span class="line">vision_model.add(Conv2D(128,(3,3),activation=&apos;relu&apos;))</span><br><span class="line">vision_model.add(MaxPooling2D((2,2)))</span><br><span class="line">vision_model.add(Conv2D(256,(3,3),activation=&apos;relu&apos;,padding=&apos;same&apos;))</span><br><span class="line">vision_model.add(Conv2D(256,(3,3),activation=&apos;relu&apos;))</span><br><span class="line">vision_model.add(Conv2D(256,(3,3),activation=&apos;relu&apos;))</span><br><span class="line">vision_model.add(MaxPooling2D((2,2)))</span><br><span class="line">vision_model.add(Flatten())</span><br><span class="line"></span><br><span class="line"># Now let&apos;s get a tensor with the output of our vision model:</span><br><span class="line">image_input = Input(shape=(224,224,3))</span><br><span class="line">encoded_image = vision_model(image_input)</span><br><span class="line"></span><br><span class="line"># Next,let&apos;s define a language model to encode the question into a vector.</span><br><span class="line"># Each question will be at most 100 word long,</span><br><span class="line"># and we will index words as integers from 1 to 9999</span><br><span class="line">question_input = Input(shape=(100,),dtype=&apos;int32&apos;)</span><br><span class="line">embedded_question = Embedding(input_dim=10000,output_dim=256,input_length=100)(question_input)</span><br><span class="line">encoded_question = LSTM(256)(embedded_question)</span><br><span class="line"></span><br><span class="line"># Let&apos;s concatenate the question vector and the image vector:</span><br><span class="line">merged = keras.layers.concatenate([encoded_question,encoded_image])</span><br><span class="line"></span><br><span class="line"># And let&apos;s train a logistic regression over 1000 words on top:</span><br><span class="line">output = Dense(1000,activation=&apos;softmax&apos;)(merged)</span><br><span class="line"></span><br><span class="line"># This is our final model:</span><br><span class="line">vqa_model = Model(inputs=[image_input,question_input],outputs=output)</span><br><span class="line"># The next stage would be training this model on actual data.</span><br></pre></td></tr></table></figure>
+
+<h5 id="视频问答模型"><a href="#视频问答模型" class="headerlink" title="视频问答模型"></a>视频问答模型</h5><p>现在我们已经训练了图像问答模型，我们可以很快地将它转换为视频问答模型。在适当的训练下，你可以给它展示一小段视频（例如 100 帧的人体动作），然后问它一个关于这段视频的问题（例如，「这个人在做什么运动？」 -&gt; 「足球」）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">from keras.layers import TimeDistributed</span><br><span class="line"></span><br><span class="line">video_input = Input(shape=(100, 224, 224, 3))</span><br><span class="line"># 这是基于之前定义的视觉模型（权重被重用）构建的视频编码</span><br><span class="line">encoded_frame_sequence = TimeDistributed(vision_model)(video_input)  # 输出为向量的序列</span><br><span class="line">encoded_video = LSTM(256)(encoded_frame_sequence)  # 输出为一个向量</span><br><span class="line"></span><br><span class="line"># 这是问题编码器的模型级表示，重复使用与之前相同的权重：</span><br><span class="line">question_encoder = Model(inputs=question_input, outputs=encoded_question)</span><br><span class="line"></span><br><span class="line"># 让我们用它来编码这个问题：</span><br><span class="line">video_question_input = Input(shape=(100,), dtype=&apos;int32&apos;)</span><br><span class="line">encoded_video_question = question_encoder(video_question_input)</span><br><span class="line"></span><br><span class="line"># 这就是我们的视频问答模式：</span><br><span class="line">merged = keras.layers.concatenate([encoded_video, encoded_video_question])</span><br><span class="line">output = Dense(1000, activation=&apos;softmax&apos;)(merged)</span><br><span class="line">video_qa_model = Model(inputs=[video_input, video_question_input], outputs=output)</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -386,7 +420,7 @@
     
  </div>
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/Python Objects Types and Expressions/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/C++基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -405,7 +439,206 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/Python Objects Types and Expressions/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/15/C++基础/" itemprop="url">C++ 编程基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T09:58:04+08:00">
+                2019-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>main 并非程序语言定义的关键词。但是，执行C++程序的编译系统时，会假设程序中定义有main()函数。如果没有定义，程序将无法执行。<br>数据的输入输出并非C++程序语言本身定义的一部分，而是由C++的一套面向对象类体系（classess hierarchy）提供支持，并作为C++标准程序库（standard library）的一员。</p>
+<p>class 的定义通常分为两部分，写于不同的文件。其中之一是“头文件（head file）”，用来声明该 class 所提供的各种操作行为（operations）。另一个文件，程序代码文件（program text），则包含这些操作行为的实现内容（implementation）。</p>
+<p>想要使用class ，则必须先在程序中包含其头文件。表头文件可以让程序知道class的定义。<br>iostream 为C++的标准”输入/输出程序库“，其中包含了相关的整套 classes，用以支持对终端机和文件的输入与输出。</p>
+<p>string class:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> user_name</span><br></pre></td></tr></table></figure>
+
+<p>如此一来便定义了一个名为user_name的对象，它隶属于string class。这样的定义称为“声明语句（declaration statement）”。使用这一语句的时候，必须包含 string class 的头文件，让程序知道 string class 的定义：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> string</span></span><br></pre></td></tr></table></figure>
+
+<p>定义新的classes时，应该为每一个class提供它们自己的output运算符。这样可以让classes用户得以像面对内建类型一样地以相同方式输出对象内容。</p>
+<p>类型决定了对象所能含有的数值范围，同时也决定了对象应该占用多少内存空间。</p>
+<p>另一种初始化语法：“构造函数语法（constructor syntax）”： int num(0);<br>如果对象需要多个初始值，等号赋值的方式就没办法完成任务了。如标准程序库中的复数（complex number）类，它就需要两个初始值，一为实部，一为虚部。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;complex&gt;</span></span></span><br><span class="line"><span class="keyword">complex</span>&lt;<span class="keyword">double</span>&gt; purei(<span class="number">0</span>,<span class="number">8</span>);</span><br></pre></td></tr></table></figure>
+
+<p>出现在complex之后的尖括号，表示complex是一个template class（模板类）。 template class 允许我们在“不必指明 data members 之类型”的情况下定义class。<br>举个例子，复数内包含两个member data object。其一表示复数的实数部分，其二表示虚数部分。两者都需要以浮点数来表现，但我们应该采用哪种浮点数类别呢？C++有三种浮点数类别：float，double，long double。template class 机制使程序员得以直到使用 template class 时才决定真正的数据型别。程序员可以先安插一个代名，稍后才绑定至实际的数据型别。上例便是将 complex 类的成员绑定至 double 型别。<br>当“内建数据型别”与“程序员自行定义之class型别”具备不同的初始化语法时，我们无法撰写出一个 template，使它同时支持“内建型别”与“class 型别”，让语法统一，可以简化template的设计。</p>
+<p>被定义为 const 的对象在获得初值后，无法再有任何变动。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> line_size = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> cnt = line_size;</span><br></pre></td></tr></table></figure>
+
+<p>如果测试条件属于整数型别，可用switch来替换if语句。</p>
+<p>可利用continue语句来终止循环的现行迭代（current iteration）。</p>
+<p>array的尺度必须是个常量表达式（constant expression），也就是一个不需要在执行期间计算其值的表达式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> seq_size = <span class="number">18</span>;</span><br><span class="line"><span class="keyword">int</span> pell_seq[seq_size];</span><br></pre></td></tr></table></figure>
+
+<p>vector 是个 class template，故必须在类名称之后的尖括号里指定其元素型别，其尺度则写在小括号中；此处所给予的尺度并不一定是常量表达式<br>定义vector object 必须包含vector头文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pell_seq(seq_size);</span><br></pre></td></tr></table></figure>
+
+<p>for (init-statement; condition; expression)<br>        statement</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line">srand(seq_cnt)</span><br><span class="line">seq_index = rand() % seq_cnt</span><br><span class="line">current_vec = seq_addrs[ seq_index ];</span><br></pre></td></tr></table></figure>
+
+<p>init-statement 会在循环开始前被执行一次。condition在每次循环迭代之前计算出来；expression会在循环每次迭代结束之后被计算。</p>
+<p>array 与 vector 的差异：vector 可以知道自己的大小。</p>
+<p>指针为程序引入了一层间接性，可以操控指针（代表某特定内存地址），而不再直接操控对象。<br>使用指针时，必须在提领它之前先确定它的确指向某对象。<br>一个未指向任何对象的指针，其内容地址为0。有时候我们称之为null指针。任何指针都可以被初始化，或是令其值为0。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化每个指针，使它们不指向任何对象</span></span><br><span class="line"><span class="keyword">int</span> *pi = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">double</span> *pd = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">string</span> *ps = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>为了防止对null指针进行提领操作，我们可以检验该指针所含有的地址是否为0。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( pi &amp;&amp; *pi !=<span class="number">1024</span>)</span><br><span class="line">      *pi = <span class="number">1024</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (pi &amp;&amp;...)</span><br><span class="line">只有在pi含有一个非零值时，其核定结果方才为<span class="literal">true</span>。如果核定结果为<span class="literal">false</span>，那么AND运算符就不会评估其第二表达式。</span><br></pre></td></tr></table></figure>
+
+<p>欲检验某指针是否为null，我们通常使用逻辑运算符NOT：<br>if (!pi) //当 pi 之值为0，此表达式为true</p>
+<p>指针符合以下形式：<br>type_of_object_pointed_to * name_of_pointer_object</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line">srand(seq_cnt);</span><br><span class="line">seq_index = rand() % seq_cnt;</span><br><span class="line">current_vec  = seq_addrs[seq_index];</span><br></pre></td></tr></table></figure>
+
+<p>rand() 和 srand() 都是标准程序库提供的所谓伪随机数（pseudo-random number)产生器。srand()的参数是所谓随机数产生器种子（seed）。每次调用rand()，都会返回一个介于 0 和“ int 所能表示之最大整数”间的一个整数。</p>
+<p>使用class object 的指针，和使用内建型别的指针略有不同。这是因为class object 链接到一组我们可以调用（invoke）的操作行为（operations）。  </p>
+<p>指针选择行为操作使用 arrow 成员选择运算符 ! pv -&gt; empty()</p>
+<p>由于指针可能并未指向任何对象，所以在调用empty()之前，应该先检验pv是否为非零值：<br>pv &amp;&amp; ! pv-&gt;empty()</p>
+<p>若需要使用下标运算符，必须先提领pv。由于下标运算符的优先级较高，因此，pv提领操作的两边必须加上小括号：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (pv &amp;&amp; ! pv-&gt;empty() &amp;&amp; ((*pv)[<span class="number">1</span>] == <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>欲对文件进行读写操作，得包含fstream头文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>为了开启一个可供输出的文件，我们定义一个ofstream（供输出用的file stream）对象，并将文件名传入：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以输出模式开启 seq_data.txt</span></span><br><span class="line"><span class="function">ofstream <span class="title">outfile</span><span class="params">(<span class="string">"seq_data.txt"</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果指定的文件并不存在，便会有一个文件被产生出来，并开启作为输出之后。如果指定的文件已经存在，这个文件会被开启作为输出之用，而文件中原已存在的数据会被丢弃。使用追加模式（append mode）开启文件，可以将新数据追加到原有数据的后面，原有数据不会丢弃。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以追加模式（append mode）开启seq_data.txt</span></span><br><span class="line"><span class="comment">// 新数据会被追加到文件尾端</span></span><br><span class="line"><span class="function">ofstream <span class="title">outfile</span><span class="params">(<span class="string">"seq_data.txt"</span>,ios_base::app)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>文件有可能开启失败。在进行写入操作之前，我们必须确定文件的确开启成功。最简单的办法便是检查class object 的真伪：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 outfile 的计算结果为 false，表示此文件并未开启成功。</span></span><br><span class="line"><span class="keyword">if</span> (!outfile)</span><br></pre></td></tr></table></figure>
+
+<p>如果文件未能成功开启，ofstream对象会被计算为false。本例中我们将信息写入cerr，告知用户此状况。cerr代表标准错误输出设备（standard error）。和cout一样，cerr将其输出结果导至用户的终端机。两者的唯一差别是，cerr的输出结果并无缓冲（buffered）情形——它会立即显示于用户终端机上。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!outfile)</span><br><span class="line">      <span class="comment">// 因为某种原因，文件无法开启</span></span><br><span class="line">      <span class="built_in">cerr</span> &lt;&lt; <span class="string">"Oops! Unable to save session data!\n"</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">     <span class="comment">// ok: outfile 开启成功，接下来将数据写入</span></span><br><span class="line">     oufile &lt;&lt; usr_name &lt;&lt; ‘ ’</span><br><span class="line">     &lt;&lt; num_tries&lt;&lt; <span class="string">' '</span></span><br><span class="line">     &lt;&lt; num_right &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果文件开启顺利，我们便将输出信息导至该文件，就像将信息写入cout及cerr这两个ostream对象一样。本例之中，我们将3个数值写入outfile，并以空格符区分后两个数值。endl 是事先定义好的所谓操控器（manipulator），由iostream library 提供。<br>操控器不会将数据写到iostream，而不会从中读取数据，其作用是在iostream上执行某些操作。endl会插入一个换行符，并清除缓冲区（output buffer）的内容。此外还有更多的操控器，如 hex(以16进制显示整数)、oct（以8进制显示整数）、setprecision(n)（设定浮点数显示精度为n）。</p>
+<p>如果要开启一个可供读取的文件，可以定义一个ifstream（ input file stream）对象，并将文件名传入。如果文件未能开启，ifstream对象会被核定为false。如果成功，该文件的写入位置会被设定在起始处。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以读取模式 （input mode）开启infile</span></span><br><span class="line"><span class="function">ifstream <span class="title">infile</span><span class="params">(<span class="string">"seq_data.txt"</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> num_tries = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> num_cor = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (! infile)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 由于某种原因，文件无法开启。。。</span></span><br><span class="line">    <span class="comment">// 我们将假设这是一位新用户。。。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ok ，读取这个文件的每一行</span></span><br><span class="line">    <span class="comment">// 检查这个用户曾经是否玩过这个程序</span></span><br><span class="line">    <span class="comment">// 每一行的检查格式是：</span></span><br><span class="line">            name num_tries num_correct</span><br><span class="line">    <span class="comment">// nt :猜过的总次数（num_tries)</span></span><br><span class="line">    <span class="comment">// nc:猜对的总次数（num_correct)</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="keyword">int</span> nt;</span><br><span class="line">    <span class="keyword">int</span> nc;</span><br><span class="line">          <span class="keyword">while</span>(infile&gt;&gt;name)</span><br><span class="line">          &#123;</span><br><span class="line">          infile &gt;&gt; nt &gt;&gt;nc ;</span><br><span class="line">                <span class="keyword">if</span> (name == usr_name)</span><br><span class="line">                &#123;</span><br><span class="line">                  <span class="comment">//找到他了</span></span><br><span class="line">                  <span class="built_in">cout</span>&lt;&lt;<span class="string">" Welcome back, "</span>&lt;&lt; usr_name</span><br><span class="line">                        &lt;&lt; <span class="string">" \n Your current score is  "</span>&lt;&lt; nc</span><br><span class="line">                        &lt;&lt; <span class="string">"out of "</span>&lt;&lt;nt&lt;&lt;<span class="string">"\n Good Luck!\n"</span>;</span><br><span class="line">                        num_tries = nt;</span><br><span class="line">                        num_cor = nc;</span><br><span class="line">                &#125;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p> while 循环的每次迭代都会读取文件的下一行内容。这样的操作会持续到文件尾端才结束。<br> <code>infile&gt;&gt;name</code>,这个语句的返回值即是从infile 读到的class object。一旦读到文件尾端，读入的class object 会被核定为false。因此我们可以在while循环的条件表达式中，以此作为结束条件：<br> <code>while(infile&gt;&gt;name)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infile&gt;&gt;nt&gt;&gt;nc</span><br></pre></td></tr></table></figure>
+
+<p>会先将用户猜过的总次数读到nt之中，再将用户猜对的总次数读到nc之中。</p>
+<p>如果想要同时读写同一个文件，需要定义一个fstream对象，为了以追加模式（append mode）开启，我们得传入第二参数值 ios_base :: in | ios_base :: app :</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">fstream <span class="title">iofile</span><span class="params">(<span class="string">"seq_data.txt"</span>,ios_base::in | ios_base::app)</span></span>;</span><br><span class="line"><span class="keyword">if</span> (! iofile)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 由于某些原因，文件无法开启……</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 开始读取之前，将文件重新定位至起始处</span></span><br><span class="line">    iofile.seekg(<span class="number">0</span>):</span><br><span class="line">    <span class="comment">// 其它部分都和先前讨论的相同</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以附加模式开启文件时，文件位置会位于尾端。如果我们没有先重新定位，就试着读取文件内容，那么立刻会遇到“读到文件尾”的状况。seekg()可将文件位置重新定位至文件的起始处。由于此文件是以追加模式开启，因此，任何写入操作都会将数据附加于文件最末端。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div>
+    
+ </div>
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记3)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记3)/" itemprop="url">笔记整理（侯捷笔记3)</a></h1>
         
 
         <div class="post-meta">
@@ -457,130 +690,14 @@
       
         
           
-            <h2 id="The-Python-environment"><a href="#The-Python-environment" class="headerlink" title="The Python environment"></a>The Python environment</h2><p>read-evaluate-loop</p>
-<p>「读取-求值-输出」循环（英语：Read-Eval-Print<br>Loop，简称REPL）是一个简单的，交互式的编程环境。这个词常常用于指代一个Lisp的交互式开发环境，但也能指代命令行的模式和例如APL、BASIC、Clojure、F#、Haskell、J、Julia、Perl、PHP、Prolog、Python、R、Ruby、Scala、Smalltalk、Standard ML、Swift、Tcl、Javascript这样的程序语言所拥有的类似的编程环境。这也被称做交互式顶层构件（interactive toplevel）。</p>
-<h2 id="Variables-and-expressions"><a href="#Variables-and-expressions" class="headerlink" title="Variables and expressions"></a>Variables and expressions</h2><p>To translate a real-world problem into one that can be solved by an algorithm,there are two interrelated tasks.</p>
-<ul>
-<li>Firstly.select the variables,-</li>
-<li>and secondly,find the expressions that relate to these variables.</li>
-</ul>
-<p>Variables are labels attached to objects;they are not the object itself.</p>
-<p>They are not containers for objects either.<br>A variable does not contain the object,rather it acts as a pointer or reference to an object.</p>
-<p>Pyhton is a dynamically typed language.</p>
-<p>Variable names can be bound to different values and types during program execution.</p>
-<p>Variables, or more specifically the objects they point to, can change type depending on the values assigned to them.</p>
-<h3 id="Variable-scope"><a href="#Variable-scope" class="headerlink" title="Variable scope"></a>Variable scope</h3><p>Each time a function executes,a new local namespace is created.This represents a local environment that contains the names of the parameters and variables that are assigned by the function.</p>
-<p>To resolve a namespace when a function is called,the Python interpreter first searches the local namespace(that is ,the function itself) and if no match is found,it searches the global namespace.This global namespace is the module in which the function was defined.If the name is still not found,it searches the built-in namespace.Finally,if this fails then the interpreter raises a NameError ecception.</p>
-<h3 id="Flow-control-and-iteration"><a href="#Flow-control-and-iteration" class="headerlink" title="Flow control and iteration"></a>Flow control and iteration</h3><h3 id="Overview-of-data-types-and-objects"><a href="#Overview-of-data-types-and-objects" class="headerlink" title="Overview of data types and objects"></a>Overview of data types and objects</h3><p><strong>Python contains 12 built-in data types.</strong></p>
-<p>These include four numeric types(int,float,complex,bool),four sequence types(str,list,tuple,range),one mapping type(dict),and two set types.</p>
-<p><strong>All data types in Python are objects.</strong></p>
-<p>Each object in Python has a type,a value,and an identity.The identity of an object acts as a pointer to the object’s location in memory.</p>
-<p>The type of an object,also known as the object’s class,describes the object’s internal representation as well as the methods and operations it supports.</p>
-<p>Once an instance of an object is created,its identity and type cannot be changed.</p>
-<p>We can get the identity of an object by using the built-in function id().This returns an identifying integer and on most systems this refers to its memory location, although you should not rely on this in any of your code.</p>
-<p>Mutable object’s such as lists can have their values changed.They have methods,such as insert() or append(),that change an objects value.</p>
-<p>Immutable objects,such as  strings,cannot have their values changeed,so when we run their methods,they simply return a value rather than change the value of an underlying objet.</p>
-<h3 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h3><p>Strings are immutable sequence objects,with each character representing an element in the sequence.</p>
-<p>s.count(substring,[start,end])<br>Counts the occurrences of a substring with optional start and end parameters.</p>
-<p>s.expandtabs([tabsize])<br>Replaces tabs with spaces.</p>
-<p>s.find(substring,[start,end])<br>Returns the index of the first occurrence of a substring or returns -1 if the substring is not found.</p>
-<p>s.isalnum()<br>Returns True if all characters are alphanumeric,returns False otherwise. # alphanumeric 字母</p>
-<p>a.isalpha()<br>Returns True if all characters are alphabetic,returns False otherwise.</p>
-<p>a.isdigit()<br>Returns True if all characters are digits,returns False otherwise.</p>
-<p>s.join(t)<br>Joins the strings in sequence t.</p>
-<p>s.replace(old,new [maxreplace])<br>Replaces old substring with new substring.</p>
-<p>s.strip([characters])<br>Removes whitespace or optional characters.<br>Python strip() 方法用于移除字符串头尾指定的字符（默认为空格）或字符序列。<br>注意：该方法只能删除开头或是结尾的字符，不能删除中间部分的字符。<br>1、strip() 处理的时候，如果不带参数，默认是清除两边的空白符，例如：/n, /r, /t, ‘ ‘)。<br>2、strip() 带有参数的时候，这个参数可以理解一个要删除的字符的列表，是否会删除的前提是从字符串最开头和最结尾是不是包含要删除的字符，如果有就会继续处理，没有的话是不会删除中间的字符的。</p>
-<p>s.split([separator],[maxsplit])<br>Splites a string separated by whitespace or an optional separator.Returns  a list.</p>
-<p>‘int’ object has no attribute ‘append’</p>
-<h3 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h3><p>list(s)<br>Returns a list of the sequence s.</p>
-<p>s.append(s)<br>Appends element x to the end of s.</p>
-<p>s.extend(x)<br>Appends the list x to s.</p>
-<p>s.count(x)<br>Counts the occurrences of x in s.</p>
-<p>s.index(x,[start],[stop])<br>Returns the smallest index,i,where s[i]==x.Can include optional start and stop index for the search.</p>
-<p>s.insert(i,e)<br>Insert x at index i.</p>
-<p>s.pop(i)<br>Returns the element i and removes it from the list</p>
-<p>s.remove(x)<br>Removes x from s.</p>
-<p>s.reverse()<br>Reverses the order of s.</p>
-<p>s.sort(key,[reverse])<br>Sorts s with optional key and reverse</p>
-<p>nested 嵌套的<br>bracket operator 括号运算符。</p>
-<h3 id="Functions-as-first-class-objects"><a href="#Functions-as-first-class-objects" class="headerlink" title="Functions as first class objects"></a>Functions as first class objects</h3><p>In Python,it is not only data types that are treated as objects.Both functions and classes are what are known as first class objects,allowing them to be manipulated in the same ways as built-in data types.</p>
-<p>By definition,first class objects are:</p>
-<ul>
-<li>Created at runtime</li>
-<li>Assigned as a variable or in data structure</li>
-<li>Passed as an argument to a function</li>
-<li>Returned as the result of a function</li>
-</ul>
-<p>In Python,the term first class object is a bit of a misnomer since it implies some sort of hierarchy,whereas all Python objects are essentially first class.</p>
-<p>Since user-defined functions are objects,we can do things such as include them in other objects,sunch as lists.</p>
-<p>Functions can also be used as arguments for other functions.</p>
-<h2 id="Higher-order-functions"><a href="#Higher-order-functions" class="headerlink" title="Higher order functions"></a>Higher order functions</h2><p>Functions that take other functions as arguments, or that return functions, are called higher order functions.</p>
-<p>Python3 contains two built-in higher order functions,filter() and map().</p>
-<p>In earlier versions of Python,these functions returned lists; in Python3,they return an iterator,making them much more efficient.</p>
-<p>The map() funciton provides an easy way to transform each item into an iterable object.</p>
-<p>Note that both map and filter perform the identical function as to what can be achieved by list comprehensions.</p>
-<p>更推荐使用list comprehensions</p>
-<p>Note the difference between the list.sort() method and the sorted built-in function.</p>
-<p>list.sort(), a method of the list object,sorts the existing instance of a list <strong>without</strong> copying it.This method changes the target object and returns None. It is an important convention in Python that functions or methods that change the object return None to make it clear that no new object was created and that the object itself was changed.</p>
-<p>On the other hand,the sorted built-in function returns a new list.It actually accepts any iterable object as an argument,but it will always retrun a list.Both list sort and sorted take two optional keyword arguments as key.</p>
-<h2 id="Recursive-functions"><a href="#Recursive-functions" class="headerlink" title="Recursive functions"></a>Recursive functions</h2><p>In Python,we can implement a recursive function simply by calling it within its own function body.To stop a recursive function turning into an infinite loop, we need at least one argument that tests for a terminating case to end the recursion.This is sometimes called the base case.</p>
-<p>It should be pointed out that recursion is different from iteration.</p>
-<p>Although both involve repetition,iteration loops through a sequence of operations,whereas recursion repeatedly calls a function.Both need a selection statement to end.</p>
-<p>Technically,recursion is a special case of iteration known as tail iteration,and it is usually always possible to convert an iterative function to a recursive function and vice versa.</p>
-<p>The interesting thing about recursive functions is that they are able to describe an infinite object within a finite statement.</p>
-<p>虽然两者都涉及重复，但迭代循环执行一系列操作，而递归重复调用一个函数。 两者都需要选择语句才能结束。 从技术上讲，递归是一种称为尾部迭代的迭代的特殊情况，通常总是可以将迭代函数转换为递归函数，反之亦然。 关于递归函数的有趣之处在于它们能够在有限语句中描述无限对象。</p>
-<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration:"></a>Iteration:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def iterTest(low,high):</span><br><span class="line">    while low&lt;=high:</span><br><span class="line">        print(low)</span><br><span class="line">        low=low+1</span><br></pre></td></tr></table></figure>
+            <h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>静态数据只有一份。静态数据需要在类外做定义，给不给初值均可。<br>静态函数没有this指针，只能处理静态数据。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> m_rate;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_rate</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span>&amp; x)</span></span>&#123;m_data = x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">double</span> Account::m_rate = <span class="number">9.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      Account::set_rate(<span class="number">5.0</span>);</span><br><span class="line">      </span><br><span class="line">      Account a;</span><br><span class="line">      a.set_rate(<span class="number">7.0</span>);<span class="comment">// a 的地址不会传入函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用静态函数有两种方式：1.通过类名调用。2.通过对象调用。</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="recursion"><a href="#recursion" class="headerlink" title="recursion:"></a>recursion:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def recurTest(low,high):</span><br><span class="line">    if low&lt;high:</span><br><span class="line">        print(low)</span><br><span class="line">        recuTest(low+1,high)</span><br></pre></td></tr></table></figure>
+<h2 id="单例模式-把构造函数放在private区域"><a href="#单例模式-把构造函数放在private区域" class="headerlink" title="单例模式 把构造函数放在private区域"></a>单例模式 把构造函数放在private区域</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">(<span class="keyword">return</span> a;)</span></span>;</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改进：</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      static A&amp; getInstance());</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line">A&amp; A::getInstance()</span><br><span class="line">&#123;</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br></pre></td></tr></table></figure>
 
-<p>In general,iteration is more efficient;however,recursive functions are often easier to understand and write.Recursive functions are also useful for manipulating recursive data structures such as linked lists and trees,as we will see.</p>
-<h2 id="Generators-and-co-routines"><a href="#Generators-and-co-routines" class="headerlink" title="Generators and co-routines"></a>Generators and co-routines</h2><p>We can create functions that do not just return one result,but rather an entire sequence of results,by using the <strong>yield</strong> statement.These functions are called generators.</p>
-<p>Python contains generator functions, which are an easy way to create iterators and they are especially useful as a replacement for unworkably long lists. <strong>A generator yields items rather than build lists.</strong></p>
-<p>Building a list to do this calculation takes significantly longer.The performance improvement as a result of using generators is because the values are <strong>generated on demand</strong>,rather than saved as a list in memory.<em>A calculation can begin before all the elements have been generated and elements are generated only when they are needed.</em></p>
-<p>In the preceding example, the sum method loads each number into memory when it is needed for the calculation. This is achieved by the generator object repeatedly calling the <strong>next</strong>() special method. Generators never return a value other than None.</p>
-<p>生成器永远不会返回除None之外的值。</p>
-<p>Typically,generator objects are used in for loops.</p>
-<p>We can also create a <strong>generator expression</strong>,which,apart from replacing square brackets with parentheses,uses the same syntax and carries out the same operation as list comprehensions.Generator expressions,however,do not create a list,they create a generator object.This object does not create the data,but rater creates that data on demand.This means that generator objects do not support sequence methods sunch as append() and insert().You can,however,change a generator into a list using the list() function.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lst1 = [1,2,3,4]</span><br><span class="line">gen1 = (10**i for i in lst1)</span><br><span class="line">for x in gen1: print(x)</span><br><span class="line">100</span><br><span class="line">1000</span><br><span class="line">10000</span><br></pre></td></tr></table></figure>
+<h2 id="class-template，类模板"><a href="#class-template，类模板" class="headerlink" title="class template，类模板"></a>class template，类模板</h2><p><code>template&lt;typename T&gt;</code></p>
+<h2 id="function-template，函数模板"><a href="#function-template，函数模板" class="headerlink" title="function template，函数模板"></a>function template，函数模板</h2><p><code>template&lt;class T&gt;</code></p>
 
-<h2 id="Classes-and-object-programming"><a href="#Classes-and-object-programming" class="headerlink" title="Classes and object programming"></a>Classes and object programming</h2><p>Typically,classes are sets of funcitons,variables,and properties.</p>
-<p>By organizing our programs around objects and data rather than actions and logic,we have a robust and flexible way to build complex applications.The actions and logic are still present of course,but by embodying them in objects,we have a way to encapsulate functionality,allowing objects to change in very specific ways.This makes our code less error-prone,easier to extend and maintain,and able to model real-world objects.</p>
-<p>Classes are created in Python using the class statement.This defines a set of shared attributes associated with a collection of class instances.A class usually consists of a number of methods,class variables,and computed properties.It is important to understand that defining a class does not,by itself,create any instances of that class.To create an instance,a variable must be assined to a class.</p>
-<p>The class body consists of a series of statements that execute during the class definition.</p>
-<p>The functions defined inside a class are called instance methods.They apply some operations to the class instance by passing an instance of that class as the first argument.This argument is called self by convention,but it can be any legal identifier.</p>
-<h2 id="Special-methods"><a href="#Special-methods" class="headerlink" title="Special methods"></a>Special methods</h2><p>The methods that begin and end with two underscores are called special methods.</p>
-<p>Apart from the following exception,special method,are generally called by the Python interpreter rather than the programmer;</p>
-<p>for example,when we use the + operator,we actually invoking a call to <strong>add</strong>().</p>
-<p>For example,rather than using my_object.<strong>len</strong>() we can use len(my_object) using len() on a string object is actually much faster because it returns the value representing the object’s size in memory,rather than making a call to the object’s <strong>len</strong>method.</p>
-<p>The only special method we actually call inour programs,as common practice,is the <strong><strong>init</strong></strong> method,to invoke the initializer of the superclass in our own class definitions.</p>
-<p>It is strongly <strong>advised</strong> <em>not to use the double underscore syntax</em> for your own objects because of potential current or future conflicts with Python’s own special methods.</p>
-<p>We may,however,want to implement special methods in custom objects,to give them some of the behavior of built-in types.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class my_class():</span><br><span class="line">    def __init__(self, greet):</span><br><span class="line">        self.greet = greet</span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &apos;a custom object (%r)&apos; % (self.greet)</span><br></pre></td></tr></table></figure>
-
-<p>When we create an instance of this object and inspect it, we can see we get our customized string representation. Notice the use of the %r format placeholder to return the standard representation of the object. This is useful and best practice, because, in this case, it shows us that the greet object is a string indicated by the quotation marks:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = my_class(&apos;giday&apos;)</span><br><span class="line">a</span><br><span class="line">a custom object(&apos;giday&apos;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h2><p>It is possible to create a new class that modifies the behavior of an existing class through inheritance. This is done by passing the inherited class as an argument in the class definition. It is often used to modify the behavior of existing methods, for example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class specialEmployee(Employee):</span><br><span class="line">    def hours(self,numHours):</span><br><span class="line">        self.owed += numHours * self.rate*2</span><br><span class="line">        return(&quot;%.2f hours worked&quot; % numHours)</span><br></pre></td></tr></table></figure>
-
-<p>For a subclass to define new class variables,it needs to define an <strong>init</strong>() method,as follows:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class specialEmployee(Employee):</span><br><span class="line">    def __init__(self,name,rate,bonus):</span><br><span class="line">        Employee.__init__(self,name,rate)#calls the base classes</span><br><span class="line">        self.bonus = bonus</span><br><span class="line">    def hours(self,numHours):</span><br><span class="line">        self.owed += numHours * self.rate*2</span><br><span class="line">        return(&quot;%.2f hours worked&quot; % numHours)</span><br></pre></td></tr></table></figure>
-
-<p>Notice that the methods of the base class are not automatically invoked and it is necessary for the derived class to call them.We can test for class membership using the built-in function <code>isintance(obj1,obj2)</code>.This returns true if <code>obj1</code> belongs to the class of <code>obj2</code> or any class derived from <code>obj2</code>.</p>
-<p>Within a class definition,it is assumed that all methods operate on the instance,but this is not a requirement.There are,however,other types of methods:<code>static methods</code> and <code>class methods</code>.</p>
-<p>A static method is just an ordinary function that just happens to be defined in a class.</p>
-<p>It <em>does not</em> perform any operations on the instance and it is defined using the <code>@staticmethod</code> class decorator.Static methods cannot access the attributes of an instance,so their most common <strong>usage</strong> is as a convenience to group utility functions together.<br>Class methods operate on the class itself,not the instance,in the same way that class variables are associated with the classes rather than instances of that class.They are defined using the <code>@classmethod</code> decorator,and are distinguished from instance methods in that the class is passed as the first argument.This is named <code>cls</code> by convention.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Aexp(object):</span><br><span class="line">    base = 2</span><br><span class="line">    @classmethod</span><br><span class="line">    def exp(cls,x):</span><br><span class="line">        return(cls.base**x)</span><br><span class="line">class Bexp(Aexp):</span><br><span class="line">    base = 3</span><br></pre></td></tr></table></figure>
-
-<p>The class Bexp inherits from the Aexp class and changes the base class variable to 3. We canrun the parent class’s exp() method as follows:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bexp.exp(2)</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
-
-<p>Because a subclass inherits all the same fetures of its parent there is the potential for it to break inherited methods.Using class methods is a way to define exactly what methods are run.</p>
-<h2 id="Data-encapsulation-and-properties"><a href="#Data-encapsulation-and-properties" class="headerlink" title="Data encapsulation and properties"></a>Data encapsulation and properties</h2><p>Unless otherwise specified,all attributes and methods are accessible without restriction.This may cause problems when we are building object-oriented applications where we may want to hide the internal implementation of an object.This can lead to namespace conflicts between objects defined in derived classes with the base class.</p>
-<p>To prevent this,the methods we define private attributes with <strong>have a double underscore</strong>,sunch as <code>__privateMethod()</code> .These method names are automatically changed <code>__Classname__privateMethod</code> to prevent name conflicts with methods defined in base classes.</p>
-<p>Be aware that <strong>this does not strictly hide private attributes</strong>, rather it just provides a mechanism for <strong>preventing name conflicts</strong>.</p>
-<p>It is recommended to use private attributes when using a class <strong>property</strong> to define mutable attributes.A property is a kind of attribute that rather than returning a stored value,computes its value when called.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bexp(Aexp):</span><br><span class="line">    __base = 3</span><br><span class="line">    def __exp(self):</span><br><span class="line">    return(x**cls.base)</span><br></pre></td></tr></table></figure>
           
         
       
@@ -650,7 +767,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/笔记整理（MOOC)/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/笔记整理（MOOC)/" itemprop="url">笔记整理（MOOC)</a></h1>
         
 
         <div class="post-meta">
@@ -832,7 +949,7 @@
     
  </div>
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记3)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记4)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohui Bai">
@@ -851,7 +968,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记3)/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记4)/" itemprop="url">笔记整理（侯捷笔记4)</a></h1>
         
 
         <div class="post-meta">
@@ -903,13 +1020,28 @@
       
         
           
-            <h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>静态数据只有一份。静态数据需要在类外做定义，给不给初值均可。<br>静态函数没有this指针，只能处理静态数据。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> m_rate;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_rate</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span>&amp; x)</span></span>&#123;m_data = x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">double</span> Account::m_rate = <span class="number">9.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">      Account::set_rate(<span class="number">5.0</span>);</span><br><span class="line">      </span><br><span class="line">      Account a;</span><br><span class="line">      a.set_rate(<span class="number">7.0</span>);<span class="comment">// a 的地址不会传入函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用静态函数有两种方式：1.通过类名调用。2.通过对象调用。</span></span><br></pre></td></tr></table></figure>
+            <h1 id="Object-Oriented-Programming-Object-Oriented-Design"><a href="#Object-Oriented-Programming-Object-Oriented-Design" class="headerlink" title="Object Oriented Programming,Object Oriented Design"></a>Object Oriented Programming,Object Oriented Design</h1><h2 id="OOP-OOD"><a href="#OOP-OOD" class="headerlink" title="OOP OOD"></a>OOP OOD</h2><h4 id="Inheritance（继承）"><a href="#Inheritance（继承）" class="headerlink" title="-Inheritance（继承）"></a>-Inheritance（继承）</h4><h4 id="Composition（复合）"><a href="#Composition（复合）" class="headerlink" title="-Composition（复合）"></a>-Composition（复合）</h4><h4 id="Delegation（委托）"><a href="#Delegation（委托）" class="headerlink" title="-Delegation（委托）"></a>-Delegation（委托）</h4><h2 id="Composition（复合），表示has-a"><a href="#Composition（复合），表示has-a" class="headerlink" title="Composition（复合），表示has-a"></a>Composition（复合），表示has-a</h2><p><code>Adapter</code><br>Composition（复合）关系下的构造和析构<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Ce3c0bf05.png" alt="e3c0bf05.png"></p>
+<h3 id="构造由内而外"><a href="#构造由内而外" class="headerlink" title="构造由内而外"></a>构造由内而外</h3><p>Container的构造函数首先调用Component的default构造函数，然后才执行自己。<br><code>Container::Container(...):Component(){...};</code></p>
+<h3 id="构造由外而内"><a href="#构造由外而内" class="headerlink" title="构造由外而内"></a>构造由外而内</h3><p>Container的析构函数首先执行自己，然后才调用Component的析构函数。<br><code>Container::~Container(...){...~Component()};</code></p>
+<h2 id="Delegation（委托）-Composition-by-reference"><a href="#Delegation（委托）-Composition-by-reference" class="headerlink" title="Delegation（委托）.Composition by reference."></a>Delegation（委托）.Composition by reference.</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">        String();</span><br><span class="line">        String(<span class="keyword">const</span> <span class="keyword">char</span>* s);</span><br><span class="line">        String &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> String&amp; s);</span><br><span class="line">        ~String();</span><br><span class="line">        ...</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">        StringRep* rep;<span class="comment">//pimpl(Handle/Body)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file String.hpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"String.hpp"</span></span></span><br><span class="line"><span class="keyword">namespace</span>&#123;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringRep</span>&#123;</span></span><br><span class="line"><span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span>;</span></span><br><span class="line">        StringRep(<span class="keyword">const</span> <span class="keyword">char</span>*s);</span><br><span class="line">        ~StringRep();</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">char</span>* rep;</span><br><span class="line">&#125;;</span><br><span class="line">&#125; </span><br><span class="line">String::String()&#123;...&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="单例模式-把构造函数放在private区域"><a href="#单例模式-把构造函数放在private区域" class="headerlink" title="单例模式 把构造函数放在private区域"></a>单例模式 把构造函数放在private区域</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">static</span> A&amp; <span class="title">getInstance</span><span class="params">(<span class="keyword">return</span> a;)</span></span>;</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">改进：</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      static A&amp; getInstance());</span><br><span class="line">      setup() &#123;...&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">      A();</span><br><span class="line">      A(<span class="keyword">const</span> A&amp; rhs);</span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line">A&amp; A::getInstance()</span><br><span class="line">&#123;</span><br><span class="line">      <span class="keyword">static</span> A a ;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A::getInstance().setup();</span><br></pre></td></tr></table></figure>
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C0f52c2f8.png" alt="0f52c2f8.png"></p>
+<h2 id="Inheritance（继承）-表示is-a"><a href="#Inheritance（继承）-表示is-a" class="headerlink" title="Inheritance（继承）,表示is-a"></a>Inheritance（继承）,表示is-a</h2><h3 id="Inheritance（继承）关系下的构造和析构"><a href="#Inheritance（继承）关系下的构造和析构" class="headerlink" title="Inheritance（继承）关系下的构造和析构"></a>Inheritance（继承）关系下的构造和析构</h3><p>base class 的构造函数必须是virtual，否则会出现undefined behavior<br><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C1053a33c.png" alt="1053a33c.png"></p>
+<h4 id="构造由内而外-1"><a href="#构造由内而外-1" class="headerlink" title="构造由内而外"></a>构造由内而外</h4><p>Derived的构造函数首先调用base的default构造函数，然后才执行自己。<br><code>Derived::Derived(...):Base(){...};</code></p>
+<h4 id="构造由外而内-1"><a href="#构造由外而内-1" class="headerlink" title="构造由外而内"></a>构造由外而内</h4><p>Derived的析构函数首先执行自己，然后才调用Base的析构函数。<br><code>Derived::~Derived(...){...~Base()};</code></p>
+<h2 id="Inheritance（继承）with-virtual-functions（虚函数）"><a href="#Inheritance（继承）with-virtual-functions（虚函数）" class="headerlink" title="Inheritance（继承）with virtual functions（虚函数）"></a>Inheritance（继承）with virtual functions（虚函数）</h2><ul>
+<li>non-virtual函数：你不希望derived class 重新定义（override，复写）它。</li>
+<li>virtual函数：你希望derived class 重新定义（override，复写）它，且它已经有默认定义。</li>
+<li>pure virtual函数：你希望derived class 一定要重新定义（override，复写）它，你对它没有默认定义。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// pure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; msg)</span></span>; <span class="comment">// impure virtual</span></span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">objectID</span><span class="params">()</span> <span class="keyword">const</span></span>; <span class="comment">// non-virtual</span></span><br><span class="line">      ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ellipse</span>:</span><span class="keyword">public</span> Shape&#123;...&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="class-template，类模板"><a href="#class-template，类模板" class="headerlink" title="class template，类模板"></a>class template，类模板</h2><p><code>template&lt;typename T&gt;</code></p>
-<h2 id="function-template，函数模板"><a href="#function-template，函数模板" class="headerlink" title="function template，函数模板"></a>function template，函数模板</h2><p><code>template&lt;class T&gt;</code></p>
+</li>
+</ul>
+<p>Template Method 设计模式</p>
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C4856d28e.png" alt="4856d28e.png"></p>
+<h4 id="Delegation（委托）-Inheritance（继承）"><a href="#Delegation（委托）-Inheritance（继承）" class="headerlink" title="Delegation（委托）+Inheritance（继承）"></a>Delegation（委托）+Inheritance（继承）</h4><p>  <img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5Cd9aa4c92.png" alt="d9aa4c92.png"> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Component(<span class="keyword">int</span> val) &#123; value = val; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Component*)</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Primitive</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Primitive(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Composite</span> :</span><span class="keyword">public</span> Component</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;Component*&gt; c;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Composite(<span class="keyword">int</span> val) :Component(val) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Component* elem)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		c.push_back(elem);</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src=":storage%5C6eb24750-df83-4827-a5ea-e76190b6d3a3%5C82ee2b56.png" alt="82ee2b56.png"><br>创建未来的class 名称<br>下面创建的原型要让上面看得到，放上去。<br>Prototype 原型<br>每一个子类有自己的一个个体，并且有一个构造函数把自己这个个体挂到上面去。<br>每一个子类有一个clone，让父类能够通过原型调用clone创建一个个副本，</p>
 
           
         
@@ -980,7 +1112,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/笔记整理（C++ADT)/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/笔记整理（C++ADT)/" itemprop="url">笔记整理（C++ ADT)</a></h1>
         
 
         <div class="post-meta">
@@ -1042,158 +1174,12 @@
 <p>对象就像是一个黑盒子，其行为有明确的定义，我们使用对象是因为知道其功能，而不是因为了解其内部运行机制。对象的这种不透明性对于保持其独立性是非常有用的。如果恰当的定义了对象之间的通信管道，那么只有当对象中的改变影响到通信管道时，才会影响其他对象。在了解了对象发出和收到的信息之后，可以方便地用某个在特殊情况下更为合适的对象取代当前对象。</p>
 <p>信息隐藏往往容易模糊数据和操作的界限。</p>
 <p>C++能够在类声明中使用类型参数来声明通用类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class genType&gt;</span><br><span class="line">class genClass&#123;</span><br><span class="line">  genType storage[50];</span><br><span class="line">  ..............</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">genType</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">genClass</span>&#123;</span></span><br><span class="line">  genType storage[<span class="number">50</span>];</span><br><span class="line">  ..............</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-
-<p>  此后才会决定如何初始化genType:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">genClass&lt;int&gt; intObject;</span><br><span class="line">genClass&lt;float&gt; floatObject;</span><br></pre></td></tr></table></figure></p>
+<p>  此后才会决定如何初始化genType:<br>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">genClass&lt;<span class="keyword">int</span>&gt; intObject;</span><br><span class="line">genClass&lt;<span class="keyword">float</span>&gt; floatObject;</span><br></pre></td></tr></table></figure></p>
 <p>这个通用类是生成两个新类（int类型的genClass和float类型的genClass）的基础，然后使用这两个类创建了两个对象intObject和floatObject。通过这种方式，通用类可以根据特定的声明以各种不同的形式出现，一个通用声明就足以使类具有不同的形式。</p>
 <p>让storage数组大小可选：</p>
-<pre><code>template&lt;class genType,int size = 50&gt;
-class genClass{
-  genType storage[size];
-};
-
-genClass&lt;int&gt; intObject1; // use the default size;
-genClass&lt;int,100&gt; intObject2;
-genClass&lt;float,123&gt; floatObject;</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div>
-    
- </div>
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记2)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohui Bai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mist">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记2)/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="所谓stack，所谓heap"><a href="#所谓stack，所谓heap" class="headerlink" title="所谓stack，所谓heap"></a>所谓stack，所谓heap</h1><p>Stack，是存在于某作用域（scope）的一块内存空间（memory space）。例如当你调用函数，函数本身即会形成一个stack用来放置它所接收的参数，以及返回地址。<br>在函数本体（function body）内声明的任何变量，其所使用的内存块都取自上述stack。</p>
-<p>Heap，或称system heap，是指由操作系统提供的一块global内存空间，程序可动态分配（dynamic allocated）从其中获得若干区块（blocks）。<br>class Complex<br>…<br>{<br>  Complex c1(1,2);        // c1 所占用的空间来自stack<br>  Complex* p = new Complex(3);Complex（3）是个临时对象，其所占用的空间乃是以new的方式动态分配取得，并由p指向<br>  }</p>
-<p>  stack object 的生命期<br>  c1 便是所谓stack object，其生命在作用域（scope）结束之际结束。这种作用域内的object，又称为auto object，因为它会被“自动”清理。</p>
-<p>  static local objects 的生命期<br>  static Complex c2(1,2);  c2便是所谓static object，其生命在作用域（scope）结束之后仍然存在，直到整个程序结束。</p>
-<p>  global objects 的生命期<br>  class Complex{}<br>  Complex c3(1,2);<br>  int main()<br>  {}</p>
-<p>  c3 便是global object，其生命在整个程序结束之后才结束，可以将其视为一种static object，其作用域是“整个程序”。</p>
-<p>  new: 先分配memory，再调用ctor</p>
-<p>  Complex* pc = new Complex(1,2);<br>  编译器转化为：<br>  Complex *pc;</p>
-<ol>
-<li>void* mem = operator new(sizeof(Complex)); -&gt;其内部调用malloc(n)； // 分配内存</li>
-<li>pc = static_cast&lt;Complex*&gt;（mem); // 转型</li>
-<li>pc-&gt;Complex::Complex(1,2);// 构造函数 -&gt;Complex::Complex(pc,1,2);</li>
-</ol>
-<p>delete: 先调用dtor，再释放memory</p>
-<p>String* ps = new String(“hello”);<br>…<br>delete ps;</p>
-<p>编译器转化为：String::~String(ps);//析构函数<br>operator delete(ps); //释放内存 -&gt;其内部调用free(ps)</p>
-
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">genType</span>,<span class="title">int</span> <span class="title">size</span> = 50&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">genClass</span>&#123;</span></span><br><span class="line">  genType storage[size];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">genClass&lt;<span class="keyword">int</span>&gt; intObject1; <span class="comment">// use the default size;</span></span><br><span class="line">genClass&lt;<span class="keyword">int</span>,<span class="number">100</span>&gt; intObject2;</span><br><span class="line">genClass&lt;<span class="keyword">float</span>,<span class="number">123</span>&gt; floatObject;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1263,7 +1249,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/笔记整理（DSIPy)/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/笔记整理（DSIPy)/" itemprop="url">笔记整理（Python 数据结构）</a></h1>
         
 
         <div class="post-meta">
@@ -1536,6 +1522,144 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
     
  </div>
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/笔记整理（侯捷笔记2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhaohui Bai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mist">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/笔记整理（侯捷笔记2)/" itemprop="url">笔记整理（侯捷笔记2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="所谓stack，所谓heap"><a href="#所谓stack，所谓heap" class="headerlink" title="所谓stack，所谓heap"></a>所谓stack，所谓heap</h1><p>Stack，是存在于某作用域（scope）的一块内存空间（memory space）。例如当你调用函数，函数本身即会形成一个stack用来放置它所接收的参数，以及返回地址。<br>在函数本体（function body）内声明的任何变量，其所使用的内存块都取自上述stack。</p>
+<p>Heap，或称system heap，是指由操作系统提供的一块global内存空间，程序可动态分配（dynamic allocated）从其中获得若干区块（blocks）。<br>class Complex<br>…<br>{<br>  Complex c1(1,2);        // c1 所占用的空间来自stack<br>  Complex* p = new Complex(3);Complex（3）是个临时对象，其所占用的空间乃是以new的方式动态分配取得，并由p指向<br>  }</p>
+<p>  stack object 的生命期<br>  c1 便是所谓stack object，其生命在作用域（scope）结束之际结束。这种作用域内的object，又称为auto object，因为它会被“自动”清理。</p>
+<p>  static local objects 的生命期<br>  static Complex c2(1,2);  c2便是所谓static object，其生命在作用域（scope）结束之后仍然存在，直到整个程序结束。</p>
+<p>  global objects 的生命期<br>  class Complex{}<br>  Complex c3(1,2);<br>  int main()<br>  {}</p>
+<p>  c3 便是global object，其生命在整个程序结束之后才结束，可以将其视为一种static object，其作用域是“整个程序”。</p>
+<p>  new: 先分配memory，再调用ctor</p>
+<p>  Complex* pc = new Complex(1,2);<br>  编译器转化为：<br>  Complex *pc;</p>
+<ol>
+<li>void* mem = operator new(sizeof(Complex)); -&gt;其内部调用malloc(n)； // 分配内存</li>
+<li>pc = static_cast&lt;Complex*&gt;（mem); // 转型</li>
+<li>pc-&gt;Complex::Complex(1,2);// 构造函数 -&gt;Complex::Complex(pc,1,2);</li>
+</ol>
+<p>delete: 先调用dtor，再释放memory</p>
+<p>String* ps = new String(“hello”);<br>…<br>delete ps;</p>
+<p>编译器转化为：String::~String(ps);//析构函数<br>operator delete(ps); //释放内存 -&gt;其内部调用free(ps)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div>
+    
+ </div>
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/Python Data Types and Structures/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1555,7 +1679,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/14/Python Data Types and Structures/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/08/14/Python Data Types and Structures/" itemprop="url">Python Data Types and Structures</a></h1>
         
 
         <div class="post-meta">
@@ -2000,214 +2124,11 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div>
-    
- </div>
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/直击招聘3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohui Bai">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mist">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/直击招聘3/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T23:21:03+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="通用算法"><a href="#通用算法" class="headerlink" title="通用算法"></a>通用算法</h1><p>通用算法是用来操作容器中的数据的模板函数。算法部分主要由头文件<algorithm>、<numeric>、<functional>组成。<br>STL中算法大致可以分为以下4类：</functional></numeric></algorithm></p>
-<ul>
-<li>非可变序列算法：指不直接修改其所操作的容器内容的算法。</li>
-<li>可变序列算法：指可以修改它们所操作的容器内容的算法。</li>
-<li>排序算法：包括对序列进行排序和合并的算法、搜索算法以及有序序列上的集合操作。</li>
-<li>数值算法：对容器内容进行数值计算</li>
-</ul>
-<h3 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h3><ul>
-<li>adjacent_find()：在iterator对指定的元素范围内查找一对相邻重复元素，若找到，返回指向这对元素的第一个元素的位置，否则返回last。</li>
-<li>binary_search()：在有序序列中二分查找value，若找到，返回true</li>
-<li>count()：利用等于运算符把指定范围内的元素与输入值相比较，返回相等元素的个数。</li>
-<li>count_if()：利用给定的谓词对指定范围内的元素进行操作，返回结果为true的个数。</li>
-<li>find()：利用底层元素的等于运算符对指定范围内的元素与输入值进行比较，当匹配时结束，返回该元素的一个位置。</li>
-<li>find_if()：使用给定的谓词代替等于运算符执行find。</li>
-<li>lower_bound()：返回一个迭代器，指向在有序序列范围内插入指定值而不破坏容器顺序的第一个位置。</li>
-<li>upper_bound()：返回一个迭代器，指向在有序序列范围内插入指定值而不破坏容器顺序的最后一个位置，该位置是一个大于value的值。</li>
-</ul>
-<p>InputIterator find_if(InputIterator first, InputIterator last, Predicate pred);<br>其中first和last是两个迭代器确定查找的序列范围；pred为谓词对象，用于执行某种动作或者操作，通常返回true或者false，像==比较运算符就是这样的操作。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stud</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no;</span><br><span class="line">	<span class="built_in">string</span> name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Stud(<span class="keyword">int</span> n, <span class="built_in">string</span> na) :no(n), name(na) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Disp</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"["</span> &lt;&lt; no &lt;&lt; <span class="string">","</span> &lt;&lt; name &lt;&lt; <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">Getname</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cmp</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="built_in">string</span> test;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Cmp(<span class="built_in">string</span> str) :test(str) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">const</span> Stud &amp;s)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> s.Getname() == test;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Stud a[]&#123; Stud(<span class="number">2</span>,<span class="string">"Marry"</span>),Stud(<span class="number">1</span>,<span class="string">"John"</span>),Stud(<span class="number">3</span>,<span class="string">"Smith"</span>) &#125;;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">vector</span>&lt;Stud&gt;myv(a, a + n);</span><br><span class="line">	<span class="built_in">vector</span>&lt;Stud&gt;::iterator it;</span><br><span class="line">	it = find_if(myv.begin(), myv.end(), Cmp(<span class="string">"Marry"</span>));</span><br><span class="line">	it-&gt;Disp();</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上述程序中，Cmp是一个谓词对象类，执行find_if(myv.begin(),myv.end(),Cmp(“Marry”))语句时第3个实参Cmp(“Marry”)创建一个Cmp对象并赋值给形参pred。find_if()通过调用pred进行元素的查找，而Cmp中重载了函数调用()运算符，所以执行该重载运算符实现元素的查找，成功时返回其位置（即no为2）的元素。</p>
-<h3 id="排序和通用算法"><a href="#排序和通用算法" class="headerlink" title="排序和通用算法"></a>排序和通用算法</h3><p>这类算法用于提供元素排序策略。</p>
-<ul>
-<li>merge()：合并两个有序序列，存放到另一个序列。</li>
-<li>nth_element()：将范围内的序列重新排序，使所有小于第n个元素的元素都出现在它的前面，大于它的出现在它的后面。</li>
-<li>partial_sort()：对序列做部分排序，被排序的元素个数正好可以被放到范围内。</li>
-<li>partition()：对指定范围内的元素重新排序，使用关系函数，把结果为true的元素放在结果为false的元素之前。</li>
-<li>reverse()：将指定范围内的元素重新反序排序。</li>
-<li>reverse_copy()：与reverse()类似，不过将结果写到另一个容器。</li>
-<li>rotate()：将指定范围内的元素移到容器末尾，由middle指向的元素成为容器的第一个元素。例如，hissboo以元素’b’旋转后变为boohiss。</li>
-<li>rotate_copy()</li>
-<li>sort()：默认以升序重新排列</li>
-<li>stable_sort()：采用稳定排序方法</li>
-</ul>
-<p>以partition()为例</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Disp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;myv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span> (it = myv.begin(); it != myv.end(); ++it)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *it&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Less0</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> n &lt; <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[]&#123; <span class="number">-1</span>,<span class="number">1</span>,<span class="number">-2</span>,<span class="number">2</span>,<span class="number">-3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">-4</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; myv(a, a + n);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"myv: "</span>; Disp(myv);</span><br><span class="line">	partition(myv.begin(), myv.end(), Less0());</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"myv: "</span>; Disp(myv);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="删除和替换算法"><a href="#删除和替换算法" class="headerlink" title="删除和替换算法"></a>删除和替换算法</h3><ul>
-<li>copy()：复制序列</li>
-<li>copy_backward()：与copy()相同，不过元素是以相反的顺序被复制。</li>
-<li>remove()：删除指定范围内所有等于指定元素的元素。注意，该函数不是真正的删除函数。内置数组不适合使用remove和remove_if函数。</li>
-<li>remove_if()：删除指定范围内谓词结果为true的所有元素。</li>
-<li>replace()：将指定范围内所有等于old_value的元素用new_value代替。</li>
-<li>unique()：清除序列中的重复元素，和remove类似，它也不能真正地删除元素。</li>
-<li>unique_copy()：与unique()类似，但是把结果输出到另一个容器。</li>
-</ul>
-<h3 id="排列组合算法"><a href="#排列组合算法" class="headerlink" title="排列组合算法"></a>排列组合算法</h3><p>这类算法提供计算给定集合按一定顺序的所有可能排列组合。</p>
-<ul>
-<li>next_permutation()：取出当前范围内的排列，并重新排列为下一个序列。</li>
-<li>prev_permutation()：取出指定范围内的序列，并将它重新排序为上一个序列。</li>
-</ul>
-<h3 id="生成和异变算法"><a href="#生成和异变算法" class="headerlink" title="生成和异变算法"></a>生成和异变算法</h3><ul>
-<li>fill()：将输入值赋给指定范围内的所有元素。</li>
-<li>fill_n()：将输入值赋给first到first+n范围内的所有元素。</li>
-<li>for_each()：用指定函数依次对指定范围内的所有元素进行迭代访问，返回所指定的函数类型。该函数不得修改序列中的元素。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Disp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;myv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">void</span>(*pf)(<span class="keyword">int</span>) = print;</span><br><span class="line">	for_each(myv.begin(), myv.end(), pf);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="关系算法"><a href="#关系算法" class="headerlink" title="关系算法"></a>关系算法</h3><ul>
-<li>equal()</li>
-<li>include()：判断第一个指定范围内的所有元素是否都被第二个范围包含，使用底层元素的&lt;运算符，若成功返回true。</li>
-<li>lexicographical_compare()：比较两个序列。</li>
-<li>max()</li>
-<li>max_element()</li>
-<li>min()</li>
-<li>min_element()</li>
-</ul>
-<h3 id="集合算法"><a href="#集合算法" class="headerlink" title="集合算法"></a>集合算法</h3><ul>
-<li>set_union()：并集运算，构造一个有序序列，包含两个序列中所有的不重复元素</li>
-<li>set_intersection()：交集运算，构造一个有序序列，其中元素在两个序列中都存在。</li>
-<li>set_difference()：差集运算，构造一个有序序列，该序列仅保留第一个序列中存在的但第二个序列中不存在的元素。</li>
-</ul>
-<h3 id="堆排序算法"><a href="#堆排序算法" class="headerlink" title="堆排序算法"></a>堆排序算法</h3><ul>
-<li>make_heap()：将指定范围内的元素做成一个堆</li>
-<li>pop_heap()：从堆中弹出一个元素</li>
-<li>push_heap()：将一个元素插入堆中</li>
-<li>sort_heap()：将指定范围的元素进行堆排序（假设初始序列是一个堆）。</li>
-</ul>
-<h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p>string相当于一个保存字符的序列容器，因此除了有字符串的一些常用操作以外，还包含了所有的序列容器的操作。字符串的常用操作包括增、删、查、改、比较、链接、输入、输出等。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MatchFirstChar</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"S"</span>)</span></span>;</span><br><span class="line">	<span class="keyword">return</span> s == str.substr(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; myv;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator it;</span><br><span class="line">	myv.push_back(<span class="string">"She"</span>);</span><br><span class="line">	myv.push_back(<span class="string">"Sea"</span>);</span><br><span class="line">	myv.push_back(<span class="string">"Shells"</span>);</span><br><span class="line">	myv.push_back(<span class="string">"by"</span>);</span><br><span class="line">	myv.push_back(<span class="string">"the"</span>);</span><br><span class="line">	myv.push_back(<span class="string">"Sea"</span>);</span><br><span class="line">	myv.push_back(<span class="string">"Shore"</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"myv: "</span>;</span><br><span class="line">	<span class="keyword">for</span> (it = myv.begin(); it != myv.end(); ++it)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">int</span> n = count_if(myv.begin(), myv.end(), MatchFirstChar);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"以 S 开头的元素个数："</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2253,7 +2174,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

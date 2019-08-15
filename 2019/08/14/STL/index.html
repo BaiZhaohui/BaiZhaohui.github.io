@@ -81,14 +81,14 @@
 
 <meta name="description" content="STL：标准模板库STL中主要包含：container容器、algorithm算法、iterator迭代器。容器用于存放数据对象（元素），算法用于操作容器中的数据对象。尽管各种容器的内部结构各异，但是其外部常常给人的感觉都是相似的，即将对容器数据的操作设计称通用算法，也就是将算法和容器分离开来。算法和容器的中介就是迭代器。 容器顺序容器： vector（向量）：连续存储元素 list（链表）：由结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mist">
+<meta property="og:title" content="STL">
 <meta property="og:url" content="http://yoursite.com/2019/08/14/STL/index.html">
 <meta property="og:site_name" content="Mist">
 <meta property="og:description" content="STL：标准模板库STL中主要包含：container容器、algorithm算法、iterator迭代器。容器用于存放数据对象（元素），算法用于操作容器中的数据对象。尽管各种容器的内部结构各异，但是其外部常常给人的感觉都是相似的，即将对容器数据的操作设计称通用算法，也就是将算法和容器分离开来。算法和容器的中介就是迭代器。 容器顺序容器： vector（向量）：连续存储元素 list（链表）：由结">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta property="og:updated_time" content="2019-08-15T02:03:11.341Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mist">
+<meta name="twitter:title" content="STL">
 <meta name="twitter:description" content="STL：标准模板库STL中主要包含：container容器、algorithm算法、iterator迭代器。容器用于存放数据对象（元素），算法用于操作容器中的数据对象。尽管各种容器的内部结构各异，但是其外部常常给人的感觉都是相似的，即将对容器数据的操作设计称通用算法，也就是将算法和容器分离开来。算法和容器的中介就是迭代器。 容器顺序容器： vector（向量）：连续存储元素 list（链表）：由结">
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title> | Mist</title>
+  <title>STL | Mist</title>
   
 
 
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">STL</h1>
         
 
         <div class="post-meta">
@@ -365,7 +365,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find（start,end,value）</span><br></pre></td></tr></table></figure>
 
 <p>容器的表示方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find（a.begin(),a.end(),value）</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find（a.begin(),a.end(),value）</span><br></pre></td></tr></table></figure>
 
 <p>数组的表示方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find（a,a+length,val）</span><br></pre></td></tr></table></figure>
@@ -402,7 +402,6 @@
 
 <p>由于STL算法中的排序算法sort()只能用于顺序容器，不能用于list容器，所以list提供了自己的sort成员函数。<br>在使用list.sort()时，默认情况下使用底层元素类型的小于运算符按递增方式排序，如果按递减排序，需使用预定义的类模板greater，它调用底层元素类型的大于运算符。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">int</span> a[]&#123; <span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span> &#125;;</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;mylist(a, a + <span class="number">6</span>);</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator iter;</span><br><span class="line">mylist.sort();</span><br><span class="line">Disp(mylist);</span><br><span class="line">mylist.sort(greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">Disp(mylist);</span><br></pre></td></tr></table></figure>
-
 
   <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	myClass(<span class="keyword">int</span> m) :n(m)&#123;&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">getn</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> n; &#125;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> myClass &amp;s) <span class="keyword">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> (n &gt; s.getn());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Displist</span><span class="params">(<span class="built_in">list</span>&lt;myClass&gt; &amp;mylist)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;myClass&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span> (it = mylist.begin(); it != mylist.end(); ++it)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; it-&gt;getn();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	myClass obj1(3), obj2(5), obj3(2);</span><br><span class="line">	myClass obj4(7), obj5(4), obj6(1),obj7(6);</span><br><span class="line">	<span class="built_in">list</span>&lt;myClass&gt; mylist1, mylist2;</span><br><span class="line">	mylist1.push_back(obj1);</span><br><span class="line">	mylist1.push_back(obj2);</span><br><span class="line">	mylist1.push_back(obj3);</span><br><span class="line">	mylist2.push_back(obj4);</span><br><span class="line">	mylist2.push_back(obj5);</span><br><span class="line">	mylist2.push_back(obj6);</span><br><span class="line">	mylist2.push_back(obj7);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"排序前："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"mylist1: "</span>;</span><br><span class="line">	Displist(mylist1);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"mylist2: "</span>;</span><br><span class="line">	Displist(mylist2);</span><br><span class="line">	mylist1.sort();</span><br><span class="line">	mylist2.sort();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"排序后："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"mylist1: "</span>;</span><br><span class="line">	Displist(mylist1);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"mylist2: "</span>;</span><br><span class="line">	Displist(mylist2);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"mylist1合并到mylist2"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	mylist2.merge(mylist1);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"mylist2: "</span>;</span><br><span class="line">	Displist(mylist2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -531,7 +530,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/14/C++基础/" rel="next" title>
+              <a href="/2019/08/14/小球回弹/" rel="next" title>
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
@@ -541,7 +540,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/14/直击招聘2/" rel="prev" title>
+              <a href="/2019/08/14/直击招聘1/" rel="prev" title>
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -620,7 +619,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

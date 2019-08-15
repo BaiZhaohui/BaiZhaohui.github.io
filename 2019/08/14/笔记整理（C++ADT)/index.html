@@ -81,14 +81,14 @@
 
 <meta name="description" content="抽象数据类型编写程序前，需要清楚地了解如何通过程序来实现索要完成的任务。 编写代码前，应列出程序的提纲（项目越大，越复杂，提纲应越详细），包括其需求。 实现的细节，应该在一个项目的后期完成，实现阶段要用到的详细数据结构更不应该在一开始就指定。 在刚开始的时候，最重要的是每项任务的输入输出。开始阶段应该关心程序需要什么，而不是如何去做。程序的行为比实现程序的机制更重要。如某个项需要完成一些任务，那么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mist">
+<meta property="og:title" content="笔记整理（C++ ADT)">
 <meta property="og:url" content="http://yoursite.com/2019/08/14/笔记整理（C++ADT)/index.html">
 <meta property="og:site_name" content="Mist">
 <meta property="og:description" content="抽象数据类型编写程序前，需要清楚地了解如何通过程序来实现索要完成的任务。 编写代码前，应列出程序的提纲（项目越大，越复杂，提纲应越详细），包括其需求。 实现的细节，应该在一个项目的后期完成，实现阶段要用到的详细数据结构更不应该在一开始就指定。 在刚开始的时候，最重要的是每项任务的输入输出。开始阶段应该关心程序需要什么，而不是如何去做。程序的行为比实现程序的机制更重要。如某个项需要完成一些任务，那么">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-11T11:52:17.299Z">
+<meta property="og:updated_time" content="2019-08-15T02:02:35.449Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mist">
+<meta name="twitter:title" content="笔记整理（C++ ADT)">
 <meta name="twitter:description" content="抽象数据类型编写程序前，需要清楚地了解如何通过程序来实现索要完成的任务。 编写代码前，应列出程序的提纲（项目越大，越复杂，提纲应越详细），包括其需求。 实现的细节，应该在一个项目的后期完成，实现阶段要用到的详细数据结构更不应该在一开始就指定。 在刚开始的时候，最重要的是每项任务的输入输出。开始阶段应该关心程序需要什么，而不是如何去做。程序的行为比实现程序的机制更重要。如某个项需要完成一些任务，那么">
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title> | Mist</title>
+  <title>笔记整理（C++ ADT) | Mist</title>
   
 
 
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">笔记整理（C++ ADT)</h1>
         
 
         <div class="post-meta">
@@ -328,20 +328,12 @@
 <p>对象就像是一个黑盒子，其行为有明确的定义，我们使用对象是因为知道其功能，而不是因为了解其内部运行机制。对象的这种不透明性对于保持其独立性是非常有用的。如果恰当的定义了对象之间的通信管道，那么只有当对象中的改变影响到通信管道时，才会影响其他对象。在了解了对象发出和收到的信息之后，可以方便地用某个在特殊情况下更为合适的对象取代当前对象。</p>
 <p>信息隐藏往往容易模糊数据和操作的界限。</p>
 <p>C++能够在类声明中使用类型参数来声明通用类。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class genType&gt;</span><br><span class="line">class genClass&#123;</span><br><span class="line">  genType storage[50];</span><br><span class="line">  ..............</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">genType</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">genClass</span>&#123;</span></span><br><span class="line">  genType storage[<span class="number">50</span>];</span><br><span class="line">  ..............</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-
-<p>  此后才会决定如何初始化genType:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">genClass&lt;int&gt; intObject;</span><br><span class="line">genClass&lt;float&gt; floatObject;</span><br></pre></td></tr></table></figure></p>
+<p>  此后才会决定如何初始化genType:<br>  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">genClass&lt;<span class="keyword">int</span>&gt; intObject;</span><br><span class="line">genClass&lt;<span class="keyword">float</span>&gt; floatObject;</span><br></pre></td></tr></table></figure></p>
 <p>这个通用类是生成两个新类（int类型的genClass和float类型的genClass）的基础，然后使用这两个类创建了两个对象intObject和floatObject。通过这种方式，通用类可以根据特定的声明以各种不同的形式出现，一个通用声明就足以使类具有不同的形式。</p>
 <p>让storage数组大小可选：</p>
-<pre><code>template&lt;class genType,int size = 50&gt;
-class genClass{
-  genType storage[size];
-};
-
-genClass&lt;int&gt; intObject1; // use the default size;
-genClass&lt;int,100&gt; intObject2;
-genClass&lt;float,123&gt; floatObject;</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">genType</span>,<span class="title">int</span> <span class="title">size</span> = 50&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">genClass</span>&#123;</span></span><br><span class="line">  genType storage[size];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">genClass&lt;<span class="keyword">int</span>&gt; intObject1; <span class="comment">// use the default size;</span></span><br><span class="line">genClass&lt;<span class="keyword">int</span>,<span class="number">100</span>&gt; intObject2;</span><br><span class="line">genClass&lt;<span class="keyword">float</span>,<span class="number">123</span>&gt; floatObject;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -365,8 +357,8 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/14/笔记整理（侯捷笔记2)/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/08/14/笔记整理（DSIPy)/" rel="next" title="笔记整理（Python 数据结构）">
+                <i class="fa fa-chevron-left"></i> 笔记整理（Python 数据结构）
               </a>
             
           </div>
@@ -375,8 +367,8 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/14/笔记整理（侯捷笔记3)/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/14/笔记整理（侯捷笔记4)/" rel="prev" title="笔记整理（侯捷笔记4)">
+                笔记整理（侯捷笔记4) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -454,7 +446,7 @@ genClass&lt;float,123&gt; floatObject;</code></pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
